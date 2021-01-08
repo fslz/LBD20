@@ -52,7 +52,7 @@ public class MainMenuController {
         void btnBackToLoginOnAction(ActionEvent event) {
 
                 try{
-                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/Login.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/LoginView.fxml"));
                         Scene mainMenu = new Scene(root);
                         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();window.setScene(mainMenu);
                         window.show();

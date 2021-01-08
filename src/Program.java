@@ -5,22 +5,23 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 //import View.*;
 
-public class Main extends Application {
+public class Program extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("View/Login.fxml")); // ../View/Login.fxml
+        Parent root = FXMLLoader.load(getClass().getResource("View/LoginView.fxml"));
         stage.setTitle("Login");
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.show();
 
     }
-
 
     public static void main(String[] args) {
 
         launch(args);
 
     }
+
 }
