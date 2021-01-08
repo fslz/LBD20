@@ -61,6 +61,7 @@ public class LoginController {
         String user = txtUser.getText();
         String password = pwdPassword.getText();
 
+
         Connection connection = new DbConnector().getConnection(host, sid, port, user, password);
 
         if(connection == null){
