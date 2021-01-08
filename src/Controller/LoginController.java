@@ -79,44 +79,46 @@ public class LoginController {
             alert.setHeaderText("Success");
             alert.showAndWait();
 
+            /*
             try{
 
-
-
-                // Change Scene
-                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainMenu.fxml"));
+                // Create new Stage
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainMenuView.fxml"));
                 Stage stage = new Stage();
 
                 stage.setTitle("Main Menu");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
-                ((Node)(event.getSource())).getScene().getWindow().hide();
+
                 // Get info about the stage [ getSource() restituisce un bottone che viene castato a (Node) in modo tale
                 // da poter chiamare il metodo .getScene() che restituisce la "Scene" a cui il nodo appartiene.
                 // Infine dall'oggetto "Scene" si ricava la "Window" che viene downcastata a "Stage". ]
 
                 // Hide current "Stage"
+                ((Node)(event.getSource())).getScene().getWindow().hide();
 
             }
-/*
+            */
+
             try{
+
                 // Change Scene
-                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainMenu.fxml"));
+                // Set the Parent (or Root node) of the scene by loading the FXML file
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainMenuView.fxml"));
+                // Instantiate a new scene and set the root (FXML file)
                 Scene mainMenu = new Scene(root);
-                // Get info about the stage [ getSource() restituisce un bottone che viene castato a (Node) in modo tale
-                // da poter chiamare il metodo .getScene() che restituisce la "Scene" a cui il nodo appartiene.
+                // Get info about the stage [ getSource() restituisce la componente (il bottone) che genera l'evento.
+                // Viene castato a "Node" in modo tale da poter chiamare il metodo .getScene() che restituisce la "Scene" a cui il nodo appartiene.
                 // Infine dall'oggetto "Scene" si ricava la "Window" che viene downcastata a "Stage". ]
-                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                window.setScene(mainMenu);
-                window.show();
+                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                stage.setScene(mainMenu);
+                stage.setResizable(false);
+                stage.show();
+
             }
-*/
-
-
-
 
             catch(IOException e){
-
+                // TODO Handle exceptions
             }
 
 
