@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDAO {
 
@@ -18,11 +19,11 @@ public class UserDAO {
     public ObservableList<User> getUsersAll() {
 
         ObservableList<User> userList = FXCollections.observableArrayList();
+        Connection connection = new DbConnector().getConnection();
 
         try {
 
-            Connection connection = new DbConnector().getConnection();
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM users;");
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM users");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -42,14 +43,15 @@ public class UserDAO {
         }
 
         return userList;
+
     }
 
     public void addUser(User user){
-
+        // TODO
     }
 
     public void deleteUser(){
-
+        // TODO
     }
 
 

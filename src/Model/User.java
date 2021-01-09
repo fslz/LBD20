@@ -17,12 +17,14 @@ public class User { // Is this a bean?
 
 
     public User(int id, String firstName, String lastName, String gender, Date dateOfBirth, Date dateOfDeath) {
+
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.dateOfDeath = dateOfDeath;
+
     }
 
 
