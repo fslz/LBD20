@@ -1,5 +1,10 @@
 package Model;
 
+import javafx.beans.property.SimpleStringProperty;
+
+import java.time.LocalDate;
+import java.util.Date;
+
 public class User { // Is this a bean?
 
 
@@ -7,11 +12,11 @@ public class User { // Is this a bean?
     private String firstName;
     private String lastName;
     private String gender;
-    private String dateOfBirth;
-    private String dateOfDeath;
+    private Date dateOfBirth;
+    private Date dateOfDeath;
 
 
-    public User(int id, String firstName, String lastName, String gender, String dateOfBirth, String dateOfDeath) {
+    public User(int id, String firstName, String lastName, String gender, Date dateOfBirth, Date dateOfDeath) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,23 +32,20 @@ public class User { // Is this a bean?
     }
 
     public String getFirstName() {
-        return this.firstName;
+        return this.firstName.toString();
     }
 
-    public String getLastName() {
-
-        return this.lastName;
-    }
+    public String getLastName() { return this.lastName.toString(); }
 
     public String getGender() {
         return this.gender;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return this.dateOfBirth;
     }
 
-    public String getDateOfDeath() {
+    public Date getDateOfDeath() {
         return this.dateOfDeath;
     }
 
@@ -64,11 +66,11 @@ public class User { // Is this a bean?
         this.gender = gender;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setDateOfDeath(String dateOfDeath) {
+    public void setDateOfDeath(Date dateOfDeath) {
         this.dateOfDeath = dateOfDeath;
     }
 
