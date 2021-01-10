@@ -71,6 +71,7 @@ public class LoginController {
                 // Infine dall'oggetto "Scene" si ricava la "Window" che viene downcastata a "Stage". ]
                 Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 stage.setScene(mainMenu);
+                root.requestFocus();
                 stage.show();
 
             }

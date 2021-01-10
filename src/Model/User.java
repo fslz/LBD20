@@ -3,25 +3,25 @@ package Model;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class User { // Is this a bean?
 
 
     private int id;
-    private String firstName;
-    private String lastName;
-    private String gender;
-    private Date dateOfBirth;
-    private Date dateOfDeath;
+    private SimpleStringProperty firstName;
+    private SimpleStringProperty lastName;
+    private SimpleStringProperty gender;
+    private LocalDate dateOfBirth;
+    private LocalDate dateOfDeath;
 
 
-    public User(int id, String firstName, String lastName, String gender, Date dateOfBirth, Date dateOfDeath) {
+    public User(int id, String firstName, String lastName, String gender, LocalDate dateOfBirth, LocalDate dateOfDeath) {
 
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
+        this.gender = new SimpleStringProperty(gender);
         this.dateOfBirth = dateOfBirth;
         this.dateOfDeath = dateOfDeath;
 
@@ -34,20 +34,20 @@ public class User { // Is this a bean?
     }
 
     public String getFirstName() {
-        return this.firstName.toString();
+        return firstName.get();
     }
 
-    public String getLastName() { return this.lastName.toString(); }
+    public String getLastName() { return lastName.get(); }
 
     public String getGender() {
-        return this.gender;
+        return gender.get();
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return this.dateOfBirth;
     }
 
-    public Date getDateOfDeath() {
+    public LocalDate getDateOfDeath() {
         return this.dateOfDeath;
     }
 
@@ -56,25 +56,22 @@ public class User { // Is this a bean?
         this.id = id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public void setFirstName(String firstName) { this.firstName = new SimpleStringProperty(firstName); }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName = new SimpleStringProperty(lastName);
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        this.gender = new SimpleStringProperty(gender);
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setDateOfDeath(Date dateOfDeath) {
+    public void setDateOfDeath(LocalDate dateOfDeath) {
         this.dateOfDeath = dateOfDeath;
     }
-
 
 }

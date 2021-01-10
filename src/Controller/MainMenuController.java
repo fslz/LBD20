@@ -35,6 +35,7 @@ public class MainMenuController {
                         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
                         window.setScene(mainMenu);
                         window.show();
+                        root.requestFocus(); // set focus to a Node (in this case the root) that can't accept a focus
                 }
                 catch(IOException e){
 
