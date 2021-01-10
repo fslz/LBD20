@@ -23,8 +23,8 @@ public class UserDAO {
 
         try {
 
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM users");
-            ResultSet rs = ps.executeQuery();
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM users");
+            ResultSet rs = pstmt.executeQuery();
 
 
             while (rs.next()) {
@@ -64,31 +64,74 @@ public class UserDAO {
         }
 
         return userList;
+
     }
 
 
     public void addUser(User user) {
-        // TODO
+
         Connection connection = new DbConnector().getConnection();
+
         try {
 
-            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO users VALUES (0, ?, ?, ?, ?, ?");
+            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO users VALUES (0, ?, ?, ?, ?, ?)");
 
             pstmt.setString(1, user.getFirstName());
             pstmt.setString(2, user.getLastName());
             pstmt.setString(3, user.getGender());
-            pstmt.setDate(4, java.sql.Date.valueOf(user.getDateOfBirth()));
-            pstmt.setDate(5, java.sql.Date.valueOf(user.getDateOfDeath()));
+            pstmt.setDate(4, java.sql.Date.valueOf( user.getDateOfBirth() ));
+            pstmt.setDate(5, java.sql.Date.valueOf( user.getDateOfDeath() ));
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            int rows = pstmt.executeUpdate();
+
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }
 
 
-    public void deleteUser() {
-        // TODO
+    public void deleteUser(User user) {
+
+        Connection connection = new DbConnector().getConnection();
+
+        try{
+
+            PreparedStatement pstmt = connection.prepareStatement("DELETE FROM users WHERE user_id = ?");
+            pstmt.setInt(1, user.getId());
+
+            pstmt.executeUpdate();
+
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public void updateUser(User user){
+
+        Connection connection = new DbConnector().getConnection();
+        try {
+
+            PreparedStatement pstmt = connection.prepareStatement("UPDATE users SET first_name = ?, last_name = ?, gender = ?, date_of_birth = ?, date_of_death = ? WHERE user_id = ?");
+
+            pstmt.setString(1, user.getFirstName());
+            pstmt.setString(2, user.getLastName());
+            pstmt.setString(3, user.getGender());
+            pstmt.setDate(4, java.sql.Date.valueOf( user.getDateOfBirth() ));
+            pstmt.setDate(5, java.sql.Date.valueOf( user.getDateOfDeath() ));
+            pstmt.setInt(6, user.getId());
+
+            int row = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
     }
 
 

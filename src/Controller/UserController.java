@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -93,12 +94,23 @@ public class UserController implements Initializable {
     }
 
     @FXML
-    void btnAddOnAction(ActionEvent event) { // TODO TO FIX
+    void btnAddOnAction(ActionEvent event) {
 
+        /*
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(txtFirstName.getText() + "\n" +
+                txtLastName.getText() + "\n" +
+                ((RadioButton) genderToggleGroup.getSelectedToggle()).getText() + "\n" +
+                dpDateOfBirth.getValue() + "\n" +
+                dpDateOfDeath.getValue());
+        alert.showAndWait();
+        */
+
+        // TODO add email
         new UserDAO().addUser(
                 new User(0, txtFirstName.getText(),
                         txtLastName.getText(),
-                        ((RadioButton) genderToggleGroup.getSelectedToggle()).getText(),
+                        ( (RadioButton) genderToggleGroup.getSelectedToggle() ).getText(),
                         dpDateOfBirth.getValue(),
                         dpDateOfDeath.getValue()
                 )
@@ -111,10 +123,48 @@ public class UserController implements Initializable {
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
 
+        // TODO send to DAO the User instance of the selected row in the TableView
+        updateUserTable();
     }
 
     @FXML
     void btnModifyOnAction(ActionEvent event) {
+
+        // User user = new User(...); // TODO instantiate User with values from textfields
+        UserDAO userDAO = new UserDAO();
+        //userDAO.updateUser(user);
+        updateUserTable();
+    }
+
+    /**
+     * Fired when the user clicks on the table (selects a row)
+
+     */
+    @FXML
+    void tblUserOnMouseClicked(MouseEvent event) {
+
+        User user = tblUser.getSelectionModel().getSelectedItem();
+
+        txtFirstName.setText(user.getFirstName());
+        txtLastName.setText(user.getLastName());
+
+        if (user.getGender().equals("M")) rbMale.setSelected(true);
+        else rbFemale.setSelected(true);
+
+        dpDateOfBirth.setValue(user.getDateOfBirth());
+        dpDateOfDeath.setValue(user.getDateOfDeath());
+
+
+        /*
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText(user.getId() + "\n" +
+                user.getFirstName() + "\n" +
+                user.getLastName() + "\n" +
+                user.getGender() + "\n" +
+                user.getDateOfBirth() + "\n" +
+                user.getDateOfDeath());
+        alert.showAndWait();
+        */
 
     }
 

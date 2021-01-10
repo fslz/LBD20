@@ -10,35 +10,35 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserController">
    <children>
-      <TableView fx:id="tblUser" focusTraversable="false" layoutX="14.0" layoutY="366.0" prefHeight="308.0" prefWidth="570.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="366.0">
+      <TableView fx:id="tblUser" focusTraversable="false" layoutX="15.0" layoutY="355.0" onMouseClicked="#tblUserOnMouseClicked" prefHeight="331.0" prefWidth="570.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="355.0">
         <columns>
           <TableColumn fx:id="colFirstName" editable="false" prefWidth="92.0" resizable="false" sortType="DESCENDING" text="First Name" />
           <TableColumn fx:id="colLastName" editable="false" prefWidth="89.0" resizable="false" text="Last Name" />
-            <TableColumn fx:id="colGender" editable="false" prefWidth="75.0" resizable="false" text="Gender" />
-            <TableColumn fx:id="colDateOfBirth" editable="false" prefWidth="101.0" resizable="false" text="Date of birth" />
-            <TableColumn fx:id="colDateOfDeath" editable="false" prefWidth="139.0" resizable="false" text="Date of death" />
+            <TableColumn fx:id="colGender" editable="false" prefWidth="78.0" resizable="false" text="Gender" />
+            <TableColumn fx:id="colDateOfBirth" editable="false" prefWidth="112.0" resizable="false" text="Date of birth" />
+            <TableColumn fx:id="colDateOfDeath" editable="false" prefWidth="133.0" resizable="false" text="Date of death" />
         </columns>
       </TableView>
       <TextField fx:id="txtFirstName" focusTraversable="false" layoutX="122.0" layoutY="94.0" />
       <Label fx:id="lblFirstName" focusTraversable="false" layoutX="26.0" layoutY="98.0" text="First Name:" />
-      <Label fx:id="lblLastName" focusTraversable="false" layoutX="27.0" layoutY="137.0" text="Last Name:" />
-      <Label fx:id="lblGender" focusTraversable="false" layoutX="27.0" layoutY="194.0" text="Gender:" />
-      <Label fx:id="lblDateOfBirth" focusTraversable="false" layoutX="27.0" layoutY="256.0" text="Date of birth:" />
-      <Label fx:id="lblDateOfDeath" focusTraversable="false" layoutX="24.0" layoutY="303.0" text="Date of death:" />
-      <TextField fx:id="txtLastName" focusTraversable="false" layoutX="122.0" layoutY="133.0" />
-      <DatePicker fx:id="dpDateOfBirth" editable="false" focusTraversable="false" layoutX="122.0" layoutY="252.0" prefHeight="25.0" prefWidth="149.0" />
-      <RadioButton fx:id="rbMale" focusTraversable="false" layoutX="122.0" layoutY="194.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="42.0" text="M">
+      <Label fx:id="lblLastName" focusTraversable="false" layoutX="317.0" layoutY="98.0" text="Last Name:" />
+      <Label fx:id="lblGender" focusTraversable="false" layoutX="27.0" layoutY="142.0" text="Gender:" />
+      <Label fx:id="lblDateOfBirth" focusTraversable="false" layoutX="27.0" layoutY="185.0" text="Date of birth:" />
+      <Label fx:id="lblDateOfDeath" focusTraversable="false" layoutX="317.0" layoutY="185.0" text="Date of death:" />
+      <TextField fx:id="txtLastName" focusTraversable="false" layoutX="407.0" layoutY="94.0" />
+      <DatePicker fx:id="dpDateOfBirth" editable="false" focusTraversable="false" layoutX="122.0" layoutY="181.0" prefHeight="25.0" prefWidth="149.0" />
+      <RadioButton fx:id="rbMale" focusTraversable="false" layoutX="122.0" layoutY="142.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="42.0" text="M">
          <toggleGroup>
             <ToggleGroup fx:id="genderToggleGroup" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="rbFemale" focusTraversable="false" layoutX="170.0" layoutY="194.0" mnemonicParsing="false" text="F" toggleGroup="$genderToggleGroup" />
-      <DatePicker fx:id="dpDateOfDeath" editable="false" layoutX="122.0" layoutY="299.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.leftAnchor="122.0" />
+      <RadioButton fx:id="rbFemale" focusTraversable="false" layoutX="170.0" layoutY="142.0" mnemonicParsing="false" text="F" toggleGroup="$genderToggleGroup" />
+      <DatePicker fx:id="dpDateOfDeath" editable="false" focusTraversable="false" layoutX="407.0" layoutY="181.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.leftAnchor="407.0" />
       <Button fx:id="btnToMainMenu" focusTraversable="false" layoutX="21.0" layoutY="27.0" mnemonicParsing="false" onAction="#btnToMainMenuOnAction" prefHeight="30.0" prefWidth="130.0" text="Back to Main Menu" />
-      <Button fx:id="btnAdd" focusTraversable="false" layoutX="375.0" layoutY="94.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="32.0" prefWidth="149.0" text="Add" />
-      <Button fx:id="btnModify" focusTraversable="false" layoutX="375.0" layoutY="139.0" mnemonicParsing="false" onAction="#btnModifyOnAction" prefHeight="32.0" prefWidth="149.0" text="Modify" />
-      <Button fx:id="btnDelete" focusTraversable="false" layoutX="375.0" layoutY="187.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="32.0" prefWidth="149.0" text="Delete" />
-      <Button fx:id="btnAddRelationship" focusTraversable="false" layoutX="375.0" layoutY="262.0" mnemonicParsing="false" text="Add relationship?" />
+      <Button fx:id="btnAdd" focusTraversable="false" layoutX="32.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="32.0" prefWidth="149.0" text="Add" />
+      <Button fx:id="btnModify" focusTraversable="false" layoutX="227.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnModifyOnAction" prefHeight="32.0" prefWidth="149.0" text="Modify" />
+      <Button fx:id="btnDelete" focusTraversable="false" layoutX="419.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="32.0" prefWidth="149.0" text="Delete" />
+      <Button fx:id="btnAddRelationship" focusTraversable="false" layoutX="459.0" layoutY="30.0" mnemonicParsing="false" text="Add relationship?" />
    </children>
 </AnchorPane>
