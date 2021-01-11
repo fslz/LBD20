@@ -2,6 +2,7 @@ package Controller;
 
 import Model.User;
 import Model.UserDAO;
+import com.sun.org.apache.xpath.internal.operations.String;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,9 +16,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -71,9 +74,16 @@ public class UserController implements Initializable {
     private TextField txtLastName;
     @FXML
     private TextField txtFirstName;
+    @FXML
+    private TextField txtUserName;
+    @FXML
+    private Label lblUserName;
+    @FXML
+    private TableColumn<User, SimpleStringProperty> colUserName;
 
+    private ObservableList<User> userList;
 
-    ObservableList<User> userList;
+    private User selectedUser = null;
 
     @FXML
     void btnToMainMenuOnAction(ActionEvent event) {
@@ -96,25 +106,30 @@ public class UserController implements Initializable {
     @FXML
     void btnAddOnAction(ActionEvent event) {
 
-        /*
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText(txtFirstName.getText() + "\n" +
-                txtLastName.getText() + "\n" +
-                ((RadioButton) genderToggleGroup.getSelectedToggle()).getText() + "\n" +
-                dpDateOfBirth.getValue() + "\n" +
-                dpDateOfDeath.getValue());
-        alert.showAndWait();
-        */
+        if(validation()){ // validation() checks if all the required textfields are filled
+            try {
+                new UserDAO().addUser(
+                        new User(0,
+                                txtUserName.getText(),
+                                txtFirstName.getText(),
+                                txtLastName.getText(),
+                                ((RadioButton) genderToggleGroup.getSelectedToggle()).getText(),
+                                dpDateOfBirth.getValue(),
+                                dpDateOfDeath.getValue()
+                        )
+                );
+            }
+            catch(SQLException e){
 
-        // TODO add email
-        new UserDAO().addUser(
-                new User(0, txtFirstName.getText(),
-                        txtLastName.getText(),
-                        ( (RadioButton) genderToggleGroup.getSelectedToggle() ).getText(),
-                        dpDateOfBirth.getValue(),
-                        dpDateOfDeath.getValue()
-                )
-        );
+                if(e.getSQLState().equals("23000")){ // UNIQUE username constraint violation.
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("A user with this username already exists.");
+                    alert.showAndWait();
+                }
+
+            }
+        }
+
 
         updateUserTable();
 
@@ -123,48 +138,47 @@ public class UserController implements Initializable {
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
 
-        // TODO send to DAO the User instance of the selected row in the TableView
+        if (selectedUser != null) {
+            new UserDAO().deleteUser(selectedUser);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Please select a user row from the table");
+            alert.showAndWait();
+        }
+
         updateUserTable();
+
     }
 
     @FXML
     void btnModifyOnAction(ActionEvent event) {
 
         // User user = new User(...); // TODO instantiate User with values from textfields
-        UserDAO userDAO = new UserDAO();
+        if (selectedUser != null) {
+            //
+        }
         //userDAO.updateUser(user);
         updateUserTable();
     }
 
     /**
      * Fired when the user clicks on the table (selects a row)
-
      */
     @FXML
     void tblUserOnMouseClicked(MouseEvent event) {
 
-        User user = tblUser.getSelectionModel().getSelectedItem();
+        selectedUser = tblUser.getSelectionModel().getSelectedItem();
 
-        txtFirstName.setText(user.getFirstName());
-        txtLastName.setText(user.getLastName());
+        txtUserName.setText(selectedUser.getUserName());
+        txtFirstName.setText(selectedUser.getFirstName());
+        txtLastName.setText(selectedUser.getLastName());
 
-        if (user.getGender().equals("M")) rbMale.setSelected(true);
+        if (selectedUser.getGender().equals("M")) rbMale.setSelected(true);
         else rbFemale.setSelected(true);
 
-        dpDateOfBirth.setValue(user.getDateOfBirth());
-        dpDateOfDeath.setValue(user.getDateOfDeath());
+        dpDateOfBirth.setValue(selectedUser.getDateOfBirth());
+        dpDateOfDeath.setValue(selectedUser.getDateOfDeath());
 
-
-        /*
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText(user.getId() + "\n" +
-                user.getFirstName() + "\n" +
-                user.getLastName() + "\n" +
-                user.getGender() + "\n" +
-                user.getDateOfBirth() + "\n" +
-                user.getDateOfDeath());
-        alert.showAndWait();
-        */
 
     }
 
@@ -180,14 +194,27 @@ public class UserController implements Initializable {
 
         // Get all users through the UserDAO
         userList = new UserDAO().getUsersAll();
+        selectedUser = null;
         // Set the ObservableList of users as the content of the table
         tblUser.setItems(userList);
+        clearAll();
 
+    }
+
+    public void clearAll() {
+        txtUserName.setText(null);
+        txtFirstName.setText(null);
+        txtLastName.setText(null);
+        rbMale.setSelected(false);
+        rbFemale.setSelected(false);
+        dpDateOfBirth.setValue(null);
+        dpDateOfDeath.setValue(null);
     }
 
     public void setupUserTable() {
 
         // Setup the columns in the table
+        colUserName.setCellValueFactory(new PropertyValueFactory<User, SimpleStringProperty>("userName"));
         colFirstName.setCellValueFactory(new PropertyValueFactory<User, SimpleStringProperty>("firstName"));
         colLastName.setCellValueFactory(new PropertyValueFactory<User, SimpleStringProperty>("lastName"));
         colGender.setCellValueFactory(new PropertyValueFactory<User, SimpleStringProperty>("gender"));
@@ -195,5 +222,43 @@ public class UserController implements Initializable {
         colDateOfDeath.setCellValueFactory(new PropertyValueFactory<User, LocalDate>("dateOfDeath"));
 
     }
+
+
+    private boolean validation(){
+
+        boolean isValid = true;
+        StringBuilder errorMsg = new StringBuilder();
+
+        if (txtUserName.getText() == null || txtUserName.getText().trim().isEmpty()) {
+            errorMsg.append("- Please enter a username.\n");
+            isValid = false;
+        }
+        if (txtFirstName.getText() == null || txtFirstName.getText().trim().isEmpty()) {
+            errorMsg.append("- Please enter a first name.\n");
+            isValid = false;
+        }
+        if (txtLastName.getText() == null || txtLastName.getText().trim().isEmpty()) {
+            errorMsg.append("- Please enter a last name.\n");
+            isValid = false;
+        }
+        if ( genderToggleGroup.getSelectedToggle() == null ) {
+            errorMsg.append("- Please select a gender.\n");
+            isValid = false;
+        }
+        if (dpDateOfBirth.getValue() == null) {
+            errorMsg.append("- Please enter the date of birth.\n");
+            isValid = false;
+        }
+
+        if(!isValid){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(errorMsg.toString());
+            alert.showAndWait();
+        }
+
+        return isValid;
+
+    }
+
 
 }

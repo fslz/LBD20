@@ -12,13 +12,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserController">
    <children>
-      <TableView fx:id="tblUser" focusTraversable="false" layoutX="15.0" layoutY="355.0" onMouseClicked="#tblUserOnMouseClicked" prefHeight="331.0" prefWidth="570.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="355.0">
+      <TableView fx:id="tblUser" focusTraversable="false" layoutX="15.0" layoutY="355.0" onMouseClicked="#tblUserOnMouseClicked" prefHeight="312.0" prefWidth="570.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="355.0">
         <columns>
-          <TableColumn fx:id="colFirstName" editable="false" prefWidth="92.0" resizable="false" sortType="DESCENDING" text="First Name" />
-          <TableColumn fx:id="colLastName" editable="false" prefWidth="89.0" resizable="false" text="Last Name" />
-            <TableColumn fx:id="colGender" editable="false" prefWidth="78.0" resizable="false" text="Gender" />
-            <TableColumn fx:id="colDateOfBirth" editable="false" prefWidth="112.0" resizable="false" text="Date of birth" />
-            <TableColumn fx:id="colDateOfDeath" editable="false" prefWidth="133.0" resizable="false" text="Date of death" />
+            <TableColumn fx:id="colUserName" prefWidth="92.0" text="Username" />
+          <TableColumn fx:id="colFirstName" editable="false" prefWidth="102.0" resizable="false" sortType="DESCENDING" text="First Name" />
+          <TableColumn fx:id="colLastName" editable="false" prefWidth="101.0" resizable="false" text="Last Name" />
+            <TableColumn fx:id="colGender" editable="false" prefWidth="63.0" resizable="false" text="Gender" />
+            <TableColumn fx:id="colDateOfBirth" editable="false" minWidth="0.0" prefWidth="100.0" resizable="false" text="Date of birth" />
+            <TableColumn fx:id="colDateOfDeath" editable="false" prefWidth="111.0" resizable="false" text="Date of death" />
         </columns>
       </TableView>
       <TextField fx:id="txtFirstName" focusTraversable="false" layoutX="122.0" layoutY="94.0" />
@@ -40,5 +41,7 @@
       <Button fx:id="btnModify" focusTraversable="false" layoutX="227.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnModifyOnAction" prefHeight="32.0" prefWidth="149.0" text="Modify" />
       <Button fx:id="btnDelete" focusTraversable="false" layoutX="419.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="32.0" prefWidth="149.0" text="Delete" />
       <Button fx:id="btnAddRelationship" focusTraversable="false" layoutX="459.0" layoutY="30.0" mnemonicParsing="false" text="Add relationship?" />
+      <TextField fx:id="txtUserName" focusTraversable="false" layoutX="123.0" layoutY="240.0" />
+      <Label fx:id="lblUserName" layoutX="28.0" layoutY="244.0" text="Username:" />
    </children>
 </AnchorPane>

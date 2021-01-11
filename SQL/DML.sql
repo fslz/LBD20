@@ -6,42 +6,42 @@
 
 
 -- USERS
-INSERT INTO users (user_id, first_name, last_name, gender, date_of_birth, date_of_death)
-VALUES (0, 'Adriano', 'Peron', 'M', TO_DATE('14-05-2000', 'dd-mm-yyyy'), NULL); -- [1]
+INSERT INTO users (user_id, username, first_name, last_name, gender, date_of_birth, date_of_death)
+VALUES (0, 'gSYsh2g2', 'Adriano', 'Peron', 'M', TO_DATE('14-05-2000', 'dd-mm-yyyy'), NULL); -- [1]
 INSERT INTO users
-VALUES (0, 'Massimo', 'Benerecetti', 'M', TO_DATE('15-05-1964', 'dd-mm-yyyy'), NULL); -- [2]
+VALUES (0, 'qjoNvoyk',  'Massimo', 'Benerecetti', 'M', TO_DATE('15-05-1964', 'dd-mm-yyyy'), NULL); -- [2]
 INSERT INTO users
-VALUES (0, 'Piero', 'Bonatti', 'M', TO_DATE('20-07-1994', 'dd-mm-yyyy'), NULL); -- [3]
+VALUES (0, '8WngF8bW',  'Piero', 'Bonatti', 'M', TO_DATE('20-07-1994', 'dd-mm-yyyy'), NULL); -- [3]
 INSERT INTO users
-VALUES (0, 'Alessandro', 'De Luca', 'F', TO_DATE('30-12-1975', 'dd-mm-yyyy'), NULL); -- [4]
+VALUES (0, 'AAXxs7Ff',  'Alessandro', 'De Luca', 'F', TO_DATE('30-12-1975', 'dd-mm-yyyy'), NULL); -- [4]
 INSERT INTO users
-VALUES (0, 'Guido', 'Russo', 'M', TO_DATE('02-01-1980', 'dd-mm-yyyy'), NULL); -- [5]
+VALUES (0, 'pniQV1ks',  'Guido', 'Russo', 'M', TO_DATE('02-01-1980', 'dd-mm-yyyy'), NULL); -- [5]
 INSERT INTO users
-VALUES (0, 'Sergio', 'Di Martino', 'M', TO_DATE('19-09-1979', 'dd-mm-yyyy'), NULL); -- [6]
+VALUES (0, 'y60z0zs2',  'Sergio', 'Di Martino', 'M', TO_DATE('19-09-1979', 'dd-mm-yyyy'), NULL); -- [6]
 INSERT INTO users
-VALUES (0, 'Guglielmo', 'Tamburrini', 'M', TO_DATE('06-12-1980', 'dd-mm-yyyy'), NULL); -- [7]
+VALUES (0, 'Y2xndcEm',  'Guglielmo', 'Tamburrini', 'M', TO_DATE('06-12-1980', 'dd-mm-yyyy'), NULL); -- [7]
 INSERT INTO users
-VALUES (0, 'Daniel', 'Riccio', 'M', TO_DATE('29-11-1968', 'dd-mm-yyyy'), NULL); -- [8]
+VALUES (0, '81I8BXlk',  'Daniel', 'Riccio', 'M', TO_DATE('29-11-1968', 'dd-mm-yyyy'), NULL); -- [8]
 INSERT INTO users
-VALUES (0, 'Alberto', 'Aloisio', 'M', TO_DATE('17-07-1992', 'dd-mm-yyyy'), NULL); -- [9]
+VALUES (0, 'htEhrQ85',  'Alberto', 'Aloisio', 'M', TO_DATE('17-07-1992', 'dd-mm-yyyy'), NULL); -- [9]
 INSERT INTO users
-VALUES (0, 'Giovanni', 'Cutolo', 'M', TO_DATE('06-12-1957', 'dd-mm-yyyy'), NULL); -- [10]
+VALUES (0, 'sHIDtrU4',  'Giovanni', 'Cutolo', 'M', TO_DATE('06-12-1957', 'dd-mm-yyyy'), NULL); -- [10]
 INSERT INTO users
-VALUES (0, 'Walter', 'Balzano', 'M', TO_DATE('22-10-2001', 'dd-mm-yyyy'), NULL); -- [11]
+VALUES (0, '3yv8UQaz',  'Walter', 'Balzano', 'M', TO_DATE('22-10-2001', 'dd-mm-yyyy'), NULL); -- [11]
 INSERT INTO users
-VALUES (0, 'Aniello', 'Murano', 'M', TO_DATE('15-09-1952', 'dd-mm-yyyy'), NULL); -- [12]
+VALUES (0, '3695iaB8',  'Aniello', 'Murano', 'M', TO_DATE('15-09-1952', 'dd-mm-yyyy'), NULL); -- [12]
 INSERT INTO users
-VALUES (0, 'Francesca', 'Cioffi', 'F', TO_DATE('13-06-1966', 'dd-mm-yyyy'), NULL); -- [13]
+VALUES (0, '2PayX5pV',  'Francesca', 'Cioffi', 'F', TO_DATE('13-06-1966', 'dd-mm-yyyy'), NULL); -- [13]
 INSERT INTO users
-VALUES (0, 'Paola', 'Festa', 'F', TO_DATE('27-10-1983', 'dd-mm-yyyy'), NULL); -- [14]
+VALUES (0, 'F2FiySsS',  'Paola', 'Festa', 'F', TO_DATE('27-10-1983', 'dd-mm-yyyy'), NULL); -- [14]
 INSERT INTO users
-VALUES (0, 'Francesco', 'Isgro', 'M', TO_DATE('07-08-1985', 'dd-mm-yyyy'), NULL); -- [15]
+VALUES (0, 'P3P0E1ga',  'Francesco', 'Isgro', 'M', TO_DATE('07-08-1985', 'dd-mm-yyyy'), NULL); -- [15]
 INSERT INTO users
-VALUES (0, 'Roberto', 'Prevete', 'M', TO_DATE('20-05-1991', 'dd-mm-yyyy'), NULL); -- [16]
+VALUES (0, 'Yg8rn86w',  'Roberto', 'Prevete', 'M', TO_DATE('20-05-1991', 'dd-mm-yyyy'), NULL); -- [16]
 INSERT INTO users
-VALUES (0, 'Luigia', 'Caputo', 'F', TO_DATE('02-09-1979', 'dd-mm-yyyy'), NULL); -- [17]
+VALUES (0, 'wxEzx7Ue',  'Luigia', 'Caputo', 'F', TO_DATE('02-09-1979', 'dd-mm-yyyy'), NULL); -- [17]
 INSERT INTO users
-VALUES (0, 'Francesco', 'Tramontano', 'M', TO_DATE('17-01-1969', 'dd-mm-yyyy'), NULL);
+VALUES (0, 'U7GBEGN1',  'Francesco', 'Tramontano', 'M', TO_DATE('17-01-1969', 'dd-mm-yyyy'), NULL);
 -- [18]
 
 
@@ -65,7 +65,8 @@ VALUES (0, 'Centro Direzionale', 'Napoli', 'business'); -- [3]
 INSERT INTO locations
 VALUES (0, 'Stazione Termini', 'Roma', 'transportation'); -- [4]
 INSERT INTO locations
-VALUES (0, 'Piazza Affari', 'Milano', 'business');  -- [5]
+VALUES (0, 'Piazza Affari', 'Milano', 'business');
+-- [5]
 
 
 -- CONTACTS (View)
@@ -102,5 +103,4 @@ VALUES (3, 6, 1, TO_DATE('29-11-2020 15:31:07', 'dd-mm-yyyy hh24:mi:ss')); -- [1
 INSERT INTO contacts_all_v
 VALUES (15, 13, 1, TO_DATE('29-11-2020 12:22:58', 'dd-mm-yyyy hh24:mi:ss')); -- [16]
 INSERT INTO contacts_all_v
-VALUES (16, 5, 3, TO_DATE('30-11-2020 16:02:38', 'dd-mm-yyyy hh24:mi:ss'));
--- [17]
+VALUES (16, 5, 3, TO_DATE('30-11-2020 16:02:38', 'dd-mm-yyyy hh24:mi:ss')); -- [17]

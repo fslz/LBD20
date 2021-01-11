@@ -8,6 +8,7 @@
 CREATE TABLE users
 (
     user_id       INTEGER      NOT NULL,
+    username      VARCHAR2(25) NOT NULL,
     first_name    VARCHAR2(25) NOT NULL,
     last_name     VARCHAR2(25) NOT NULL,
     gender        CHAR(1)      NOT NULL,
@@ -15,6 +16,7 @@ CREATE TABLE users
     date_of_death DATE,
 
     CONSTRAINT users_pk PRIMARY KEY (user_id),
+    CONSTRAINT users_uq UNIQUE (username),
     CONSTRAINT users_ck1 CHECK (date_of_death > date_of_birth),
     CONSTRAINT users_ck2 CHECK (gender IN ('M', 'F'))
 );
@@ -329,8 +331,8 @@ CREATE OR REPLACE TRIGGER serologicals_tr
     ON serologicals
     FOR EACH ROW
 DECLARE
-    l_date_of_birth  DATE;
-    l_date_of_death  DATE;
+    l_date_of_birth DATE;
+    l_date_of_death DATE;
 BEGIN
     SELECT date_of_birth, date_of_death
     INTO l_date_of_birth, l_date_of_death
@@ -352,8 +354,8 @@ CREATE OR REPLACE TRIGGER health_checks_tr
     ON health_checks
     FOR EACH ROW
 DECLARE
-    l_date_of_birth   DATE;
-    l_date_of_death   DATE;
+    l_date_of_birth DATE;
+    l_date_of_death DATE;
 BEGIN
     SELECT date_of_birth, date_of_death
     INTO l_date_of_birth, l_date_of_death
@@ -368,20 +370,6 @@ BEGIN
     END IF;
     :new.health_check_id := health_checks_seq.nextval;
 END;
-
-
---     ____                   __    _
---    / __/ __ __  ___  ____ / /_  (_) ___   ___   ___
---   / _/  / // / / _ \/ __// __/ / / / _ \ / _ \ (_-<
---  /_/    \_,_/ /_//_/\__/ \__/ /_/  \___//_//_//___/
---
-
-
---     ___                           __
---    / _ \  ____ ___  ____ ___  ___/ / __ __  ____ ___   ___
---   / ___/ / __// _ \/ __// -_)/ _  / / // / / __// -_) (_-<
---  /_/    /_/   \___/\__/ \__/ \_,_/  \_,_/ /_/   \__/ /___/
---
 
 
 --     ___

@@ -9,6 +9,7 @@ public class User { // Is this a bean?
 
 
     private int id;
+    private SimpleStringProperty userName;
     private SimpleStringProperty firstName;
     private SimpleStringProperty lastName;
     private SimpleStringProperty gender;
@@ -16,9 +17,10 @@ public class User { // Is this a bean?
     private LocalDate dateOfDeath;
 
 
-    public User(int id, String firstName, String lastName, String gender, LocalDate dateOfBirth, LocalDate dateOfDeath) {
+    public User(int id, String userName, String firstName, String lastName, String gender, LocalDate dateOfBirth, LocalDate dateOfDeath) {
 
         this.id = id;
+        this.userName = new SimpleStringProperty(userName);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.gender = new SimpleStringProperty(gender);
@@ -33,34 +35,26 @@ public class User { // Is this a bean?
         return this.id;
     }
 
-    public String getFirstName() {
-        return firstName.get();
-    }
+    public String getUserName() { return userName.get(); }
+
+    public String getFirstName() { return firstName.get(); }
 
     public String getLastName() { return lastName.get(); }
 
-    public String getGender() {
-        return gender.get();
-    }
+    public String getGender() { return gender.get(); }
 
-    public LocalDate getDateOfBirth() {
-        return this.dateOfBirth;
-    }
+    public LocalDate getDateOfBirth() { return this.dateOfBirth; }
 
-    public LocalDate getDateOfDeath() {
-        return this.dateOfDeath;
-    }
+    public LocalDate getDateOfDeath() { return this.dateOfDeath; }
 
     // Setters
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
 
-    public void setFirstName(String firstName) { this.firstName = new SimpleStringProperty(firstName); }
+    public void setUserName(String userName) { this.userName.set(userName); }
 
-    public void setLastName(String lastName) {
-        this.lastName = new SimpleStringProperty(lastName);
-    }
+    public void setFirstName(String firstName) { this.firstName.set(firstName); }
+
+    public void setLastName(String lastName) { this.lastName.set(lastName); }
 
     public void setGender(String gender) {
         this.gender = new SimpleStringProperty(gender);
