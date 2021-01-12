@@ -12,6 +12,7 @@ public class Program extends Application {
 
         // The start method provides an input reference of a stage, therefore it's unnecessary to instantiate a new stage
         // Instantiate loader in order to load the .fxml file
+        // The controller class is specified in the root element of the FXML file using the fx:controller attribute
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/LoginView.fxml"));
         // Set the Parent (or Root node) of the scene by loading the .fmxl file
         Parent root = fxmlLoader.load();

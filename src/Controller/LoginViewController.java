@@ -4,6 +4,7 @@ import Model.DbConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 // NEW
 import javafx.fxml.FXMLLoader;
@@ -14,23 +15,20 @@ import javafx.scene.Scene;
 
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class LoginViewController {
+public class LoginViewController implements Initializable {
 
     // Non dovrebbero stare nella view? e accedere dal controller via getter?
     @FXML private Button btnLogin;
-    @FXML private Label lblHost;
     @FXML private TextField txtHost;
     @FXML private TextField txtSid;
     @FXML private TextField txtPort;
     @FXML private TextField txtUser;
     @FXML private PasswordField pwdPassword;
-    @FXML private Label lblSid;
-    @FXML private Label lblPort;
-    @FXML private Label lblUser;
-    @FXML private Label lblPassword;
 
     @FXML
     void btnLoginOnAction(ActionEvent event){
@@ -74,9 +72,16 @@ public class LoginViewController {
                 // TODO Handle exceptions
             }
 
-
         }
 
     }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        btnLogin.setDefaultButton(true);
+
+    }
+
 
 }

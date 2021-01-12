@@ -124,9 +124,9 @@ CREATE TABLE health_checks
     respiratory_disorder CHAR(1) NOT NULL,
     smell_taste_disorder CHAR(1) NOT NULL,
 
-    CONSTRAINT health_checks_ck1 CHECK (fever IN ('y', 'n')),
-    CONSTRAINT health_checks_ck2 CHECK (respiratory_disorder IN ('y', 'n')),
-    CONSTRAINT health_checks_ck3 CHECK (smell_taste_disorder IN ('y', 'n')),
+    CONSTRAINT health_checks_ck1 CHECK (fever IN ('Y', 'N')),
+    CONSTRAINT health_checks_ck2 CHECK (respiratory_disorder IN ('Y', 'N')),
+    CONSTRAINT health_checks_ck3 CHECK (smell_taste_disorder IN ('Y', 'N')),
     CONSTRAINT health_checks_uk UNIQUE (user_id, date_of_check)
 );
 
@@ -209,6 +209,37 @@ FROM contacts c
 WHERE p1.user_id <> p2.user_id
   AND p1.user_id < p2.user_id;
 
+-- all contacts between users [used when fetching all contacts?]
+CREATE OR REPLACE VIEW contacts_all_v2 AS
+SELECT u1.user_id       AS user_id1,
+       u1.username      AS username1,
+       u1.first_name    AS first_name1,
+       u1.last_name     AS last_name1,
+       u1.date_of_birth AS date_of_birth1,
+       u1.date_of_death AS date_of_death1,
+
+       u2.user_id       AS user_id2,
+       u2.username      AS username2,
+       u2.first_name    AS firstname2,
+       u2.last_name     AS last_name2,
+       u2.date_of_birth AS date_of_birth2,
+       u2.date_of_death AS date_of_death2,
+
+       l.location_id    AS location_id,
+       l.name           AS location_name,
+       l.city           AS location_city,
+       l.category       AS location_category,
+
+       p1.date_received AS date_received
+
+FROM contacts c
+         JOIN participants p1 ON c.contact_id = p1.contact_id
+         JOIN participants p2 ON p1.contact_id = p2.contact_id
+         JOIN users u1 ON p1.user_id = u1.user_id
+         JOIN users u2 ON p2.user_id = u2.user_id
+         JOIN locations l ON c.location_id = l.location_id
+WHERE p1.user_id <> p2.user_id
+  AND p1.user_id < p2.user_id;
 
 -- all relationships (user_id1, user_id2, relationship type)
 CREATE OR REPLACE VIEW relationships_all_v AS
@@ -396,4 +427,37 @@ DROP TABLE health_checks CASCADE CONSTRAINTS;
 DROP TABLE users CASCADE CONSTRAINTS;
 DROP TABLE serologicals CASCADE CONSTRAINTS;
 DROP VIEW contacts_all_v;
+DROP VIEW contacts_all_v2;
 DROP VIEW relationships_all_v;
+
+
+--    _      __   ____   ___
+--   | | /| / /  /  _/  / _ \
+--   | |/ |/ /  _/ /   / ___/
+--   |__/|__/  /___/  /_/
+--
+
+
+SELECT *
+FROM users;
+
+
+SELECT *
+FROM contacts_all_v;
+
+
+-- tutti i contatti (coppia di user, luogo, data)
+SELECT p1.user_id, p2.user_id, c.location_id, p1.date_received
+FROM contacts c
+         JOIN participants p1 ON c.contact_id = p1.contact_id
+         JOIN participants p2 ON p1.contact_id = p2.contact_id
+WHERE p1.user_id <> p2.user_id;
+
+
+-- calcola il numero di contatti di uno user nelle ultime 2 settimane (da controllare)
+SELECT COUNT(i.contact_id)
+FROM contacts i
+         JOIN participants p ON i.contact_id = p.contact_id
+WHERE p.user_id = 1
+  AND p.date_received BETWEEN TO_DATE('01-12-2020', 'dd-mm-yyyy') - 30 AND TO_DATE('01-12-2020', 'dd-mm-yyyy')
+ORDER BY p.date_received DESC;
