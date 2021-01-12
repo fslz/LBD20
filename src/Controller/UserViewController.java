@@ -2,7 +2,6 @@ package Controller;
 
 import Model.User;
 import Model.UserDAO;
-import com.sun.org.apache.xpath.internal.operations.String;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,50 +16,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sun.java2d.pipe.SpanShapeRenderer;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserController implements Initializable {
+public class UserViewController implements Initializable {
 
-
-    @FXML
-    private Label lblFirstName;
-    @FXML
-    private Label lblLastName;
-    @FXML
-    private Label lblGender;
-    @FXML
-    private Label lblDateOfBirth;
-    @FXML
-    private Label lblDateOfDeath;
-    @FXML
-    private DatePicker dpDateOfBirth;
-    @FXML
-    private RadioButton rbMale;
-    @FXML
-    private RadioButton rbFemale;
-    @FXML
-    private ToggleGroup genderToggleGroup;
-    @FXML
-    private DatePicker dpDateOfDeath;
-    @FXML
-    private Button btnToMainMenu;
-    @FXML
-    private Button btnAddUser;
-    @FXML
-    private Button btnEditUser;
-    @FXML
-    private Button btnDeleteUser;
-    @FXML
-    private Button btnAddRelationship;
     @FXML
     private TableView<User> tblUser;
+    @FXML
+    private TableColumn<User, SimpleStringProperty> colUserName;
     @FXML
     private TableColumn<User, SimpleStringProperty> colFirstName;
     @FXML
@@ -71,20 +40,11 @@ public class UserController implements Initializable {
     private TableColumn<User, LocalDate> colDateOfBirth;
     @FXML
     private TableColumn<User, LocalDate> colDateOfDeath;
-    @FXML
-    private TextField txtLastName;
-    @FXML
-    private TextField txtFirstName;
-    @FXML
-    private TextField txtUserName;
-    @FXML
-    private Label lblUserName;
-    @FXML
-    private TableColumn<User, SimpleStringProperty> colUserName;
 
     private ObservableList<User> userList;
 
     private User selectedUser = null;
+
 
     @FXML
     private void btnToMainMenuOnAction(ActionEvent event) {
@@ -98,33 +58,36 @@ public class UserController implements Initializable {
             stage.setScene(mainMenu);
 
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
 
     }
 
+
     @FXML
     private void btnAddUserOnAction(ActionEvent event) {
 
-
-
+        showAddUserView();
 
         updateUserTable();
 
     }
 
+
     @FXML
-    private void btnDeleteUserOnAction(ActionEvent event) {
+    private void btnEditUserOnAction(ActionEvent event) {
 
         if (selectedUser != null) {
 
-            new UserDAO().deleteUser(selectedUser);
+            showEditUserView();
 
         }
-        else {
 
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+        else{
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Please select a user from the table");
+            alert.setHeaderText("User not selected");
             alert.showAndWait();
 
         }
@@ -133,12 +96,40 @@ public class UserController implements Initializable {
 
     }
 
+
     @FXML
-    private void btnEditUserOnAction(ActionEvent event) {
+    private void btnDeleteUserOnAction(ActionEvent event) {
 
         if (selectedUser != null) {
 
-            showUserEditView();
+            // Ask for the user to confirm changes
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirm changes");
+            confirmAlert.setHeaderText("");
+            confirmAlert.setContentText("The user will be deleted. Do you want to proceed?");
+
+            Optional<ButtonType> result = confirmAlert.showAndWait();
+
+            if(result.get() == ButtonType.OK){
+
+                try{
+
+                    new UserDAO().deleteUser(selectedUser);
+
+                }
+                catch(SQLException e){
+                    System.out.println(e.getErrorCode());
+                }
+
+            }
+
+        }
+        else {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Please select a user from the table");
+            alert.setHeaderText("User not selected");
+            alert.showAndWait();
 
         }
 
@@ -146,14 +137,15 @@ public class UserController implements Initializable {
 
     }
 
-    private void showUserEditView() {
+
+    private void showEditUserView() {
 
         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserEditView.fxml"));
-            Parent root = loader.load();
-            UserEditController userEditController = loader.getController(); // This did the "trick"
-            userEditController.setSelectedUser(selectedUser); // Passing the client-object to the ClientViewController
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserEditView.fxml"));
+            Parent root = fxmlLoader.load();
+            UserEditViewController userEditViewController = fxmlLoader.getController(); // This did the "trick"
+            userEditViewController.setSelectedUser(selectedUser); // Passing the client-object to the ClientViewController
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Edit User");
@@ -166,6 +158,30 @@ public class UserController implements Initializable {
         }
 
     }
+
+
+    private void showAddUserView(){
+
+        try{
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserInsertView.fxml"));
+            Parent root = fxmlLoader.load();
+            //UserInsertViewController userInsertView = fxmlLoader.getController();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Add User");
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+        }
+
+        catch(IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
 
     /**
      * Fired when the user clicks on the table (selects a row)

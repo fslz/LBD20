@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class UserDAO {
 
     /**
-     * Called by the UserController, returns an ObservableList of type User containing every user in the db
+     * Called by the UserViewController, returns an ObservableList of type User containing every user in the db
      *
      * @return ObservableList<User>
      */
@@ -51,7 +51,7 @@ public class UserDAO {
     }
 
     /**
-     * Called by the UserController
+     * Called by the UserViewController
      * Inserts new user into the db
      *
      * @return void
@@ -82,7 +82,7 @@ public class UserDAO {
     }
 
     /**
-     * Called by the UserController
+     * Called by the UserViewController
      * Updates the user in the db
      *
      * @return void
@@ -113,12 +113,12 @@ public class UserDAO {
     }
 
     /**
-     * Called by the UserController
+     * Called by the UserViewController
      * Deletes the user from the db
      *
      * @return void
      */
-    public void deleteUser(User user) {
+    public void deleteUser(User user) throws SQLException {
 
         Connection connection = new DbConnector().getConnection();
 
@@ -130,7 +130,9 @@ public class UserDAO {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            throw e;
+
         }
 
     }

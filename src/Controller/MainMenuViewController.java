@@ -16,7 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class MainMenuController {
+public class MainMenuViewController {
 
         @FXML private Pane pnlMainMenu;
         @FXML private Button btnUsers;
@@ -37,6 +37,7 @@ public class MainMenuController {
                         Scene mainMenu = new Scene(root);
                         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                         stage.setScene(mainMenu);
+                        stage.setTitle("Users");
                         root.requestFocus();
 
                 }

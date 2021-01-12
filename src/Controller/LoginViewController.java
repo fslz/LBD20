@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class LoginController {
+public class LoginViewController {
 
     // Non dovrebbero stare nella view? e accedere dal controller via getter?
     @FXML private Button btnLogin;

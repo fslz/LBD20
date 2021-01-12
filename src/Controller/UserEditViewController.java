@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserEditController implements Initializable {
+public class UserEditViewController implements Initializable {
 
     @FXML
     private Button btnCancel;
@@ -56,7 +56,7 @@ public class UserEditController implements Initializable {
     @FXML
     void btnCancelOnAction(ActionEvent event) {
 
-        // Get the stage the button pressed belogs to
+        // Get the stage the button pressed belongs to
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         // Close it
         stage.close();
@@ -73,7 +73,7 @@ public class UserEditController implements Initializable {
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm changes");
             confirmAlert.setHeaderText("");
-            confirmAlert.setContentText("The user will be edited. Are you sure you want to proceed?");
+            confirmAlert.setContentText("Apply changes?");
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
 
@@ -169,7 +169,7 @@ public class UserEditController implements Initializable {
             errorMsg.append("- Please enter a last name.\n");
             isValid = false;
         }
-        if (cbGender.getValue().equals(null)) {
+        if (cbGender.getValue() == null) {
             errorMsg.append("- Please select a gender.\n");
             isValid = false;
         }
@@ -180,6 +180,7 @@ public class UserEditController implements Initializable {
 
         if (!isValid) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Missing Information");
             alert.setContentText(errorMsg.toString());
             alert.showAndWait();
         }
