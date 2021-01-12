@@ -29,13 +29,16 @@ public class MainMenuController {
 
         @FXML
         void btnUsersOnAction(ActionEvent event) {
-                try{
-                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/UserView.fxml"));
+
+                try{    // Load next scene (Main Menu) in the current stage
+
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserView.fxml"));
+                        Parent root = fxmlLoader.load();
                         Scene mainMenu = new Scene(root);
-                        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                        window.setScene(mainMenu);
-                        window.show();
-                        root.requestFocus(); // set focus to a Node (in this case the root) that can't accept a focus
+                        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                        stage.setScene(mainMenu);
+                        root.requestFocus();
+
                 }
                 catch(IOException e){
 

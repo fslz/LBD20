@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sun.java2d.pipe.SpanShapeRenderer;
 
@@ -51,11 +52,11 @@ public class UserController implements Initializable {
     @FXML
     private Button btnToMainMenu;
     @FXML
-    private Button btnAdd;
+    private Button btnAddUser;
     @FXML
-    private Button btnModify;
+    private Button btnEditUser;
     @FXML
-    private Button btnDelete;
+    private Button btnDeleteUser;
     @FXML
     private Button btnAddRelationship;
     @FXML
@@ -86,16 +87,15 @@ public class UserController implements Initializable {
     private User selectedUser = null;
 
     @FXML
-    void btnToMainMenuOnAction(ActionEvent event) {
+    private void btnToMainMenuOnAction(ActionEvent event) {
 
         try {
 
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainMenuView.fxml"));
             Scene mainMenu = new Scene(root);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(mainMenu);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             root.requestFocus();
-            window.show();
+            stage.setScene(mainMenu);
 
         } catch (IOException e) {
 
@@ -104,31 +104,9 @@ public class UserController implements Initializable {
     }
 
     @FXML
-    void btnAddOnAction(ActionEvent event) {
+    private void btnAddUserOnAction(ActionEvent event) {
 
-        if(validation()){ // validation() checks if all the required textfields are filled
-            try {
-                new UserDAO().addUser(
-                        new User(0,
-                                txtUserName.getText(),
-                                txtFirstName.getText(),
-                                txtLastName.getText(),
-                                ((RadioButton) genderToggleGroup.getSelectedToggle()).getText(),
-                                dpDateOfBirth.getValue(),
-                                dpDateOfDeath.getValue()
-                        )
-                );
-            }
-            catch(SQLException e){
 
-                if(e.getSQLState().equals("23000")){ // UNIQUE username constraint violation.
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("A user with this username already exists.");
-                    alert.showAndWait();
-                }
-
-            }
-        }
 
 
         updateUserTable();
@@ -136,14 +114,19 @@ public class UserController implements Initializable {
     }
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) {
+    private void btnDeleteUserOnAction(ActionEvent event) {
 
         if (selectedUser != null) {
+
             new UserDAO().deleteUser(selectedUser);
-        } else {
+
+        }
+        else {
+
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Please select a user row from the table");
+            alert.setContentText("Please select a user from the table");
             alert.showAndWait();
+
         }
 
         updateUserTable();
@@ -151,34 +134,46 @@ public class UserController implements Initializable {
     }
 
     @FXML
-    void btnModifyOnAction(ActionEvent event) {
+    private void btnEditUserOnAction(ActionEvent event) {
 
-        // User user = new User(...); // TODO instantiate User with values from textfields
         if (selectedUser != null) {
-            //
+
+            showUserEditView();
+
         }
-        //userDAO.updateUser(user);
+
         updateUserTable();
+
+    }
+
+    private void showUserEditView() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/UserEditView.fxml"));
+            Parent root = loader.load();
+            UserEditController userEditController = loader.getController(); // This did the "trick"
+            userEditController.setSelectedUser(selectedUser); // Passing the client-object to the ClientViewController
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Edit User");
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (cannot interact with the calling stage)
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
      * Fired when the user clicks on the table (selects a row)
      */
     @FXML
-    void tblUserOnMouseClicked(MouseEvent event) {
+    private void tblUserOnMouseClicked(MouseEvent event) {
 
         selectedUser = tblUser.getSelectionModel().getSelectedItem();
-
-        txtUserName.setText(selectedUser.getUserName());
-        txtFirstName.setText(selectedUser.getFirstName());
-        txtLastName.setText(selectedUser.getLastName());
-
-        if (selectedUser.getGender().equals("M")) rbMale.setSelected(true);
-        else rbFemale.setSelected(true);
-
-        dpDateOfBirth.setValue(selectedUser.getDateOfBirth());
-        dpDateOfDeath.setValue(selectedUser.getDateOfDeath());
-
 
     }
 
@@ -190,28 +185,17 @@ public class UserController implements Initializable {
 
     }
 
-    public void updateUserTable() {
+    private void updateUserTable() {
 
         // Get all users through the UserDAO
         userList = new UserDAO().getUsersAll();
-        selectedUser = null;
+        //selectedUser = null;
         // Set the ObservableList of users as the content of the table
         tblUser.setItems(userList);
-        clearAll();
 
     }
 
-    public void clearAll() {
-        txtUserName.setText(null);
-        txtFirstName.setText(null);
-        txtLastName.setText(null);
-        rbMale.setSelected(false);
-        rbFemale.setSelected(false);
-        dpDateOfBirth.setValue(null);
-        dpDateOfDeath.setValue(null);
-    }
-
-    public void setupUserTable() {
+    private void setupUserTable() {
 
         // Setup the columns in the table
         colUserName.setCellValueFactory(new PropertyValueFactory<User, SimpleStringProperty>("userName"));
@@ -222,43 +206,5 @@ public class UserController implements Initializable {
         colDateOfDeath.setCellValueFactory(new PropertyValueFactory<User, LocalDate>("dateOfDeath"));
 
     }
-
-
-    private boolean validation(){
-
-        boolean isValid = true;
-        StringBuilder errorMsg = new StringBuilder();
-
-        if (txtUserName.getText() == null || txtUserName.getText().trim().isEmpty()) {
-            errorMsg.append("- Please enter a username.\n");
-            isValid = false;
-        }
-        if (txtFirstName.getText() == null || txtFirstName.getText().trim().isEmpty()) {
-            errorMsg.append("- Please enter a first name.\n");
-            isValid = false;
-        }
-        if (txtLastName.getText() == null || txtLastName.getText().trim().isEmpty()) {
-            errorMsg.append("- Please enter a last name.\n");
-            isValid = false;
-        }
-        if ( genderToggleGroup.getSelectedToggle() == null ) {
-            errorMsg.append("- Please select a gender.\n");
-            isValid = false;
-        }
-        if (dpDateOfBirth.getValue() == null) {
-            errorMsg.append("- Please enter the date of birth.\n");
-            isValid = false;
-        }
-
-        if(!isValid){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText(errorMsg.toString());
-            alert.showAndWait();
-        }
-
-        return isValid;
-
-    }
-
 
 }

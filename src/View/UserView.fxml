@@ -37,9 +37,9 @@
       <RadioButton fx:id="rbFemale" focusTraversable="false" layoutX="170.0" layoutY="142.0" mnemonicParsing="false" text="F" toggleGroup="$genderToggleGroup" />
       <DatePicker fx:id="dpDateOfDeath" editable="false" focusTraversable="false" layoutX="407.0" layoutY="181.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.leftAnchor="407.0" />
       <Button fx:id="btnToMainMenu" focusTraversable="false" layoutX="21.0" layoutY="27.0" mnemonicParsing="false" onAction="#btnToMainMenuOnAction" prefHeight="30.0" prefWidth="130.0" text="Back to Main Menu" />
-      <Button fx:id="btnAdd" focusTraversable="false" layoutX="32.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="32.0" prefWidth="149.0" text="Add" />
-      <Button fx:id="btnModify" focusTraversable="false" layoutX="227.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnModifyOnAction" prefHeight="32.0" prefWidth="149.0" text="Modify" />
-      <Button fx:id="btnDelete" focusTraversable="false" layoutX="419.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="32.0" prefWidth="149.0" text="Delete" />
+      <Button fx:id="btnAddUser" focusTraversable="false" layoutX="32.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnAddUserOnAction" prefHeight="32.0" prefWidth="149.0" text="Add User" />
+      <Button fx:id="btnEditUser" focusTraversable="false" layoutX="227.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnEditUserOnAction" prefHeight="32.0" prefWidth="149.0" text="Edit User" />
+      <Button fx:id="btnDeleteUser" focusTraversable="false" layoutX="419.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnDeleteUserOnAction" prefHeight="32.0" prefWidth="149.0" text="Delete User" />
       <Button fx:id="btnAddRelationship" focusTraversable="false" layoutX="459.0" layoutY="30.0" mnemonicParsing="false" text="Add relationship?" />
       <TextField fx:id="txtUserName" focusTraversable="false" layoutX="123.0" layoutY="240.0" />
       <Label fx:id="lblUserName" layoutX="28.0" layoutY="244.0" text="Username:" />

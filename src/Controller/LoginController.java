@@ -39,7 +39,8 @@ public class LoginController {
         String sid = txtSid.getText();
         String port = txtPort.getText();
         String user = txtUser.getText();
-        String password = pwdPassword.getText();
+        //String password = pwdPassword.getText();
+        String password = "yum3jiva0";
 
         Connection connection = new DbConnector().getConnection(host, sid, port, user, password);
 
@@ -48,7 +49,7 @@ public class LoginController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Connection failed.");
             alert.setHeaderText("Error");
-            alert.show();
+            alert.showAndWait();
 
         }
 
@@ -61,18 +62,11 @@ public class LoginController {
 
             try{
 
-                // Change Scene
-                // Set the Parent (or Root node) of the scene by loading the FXML file
-                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/MainMenuView.fxml"));
-                // Instantiate a new scene and set the root (FXML file)
-                Scene mainMenu = new Scene(root);
-                // Get info about the stage [ getSource() restituisce la componente (il bottone) che genera l'evento.
-                // Viene castato a "Node" in modo tale da poter chiamare il metodo .getScene() che restituisce la "Scene" a cui il nodo appartiene.
-                // Infine dall'oggetto "Scene" si ricava la "Window" che viene downcastata a "Stage". ]
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/MainMenuView.fxml"));
+                Parent root = loader.load();
                 Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                stage.setScene(mainMenu);
-                root.requestFocus();
-                stage.show();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Main Menu");
 
             }
 
