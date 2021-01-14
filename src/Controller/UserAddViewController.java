@@ -16,12 +16,10 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserInsertViewController implements Initializable {
+public class UserAddViewController implements Initializable {
 
     @FXML
     private Button btnCancel;
-    @FXML
-    private Button btnSave;
     @FXML
     private TextField txtUserName;
     @FXML
@@ -33,21 +31,11 @@ public class UserInsertViewController implements Initializable {
     @FXML
     private DatePicker dpDateOfDeath;
     @FXML
-    private Label lblUserName;
-    @FXML
-    private Label lblFirstName;
-    @FXML
-    private Label lblLastName;
-    @FXML
-    private Label lblDateOfBirth;
-    @FXML
-    private Label lblDateOfDeath;
-    @FXML
     private ChoiceBox<String> cbGender;
-    @FXML
-    private Label lblGender;
+
 
     private ObservableList<String> availableChoices = FXCollections.observableArrayList("M", "F");
+
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {

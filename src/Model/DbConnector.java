@@ -33,11 +33,11 @@ public class DbConnector {
 
     public Connection getConnection(String host, String sid, String port, String user, String password){
 
-        this.host = host;
-        this.sid = sid;
-        this.port = port;
-        this.user = user;
-        this.password = password;
+        DbConnector.host = host;
+        DbConnector.sid = sid;
+        DbConnector.port = port;
+        DbConnector.user = user;
+        DbConnector.password = password;
 
         String url = "jdbc:oracle:thin:@" + host + ":" + port + ":" + sid;
         Connection connection;
@@ -46,11 +46,7 @@ public class DbConnector {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             connection = DriverManager.getConnection(url, user, password);
         }
-        catch(SQLException e){
-            // alert TODO
-            return null;
-        }
-        catch(ClassNotFoundException e){
+        catch(SQLException | ClassNotFoundException e){
             // alert TODO
             return null;
         }
@@ -69,11 +65,7 @@ public class DbConnector {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             connection = DriverManager.getConnection(url, user, password);
         }
-        catch(SQLException e){
-            // alert TODO
-            return null;
-        }
-        catch(ClassNotFoundException e){
+        catch(SQLException | ClassNotFoundException e){
             // alert TODO
             return null;
         }

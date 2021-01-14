@@ -7,7 +7,7 @@
    <children>
       <Button fx:id="btnUsers" focusTraversable="false" layoutX="44.0" layoutY="83.0" mnemonicParsing="false" onAction="#btnUsersOnAction" text="Users" />
       <Button fx:id="btnContacts" focusTraversable="false" layoutX="294.0" layoutY="95.0" mnemonicParsing="false" text="Contact" />
-      <Button fx:id="btnLocations" focusTraversable="false" layoutX="33.0" layoutY="154.0" mnemonicParsing="false" text="Locations" />
+      <Button fx:id="btnLocations" focusTraversable="false" layoutX="33.0" layoutY="154.0" mnemonicParsing="false" onAction="#btnLocationsOnAction" text="Locations" />
       <Button fx:id="btnSerologicals" focusTraversable="false" layoutX="294.0" layoutY="167.0" mnemonicParsing="false" text="Serologicals" />
       <Button fx:id="btnRelationships" focusTraversable="false" layoutX="168.0" layoutY="95.0" mnemonicParsing="false" text="Relationships" />
       <Button fx:id="btnSwabs" focusTraversable="false" layoutX="180.0" layoutY="167.0" mnemonicParsing="false" text="Swabs" />

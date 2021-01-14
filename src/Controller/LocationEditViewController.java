@@ -1,7 +1,7 @@
 package Controller;
 
-import Model.User;
-import Model.UserDAO;
+import Model.Location;
+import Model.LocationDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,27 +15,21 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserEditViewController implements Initializable {
+public class LocationEditViewController implements Initializable {
 
     @FXML
     private Button btnCancel;
     @FXML
-    private TextField txtUserName;
+    private TextField txtName;
     @FXML
-    private TextField txtFirstName;
+    private TextField txtCity;
     @FXML
-    private TextField txtLastName;
-    @FXML
-    private DatePicker dpDateOfBirth;
-    @FXML
-    private DatePicker dpDateOfDeath;
-    @FXML
-    private ChoiceBox<String> cbGender;
+    private ChoiceBox<String> cbCategory;
 
 
-    private User selectedUser;
+    private Location selectedLocation;
 
-    private ObservableList<String> availableChoices = FXCollections.observableArrayList("M", "F");
+    private ObservableList<String> availableChoices = FXCollections.observableArrayList("recreational", "entertainment", "religious", "education", "healthcare", "transportation", "business");
 
 
     @FXML
@@ -47,7 +41,6 @@ public class UserEditViewController implements Initializable {
         stage.close();
 
     }
-
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
@@ -67,20 +60,17 @@ public class UserEditViewController implements Initializable {
                 // Then apply changes to the user on the db through the DAOOracle
                 try {
 
-                    new UserDAO().update(
-                            new User(selectedUser.getId(),
-                                    txtUserName.getText(),
-                                    txtFirstName.getText(),
-                                    txtLastName.getText(),
-                                    cbGender.getValue(),
-                                    dpDateOfBirth.getValue(),
-                                    dpDateOfDeath.getValue()
+                    new LocationDAO().update(
+                            new Location(selectedLocation.getId(),
+                                    txtName.getText(),
+                                    txtCity.getText(),
+                                    cbCategory.getValue()
                             )
                     );
 
                     // User successfully edited. Show alert.
                     Alert errorAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                    errorAlert.setContentText("User successfully edited.");
+                    errorAlert.setContentText("Location successfully edited.");
                     errorAlert.showAndWait();
 
                     // Close the UserEditView stage
@@ -90,15 +80,9 @@ public class UserEditViewController implements Initializable {
                 } catch (SQLException e) {
 
                     // UNIQUE constraint violation
-                    if (e.getErrorCode() == 1) {
+                    if (e.getErrorCode() == 1) { // TODO check for violation and error code
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("A user with this username already exists.");
-                        errorAlert.showAndWait();
-                    }
-                    // CHECK date constraint violation
-                    if (e.getErrorCode() == 2290) {
-                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("The date of death must be greater than the date of birth.");
+                        errorAlert.setContentText("A location with this name in this city already exists.");
                         errorAlert.showAndWait();
                     }
 
@@ -115,10 +99,9 @@ public class UserEditViewController implements Initializable {
 
     }
 
+    public void setSelectedLocation(Location selectedLocation) {
 
-    public void setSelectedUser(User selectedUser) {
-
-        this.selectedUser = selectedUser;
+        this.selectedLocation = selectedLocation;
 
         setComponentsValues();
 
@@ -127,12 +110,9 @@ public class UserEditViewController implements Initializable {
 
     private void setComponentsValues() {
 
-        txtFirstName.setText(selectedUser.getFirstName());
-        txtLastName.setText(selectedUser.getLastName());
-        txtUserName.setText(selectedUser.getUserName());
-        cbGender.setValue(selectedUser.getGender());
-        dpDateOfBirth.setValue(selectedUser.getDateOfBirth());
-        dpDateOfDeath.setValue(selectedUser.getDateOfDeath());
+        txtName.setText(selectedLocation.getName());
+        txtCity.setText(selectedLocation.getCity());
+        cbCategory.setValue(selectedLocation.getCategory());
 
     }
 
@@ -142,24 +122,17 @@ public class UserEditViewController implements Initializable {
         boolean isValid = true;
         StringBuilder errorMsg = new StringBuilder();
 
-        if (txtUserName.getText() == null || txtUserName.getText().trim().isEmpty()) {
-            errorMsg.append("- Please enter a username.\n");
+        if (txtName.getText() == null || txtName.getText().trim().isEmpty()) {
+            errorMsg.append("- Please enter a location name.\n");
             isValid = false;
         }
-        if (txtFirstName.getText() == null || txtFirstName.getText().trim().isEmpty()) {
-            errorMsg.append("- Please enter a first name.\n");
+        if (txtCity.getText() == null || txtCity.getText().trim().isEmpty()) {
+            errorMsg.append("- Please enter a city.\n");
             isValid = false;
         }
-        if (txtLastName.getText() == null || txtLastName.getText().trim().isEmpty()) {
-            errorMsg.append("- Please enter a last name.\n");
-            isValid = false;
-        }
-        if (cbGender.getValue() == null) {
-            errorMsg.append("- Please select a gender.\n");
-            isValid = false;
-        }
-        if (dpDateOfBirth.getValue() == null) {
-            errorMsg.append("- Please enter the date of birth.\n");
+
+        if (cbCategory.getValue() == null) {
+            errorMsg.append("- Please select a category.\n");
             isValid = false;
         }
 
@@ -174,10 +147,11 @@ public class UserEditViewController implements Initializable {
 
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        cbGender.setItems(availableChoices);
+        cbCategory.setItems(availableChoices);
 
     }
 

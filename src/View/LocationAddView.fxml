@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="251.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LocationAddViewController">
+    <children>
+        <Button fx:id="btnCancel" focusTraversable="false" layoutX="329.0" layoutY="209.0" mnemonicParsing="false" onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="76.0" text="Cancel" />
+        <Button fx:id="btnSave" focusTraversable="false" layoutX="233.0" layoutY="209.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="76.0" text="Save" />
+        <TextField fx:id="txtName" focusTraversable="false" layoutX="24.0" layoutY="43.0" />
+        <TextField fx:id="txtCity" focusTraversable="false" layoutX="24.0" layoutY="96.0" />
+        <Label fx:id="lblName" layoutX="24.0" layoutY="26.0" text="Name*" />
+        <Label fx:id="lblCity" layoutX="25.0" layoutY="79.0" text="City*" />
+        <ChoiceBox fx:id="cbCategory" focusTraversable="false" layoutX="24.0" layoutY="151.0" prefHeight="25.0" prefWidth="149.0" />
+        <Label fx:id="lblCategory" layoutX="25.0" layoutY="134.0" text="Category*" />
+    </children>
+</AnchorPane>

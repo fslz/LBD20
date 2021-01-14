@@ -2,7 +2,6 @@ package Controller;
 
 import Model.User;
 import Model.UserDAO;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,13 +28,13 @@ public class UserViewController implements Initializable {
     @FXML
     private TableView<User> tblUser;
     @FXML
-    private TableColumn<User, SimpleStringProperty> colUserName;
+    private TableColumn<User, String> colUserName;
     @FXML
-    private TableColumn<User, SimpleStringProperty> colFirstName;
+    private TableColumn<User, String> colFirstName;
     @FXML
-    private TableColumn<User, SimpleStringProperty> colLastName;
+    private TableColumn<User, String> colLastName;
     @FXML
-    private TableColumn<User, SimpleStringProperty> colGender;
+    private TableColumn<User, String> colGender;
     @FXML
     private TableColumn<User, LocalDate> colDateOfBirth;
     @FXML
@@ -144,13 +143,15 @@ public class UserViewController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserEditView.fxml"));
             Parent root = fxmlLoader.load();
-            UserEditViewController userEditViewController = fxmlLoader.getController(); // This did the "trick"
-            userEditViewController.setSelectedUser(selectedUser); // Passing the client-object to the ClientViewController
+
+            UserEditViewController userEditViewController = fxmlLoader.getController();
+            userEditViewController.setSelectedUser(selectedUser);
+
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Edit User");
             stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (cannot interact with the calling stage)
+            stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
             stage.showAndWait();
 
         } catch (IOException e) {
@@ -166,7 +167,7 @@ public class UserViewController implements Initializable {
 
         try{
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserInsertView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserAddView.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -196,6 +197,7 @@ public class UserViewController implements Initializable {
 
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -203,6 +205,7 @@ public class UserViewController implements Initializable {
         updateUserTable();
 
     }
+
 
     private void updateUserTable() {
 
@@ -216,19 +219,20 @@ public class UserViewController implements Initializable {
             e.printStackTrace();
 
         }
-        //selectedUser = null;
+
         // Set the ObservableList of users as the content of the table
         tblUser.setItems(userList);
 
     }
 
+
     private void setupUserTable() {
 
         // Setup the columns in the table
-        colUserName.setCellValueFactory(new PropertyValueFactory<User, SimpleStringProperty>("userName"));
-        colFirstName.setCellValueFactory(new PropertyValueFactory<User, SimpleStringProperty>("firstName"));
-        colLastName.setCellValueFactory(new PropertyValueFactory<User, SimpleStringProperty>("lastName"));
-        colGender.setCellValueFactory(new PropertyValueFactory<User, SimpleStringProperty>("gender"));
+        colUserName.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
+        colFirstName.setCellValueFactory(new PropertyValueFactory<User, String>("firstName"));
+        colLastName.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
+        colGender.setCellValueFactory(new PropertyValueFactory<User, String>("gender"));
         colDateOfBirth.setCellValueFactory(new PropertyValueFactory<User, LocalDate>("dateOfBirth"));
         colDateOfDeath.setCellValueFactory(new PropertyValueFactory<User, LocalDate>("dateOfDeath"));
 

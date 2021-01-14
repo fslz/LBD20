@@ -9,9 +9,9 @@
     <children>
         <TableView fx:id="tblLocation" focusTraversable="false" layoutX="15.0" layoutY="64.0" onMouseClicked="#tblLocationOnMouseClicked" prefHeight="533.0" prefWidth="570.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="64.0">
             <columns>
-                <TableColumn fx:id="colLocationName" prefWidth="92.0" sortType="DESCENDING" text="Name" />
-                <TableColumn fx:id="colCity" editable="false" prefWidth="102.0" resizable="false" sortType="DESCENDING" text="City" />
-                <TableColumn fx:id="colCategory" editable="false" prefWidth="101.0" resizable="false" sortType="DESCENDING" text="Category" />
+                <TableColumn fx:id="colName" editable="false" prefWidth="218.0" sortType="DESCENDING" text="Name" />
+                <TableColumn fx:id="colCity" editable="false" prefWidth="180.0" resizable="false" sortType="DESCENDING" text="City" />
+                <TableColumn fx:id="colCategory" editable="false" prefWidth="168.0" resizable="false" sortType="DESCENDING" text="Category" />
             </columns>
         </TableView>
         <Button fx:id="btnToMainMenu" focusTraversable="false" layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnToMainMenuOnAction" prefHeight="30.0" prefWidth="149.0" text="&lt;- Main Menu" />
