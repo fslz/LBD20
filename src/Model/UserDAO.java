@@ -60,7 +60,6 @@ public class UserDAO implements DAO<User> {
             PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM users");
             ResultSet rs = pstmt.executeQuery();
 
-
             while (rs.next()) {
 
                 userList.add(
@@ -165,6 +164,7 @@ public class UserDAO implements DAO<User> {
         }
 
     }
+
 
     /**
      * Called by the UserViewController
