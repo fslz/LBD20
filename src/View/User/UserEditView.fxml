@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="251.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserEditViewController">
+<AnchorPane prefHeight="251.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.User.UserEditViewController">
    <children>
       <Button fx:id="btnCancel" focusTraversable="false" layoutX="329.0" layoutY="209.0" mnemonicParsing="false" onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="76.0" text="Cancel" />
       <Button fx:id="btnSave" focusTraversable="false" layoutX="233.0" layoutY="209.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="76.0" text="Save" />

@@ -1,7 +1,7 @@
-package Controller;
+package Controller.Location;
 
-import Model.User;
-import Model.UserDAO;
+import Model.Location;
+import Model.LocationDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,25 +16,19 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserAddViewController implements Initializable {
+public class LocationAddViewController implements Initializable {
 
     @FXML
     private Button btnCancel;
     @FXML
-    private TextField txtUserName;
+    private TextField txtName;
     @FXML
-    private TextField txtFirstName;
+    private TextField txtCity;
     @FXML
-    private TextField txtLastName;
-    @FXML
-    private DatePicker dpDateOfBirth;
-    @FXML
-    private DatePicker dpDateOfDeath;
-    @FXML
-    private ChoiceBox<String> cbGender;
+    private ChoiceBox<String> cbCategory;
 
 
-    private ObservableList<String> availableChoices = FXCollections.observableArrayList("M", "F");
+    private ObservableList<String> availableChoices = FXCollections.observableArrayList("recreational", "entertainment", "religious", "education", "healthcare", "transportation", "business");
 
 
     @FXML
@@ -55,29 +49,26 @@ public class UserAddViewController implements Initializable {
             // Ask for the user to confirm changes
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm changes");
-            confirmAlert.setContentText("The new user will be created. Are you sure you want to proceed?");
+            confirmAlert.setContentText("The new location will be created. Are you sure you want to proceed?");
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
 
             // If user confirms
             if (result.get() == ButtonType.OK) {
-                // Then then the new user will be added on the db through the DAOOracle
+                // Then then the new location will be added on the db through the LocationDAO
                 try {
 
-                    new UserDAO().create(
-                            new User(0,
-                                    txtUserName.getText(),
-                                    txtFirstName.getText(),
-                                    txtLastName.getText(),
-                                    cbGender.getValue(),
-                                    dpDateOfBirth.getValue(),
-                                    dpDateOfDeath.getValue()
+                    new LocationDAO().create(
+                            new Location(0,
+                                    txtName.getText(),
+                                    txtCity.getText(),
+                                    cbCategory.getValue()
                             )
                     );
 
                     // User successfully added. Show alert.
                     Alert errorAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                    errorAlert.setContentText("User successfully created.");
+                    errorAlert.setContentText("Location successfully created.");
                     errorAlert.showAndWait();
 
                     // Close the UserInsertView stage
@@ -87,29 +78,21 @@ public class UserAddViewController implements Initializable {
                 } catch (SQLException e) {
 
                     // UNIQUE constraint violation
-                    if (e.getErrorCode() == 1) {
+                    if (e.getErrorCode() == 1) {    // TODO check constraint violation and error code
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("A user with this username already exists.");
-                        errorAlert.showAndWait();
-                    }
-                    // CHECK date constraint violation
-                    if (e.getErrorCode() == 2290) {
-                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("The date of death must be greater than the date of birth.");
+                        errorAlert.setContentText("A location with this name already exists.");
                         errorAlert.showAndWait();
                     }
 
                 }
 
-            }
-            else {
+            } else {
                 // Else close the confirmation dialog
                 confirmAlert.close();
 
             }
 
         }
-
     }
 
 
@@ -118,27 +101,18 @@ public class UserAddViewController implements Initializable {
         boolean isValid = true;
         StringBuilder errorMsg = new StringBuilder();
 
-        if (txtUserName.getText() == null || txtUserName.getText().trim().isEmpty()) {
+        if (txtName.getText() == null || txtName.getText().trim().isEmpty()) {
             errorMsg.append("- Please enter a username.\n");
             isValid = false;
         }
-        if (txtFirstName.getText() == null || txtFirstName.getText().trim().isEmpty()) {
+        if (txtCity.getText() == null || txtCity.getText().trim().isEmpty()) {
             errorMsg.append("- Please enter a first name.\n");
             isValid = false;
         }
-        if (txtLastName.getText() == null || txtLastName.getText().trim().isEmpty()) {
-            errorMsg.append("- Please enter a last name.\n");
-            isValid = false;
-        }
-        if (cbGender.getValue() == null) {
+        if (cbCategory.getValue() == null) {
             errorMsg.append("- Please select gender.\n");
             isValid = false;
         }
-        if (dpDateOfBirth.getValue() == null) {
-            errorMsg.append("- Please enter the date of birth.\n");
-            isValid = false;
-        }
-
         if (!isValid) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Missing Information");
@@ -154,7 +128,7 @@ public class UserAddViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        cbGender.setItems(availableChoices);
+        cbCategory.setItems(availableChoices);
 
     }
 

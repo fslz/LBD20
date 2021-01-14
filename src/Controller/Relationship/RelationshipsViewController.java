@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Relationship;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

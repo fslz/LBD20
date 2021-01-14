@@ -1,4 +1,4 @@
-package Controller;
+package Controller.User;
 
 import Model.User;
 import Model.UserDAO;
@@ -141,7 +141,7 @@ public class UserViewController implements Initializable {
 
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserEditView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserEditView.fxml"));
             Parent root = fxmlLoader.load();
 
             UserEditViewController userEditViewController = fxmlLoader.getController();
@@ -167,7 +167,7 @@ public class UserViewController implements Initializable {
 
         try{
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserAddView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserAddView.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
