@@ -58,8 +58,8 @@ public class LoginViewController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/MainMenuView.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
                 stage.setTitle("Main Menu");
+                stage.setScene(new Scene(root));
 
             }
 

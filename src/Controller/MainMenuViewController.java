@@ -21,9 +21,9 @@ public class MainMenuViewController {
                         Parent root = fxmlLoader.load();
                         Scene usersMenu = new Scene(root);
                         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                        stage.setScene(usersMenu);
                         stage.setTitle("Users");
                         root.requestFocus();
+                        stage.setScene(usersMenu);
 
                 }
                 catch(IOException e){
@@ -42,9 +42,9 @@ public class MainMenuViewController {
                         Parent root = fxmlLoader.load();
                         Scene locationsMenu = new Scene(root);
                         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                        stage.setScene(locationsMenu);
                         stage.setTitle("Locations");
                         root.requestFocus();
+                        stage.setScene(locationsMenu);
 
                 }
                 catch(IOException e){
