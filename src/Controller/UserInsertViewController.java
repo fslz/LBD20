@@ -67,17 +67,16 @@ public class UserInsertViewController implements Initializable {
             // Ask for the user to confirm changes
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm changes");
-            confirmAlert.setHeaderText("");
             confirmAlert.setContentText("The new user will be created. Are you sure you want to proceed?");
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
 
             // If user confirms
             if (result.get() == ButtonType.OK) {
-                // Then then the new user will be added on the db through the DAO
+                // Then then the new user will be added on the db through the DAOOracle
                 try {
 
-                    new UserDAO().addUser(
+                    new UserDAO().create(
                             new User(0,
                                     txtUserName.getText(),
                                     txtFirstName.getText(),
@@ -144,7 +143,7 @@ public class UserInsertViewController implements Initializable {
             isValid = false;
         }
         if (cbGender.getValue() == null) {
-            errorMsg.append("- Please select a gender.\n");
+            errorMsg.append("- Please select gender.\n");
             isValid = false;
         }
         if (dpDateOfBirth.getValue() == null) {

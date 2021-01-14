@@ -209,6 +209,7 @@ FROM contacts c
 WHERE p1.user_id <> p2.user_id
   AND p1.user_id < p2.user_id;
 
+
 -- all contacts between users [used when fetching all contacts?]
 CREATE OR REPLACE VIEW contacts_all_v2 AS
 SELECT u1.user_id       AS user_id1,
@@ -240,6 +241,7 @@ FROM contacts c
          JOIN locations l ON c.location_id = l.location_id
 WHERE p1.user_id <> p2.user_id
   AND p1.user_id < p2.user_id;
+
 
 -- all relationships (user_id1, user_id2, relationship type)
 CREATE OR REPLACE VIEW relationships_all_v AS

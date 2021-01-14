@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LocationsViewController">
+    <children>
+        <TableView fx:id="tblLocation" focusTraversable="false" layoutX="15.0" layoutY="64.0" onMouseClicked="#tblLocationOnMouseClicked" prefHeight="533.0" prefWidth="570.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="64.0">
+            <columns>
+                <TableColumn fx:id="colLocationName" prefWidth="92.0" sortType="DESCENDING" text="Name" />
+                <TableColumn fx:id="colCity" editable="false" prefWidth="102.0" resizable="false" sortType="DESCENDING" text="City" />
+                <TableColumn fx:id="colCategory" editable="false" prefWidth="101.0" resizable="false" sortType="DESCENDING" text="Category" />
+            </columns>
+        </TableView>
+        <Button fx:id="btnToMainMenu" focusTraversable="false" layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnToMainMenuOnAction" prefHeight="30.0" prefWidth="149.0" text="&lt;- Main Menu" />
+        <Button fx:id="btnAddLocation" focusTraversable="false" layoutX="51.0" layoutY="613.0" mnemonicParsing="false" onAction="#btnAddLocationOnAction" prefHeight="39.0" prefWidth="149.0" text="Add Location" />
+        <Button fx:id="btnEditLocation" focusTraversable="false" layoutX="227.0" layoutY="613.0" mnemonicParsing="false" onAction="#btnEditLocationOnAction" prefHeight="39.0" prefWidth="149.0" text="Edit Location" />
+        <Button fx:id="btnDeleteLocation" focusTraversable="false" layoutX="401.0" layoutY="613.0" mnemonicParsing="false" onAction="#btnDeleteLocationOnAction" prefHeight="39.0" prefWidth="149.0" text="Delete Location" textFill="#cd0000" />
+    </children>
+</AnchorPane>

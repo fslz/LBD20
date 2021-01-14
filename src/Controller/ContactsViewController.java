@@ -7,7 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 
-public class ContactViewController {
+public class ContactsViewController {
 
     @FXML
     private TableView<?> tblContact;

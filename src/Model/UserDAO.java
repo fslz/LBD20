@@ -2,18 +2,54 @@ package Model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.sql.*;
-import java.time.LocalDate;
 
-public class UserDAO {
+public class UserDAO implements DAO<User> {
+
+
+    public User getById(int id) throws SQLException {
+
+        Connection connection = new DbConnector().getConnection();
+        User user;
+
+        try{
+
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM users WHERE user_id = ?");
+            ResultSet rs = pstmt.executeQuery();
+
+            user = new User(
+                    rs.getInt("user_id"),
+                    rs.getString("username"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getString("gender"),
+                    Util.convertToEntityAttribute(rs.getDate("date_of_birth")),
+                    Util.convertToEntityAttribute(rs.getDate("date_of_death"))
+            );
+
+            return user;
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            return null;
+
+        }
+        finally{
+
+            connection.close();
+
+        }
+
+    }
+
 
     /**
      * Called by the UserViewController, returns an ObservableList of type User containing every user in the db
      *
      * @return ObservableList<User>
      */
-    public ObservableList<User> getUsersAll() {
+    public ObservableList<User> getAll() throws SQLException {
 
         ObservableList<User> userList = FXCollections.observableArrayList();
 
@@ -34,8 +70,8 @@ public class UserDAO {
                                 rs.getString("first_name"),
                                 rs.getString("last_name"),
                                 rs.getString("gender"),
-                                convertToEntityAttribute(rs.getDate("date_of_birth")),
-                                convertToEntityAttribute(rs.getDate("date_of_death"))
+                                Util.convertToEntityAttribute(rs.getDate("date_of_birth")),
+                                Util.convertToEntityAttribute(rs.getDate("date_of_death"))
                         )
                 );
 
@@ -45,10 +81,16 @@ public class UserDAO {
             e.printStackTrace();
             return null;
         }
+        finally{
+
+            connection.close();
+
+        }
 
         return userList;
 
     }
+
 
     /**
      * Called by the UserViewController
@@ -56,7 +98,7 @@ public class UserDAO {
      *
      * @return void
      */
-    public void addUser(User user) throws SQLException {
+    public void create(User user) throws SQLException {
 
         Connection connection = new DbConnector().getConnection();
 
@@ -68,8 +110,8 @@ public class UserDAO {
             pstmt.setString(2, user.getFirstName());
             pstmt.setString(3, user.getLastName());
             pstmt.setString(4, user.getGender());
-            pstmt.setDate(5, convertToDatabaseColumn(user.getDateOfBirth()));
-            pstmt.setDate(6, convertToDatabaseColumn(user.getDateOfDeath()));
+            pstmt.setDate(5, Util.convertToDatabaseColumn(user.getDateOfBirth()));
+            pstmt.setDate(6, Util.convertToDatabaseColumn(user.getDateOfDeath()));
 
             int rows = pstmt.executeUpdate();
 
@@ -78,8 +120,14 @@ public class UserDAO {
             throw e;
 
         }
+        finally{
+
+            connection.close();
+
+        }
 
     }
+
 
     /**
      * Called by the UserViewController
@@ -87,7 +135,7 @@ public class UserDAO {
      *
      * @return void
      */
-    public void updateUser(User user) throws SQLException {
+    public void update(User user) throws SQLException {
 
         Connection connection = new DbConnector().getConnection();
 
@@ -99,8 +147,8 @@ public class UserDAO {
             pstmt.setString(2, user.getFirstName());
             pstmt.setString(3, user.getLastName());
             pstmt.setString(4, user.getGender());
-            pstmt.setDate(5, convertToDatabaseColumn(user.getDateOfBirth()));
-            pstmt.setDate(6, convertToDatabaseColumn(user.getDateOfDeath()));
+            pstmt.setDate(5, Util.convertToDatabaseColumn(user.getDateOfBirth()));
+            pstmt.setDate(6, Util.convertToDatabaseColumn(user.getDateOfDeath()));
             pstmt.setInt(7, user.getId());
 
             int row = pstmt.executeUpdate();
@@ -110,6 +158,12 @@ public class UserDAO {
             throw e;
 
         }
+        finally{
+
+            connection.close();
+
+        }
+
     }
 
     /**
@@ -118,7 +172,7 @@ public class UserDAO {
      *
      * @return void
      */
-    public void deleteUser(User user) throws SQLException {
+    public void delete(User user) throws SQLException {
 
         Connection connection = new DbConnector().getConnection();
 
@@ -134,27 +188,12 @@ public class UserDAO {
             throw e;
 
         }
+        finally{
 
-    }
+            connection.close();
 
-    /**
-     * Called internally
-     * Converts safely a LocalDate to java.sql.Date
-     *
-     * @return java.sql.Date
-     */
-    public Date convertToDatabaseColumn(LocalDate localDate) {
-        return (localDate == null ? null : Date.valueOf(localDate));
-    }
+        }
 
-    /**
-     * Called internally
-     * Converts safely a java.sql.Date to LocalDate
-     *
-     * @return LocalDate
-     */
-    public LocalDate convertToEntityAttribute(Date date) {
-        return (date == null ? null : date.toLocalDate());
     }
 
 }

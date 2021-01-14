@@ -25,7 +25,7 @@ public class MainMenuViewController {
 
                 try{    // Load next scene (Main Menu) in the current stage
 
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserView.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UsersView.fxml"));
                         Parent root = fxmlLoader.load();
                         Scene mainMenu = new Scene(root);
                         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

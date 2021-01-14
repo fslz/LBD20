@@ -14,6 +14,23 @@ public class DbConnector {
     private static String password;
 
 
+    /*
+
+    // Create a OracleDataSource instance explicitly
+    OracleDataSource ods = new OracleDataSource();
+
+    // Set the user name, password, driver type and network protocol
+    ods.setUser("scott");
+    ods.setPassword("tiger");
+    ods.setDriverType("oci8");
+    ods.setNetworkProtocol("ipc");
+
+    // Retrieve a connection
+    Connection conn = ods.getConnection();
+
+    */
+
+
     public Connection getConnection(String host, String sid, String port, String user, String password){
 
         this.host = host;

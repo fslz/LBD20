@@ -79,10 +79,10 @@ public class UserEditViewController implements Initializable {
 
             // If user confirms
             if (result.get() == ButtonType.OK) {
-                // Then apply changes to the user on the db through the DAO
+                // Then apply changes to the user on the db through the DAOOracle
                 try {
 
-                    new UserDAO().updateUser(
+                    new UserDAO().update(
                             new User(selectedUser.getId(),
                                     txtUserName.getText(),
                                     txtFirstName.getText(),

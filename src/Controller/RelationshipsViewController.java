@@ -7,7 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 
-public class RelationshipViewController {
+public class RelationshipsViewController {
 
     @FXML
     private TableView<?> tblRelationship;

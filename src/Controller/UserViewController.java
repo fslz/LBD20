@@ -114,7 +114,7 @@ public class UserViewController implements Initializable {
 
                 try{
 
-                    new UserDAO().deleteUser(selectedUser);
+                    new UserDAO().delete(selectedUser);
 
                 }
                 catch(SQLException e){
@@ -154,7 +154,9 @@ public class UserViewController implements Initializable {
             stage.showAndWait();
 
         } catch (IOException e) {
+
             e.printStackTrace();
+
         }
 
     }
@@ -166,7 +168,6 @@ public class UserViewController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/UserInsertView.fxml"));
             Parent root = fxmlLoader.load();
-            //UserInsertViewController userInsertView = fxmlLoader.getController();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Add User");
@@ -177,7 +178,9 @@ public class UserViewController implements Initializable {
         }
 
         catch(IOException e){
+
             e.printStackTrace();
+
         }
 
     }
@@ -204,7 +207,15 @@ public class UserViewController implements Initializable {
     private void updateUserTable() {
 
         // Get all users through the UserDAO
-        userList = new UserDAO().getUsersAll();
+        try {
+
+            userList = new UserDAO().getAll();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
         //selectedUser = null;
         // Set the ObservableList of users as the content of the table
         tblUser.setItems(userList);
