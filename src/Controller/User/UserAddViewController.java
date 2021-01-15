@@ -1,7 +1,7 @@
 package Controller.User;
 
 import Model.User;
-import Model.UserDAO;
+import Model.UserDAOOracleImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,7 +64,7 @@ public class UserAddViewController implements Initializable {
                 // Then then the new user will be added on the db through the DAOOracle
                 try {
 
-                    new UserDAO().create(
+                    new UserDAOOracleImpl().create(
                             new User(0,
                                     txtUserName.getText(),
                                     txtFirstName.getText(),

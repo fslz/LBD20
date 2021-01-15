@@ -1,9 +1,10 @@
 package Model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
-public class User { // Is this a bean?
+public class User {
 
 
     private int id;
@@ -13,6 +14,11 @@ public class User { // Is this a bean?
     private String gender;
     private LocalDate dateOfBirth;
     private LocalDate dateOfDeath;
+    private List<Contact> contactList;
+    private List<Relationship> relationshipList;
+    private List<Swab> swabList;
+    private List<SerologicalTest> serologicalTestList;
+    private List<HealthCheck> healthCheckList;
 
 
     public User(int id, String userName, String firstName, String lastName, String gender, LocalDate dateOfBirth, LocalDate dateOfDeath) {

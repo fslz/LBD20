@@ -1,7 +1,7 @@
 package Controller.User;
 
 import Model.User;
-import Model.UserDAO;
+import Model.UserDAOOracleImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,7 +67,7 @@ public class UserEditViewController implements Initializable {
                 // Then apply changes to the user on the db through the DAOOracle
                 try {
 
-                    new UserDAO().update(
+                    new UserDAOOracleImpl().update(
                             new User(selectedUser.getId(),
                                     txtUserName.getText(),
                                     txtFirstName.getText(),

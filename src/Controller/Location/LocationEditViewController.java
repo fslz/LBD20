@@ -1,7 +1,7 @@
 package Controller.Location;
 
 import Model.Location;
-import Model.LocationDAO;
+import Model.LocationDAOOracleImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -60,7 +60,7 @@ public class LocationEditViewController implements Initializable {
                 // Then apply changes to the user on the db through the DAOOracle
                 try {
 
-                    new LocationDAO().update(
+                    new LocationDAOOracleImpl().update(
                             new Location(selectedLocation.getId(),
                                     txtName.getText(),
                                     txtCity.getText(),

@@ -1,7 +1,7 @@
 package Controller.Location;
 
 import Model.Location;
-import Model.LocationDAO;
+import Model.LocationDAOOracleImpl;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -106,7 +106,7 @@ public class LocationsViewController implements Initializable {
 
                 try{
 
-                    new LocationDAO().delete(selectedLocation);
+                    new LocationDAOOracleImpl().delete(selectedLocation);
 
                 }
                 catch(SQLException e){
@@ -202,10 +202,10 @@ public class LocationsViewController implements Initializable {
 
     private void updateLocationTable() {
 
-        // Get all locations through the LocationDAO
+        // Get all locations through the LocationDAOOracleImpl
         try {
 
-            locationList = new LocationDAO().getAll();
+            locationList = new LocationDAOOracleImpl().getAll();
 
         } catch (SQLException e) {
 

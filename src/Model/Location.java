@@ -1,11 +1,14 @@
 package Model;
 
+import java.util.List;
+
 public class Location {
 
     private int id;
     private String name;
     private String city;
     private String category;
+    private List<Contact> contactList;
 
     public Location(int id, String name, String city, String category) {
         this.id = id;

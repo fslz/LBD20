@@ -1,7 +1,7 @@
 package Controller.Location;
 
 import Model.Location;
-import Model.LocationDAO;
+import Model.LocationDAOOracleImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -55,10 +55,10 @@ public class LocationAddViewController implements Initializable {
 
             // If user confirms
             if (result.get() == ButtonType.OK) {
-                // Then then the new location will be added on the db through the LocationDAO
+                // Then then the new location will be added on the db through the LocationDAOOracleImpl
                 try {
 
-                    new LocationDAO().create(
+                    new LocationDAOOracleImpl().create(
                             new Location(0,
                                     txtName.getText(),
                                     txtCity.getText(),

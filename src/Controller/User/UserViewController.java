@@ -1,7 +1,7 @@
 package Controller.User;
 
 import Model.User;
-import Model.UserDAO;
+import Model.UserDAOOracleImpl;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -113,7 +113,7 @@ public class UserViewController implements Initializable {
 
                 try{
 
-                    new UserDAO().delete(selectedUser);
+                    new UserDAOOracleImpl().delete(selectedUser);
 
                 }
                 catch(SQLException e){
@@ -209,10 +209,10 @@ public class UserViewController implements Initializable {
 
     private void updateUserTable() {
 
-        // Get all users through the UserDAO
+        // Get all users through the UserDAOOracleImpl
         try {
 
-            userList = new UserDAO().getAll();
+            userList = new UserDAOOracleImpl().getAll();
 
         } catch (SQLException e) {
 
