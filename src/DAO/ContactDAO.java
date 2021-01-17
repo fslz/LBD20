@@ -1,5 +1,6 @@
-package Model;
+package DAO;
 
+import Model.Contact;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
 

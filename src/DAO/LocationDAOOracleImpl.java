@@ -1,5 +1,8 @@
-package Model;
+package DAO;
 
+
+import Model.DbConnector;
+import Model.Location;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.Connection;

@@ -1,7 +1,7 @@
 package Controller.Location;
 
 import Model.Location;
-import Model.LocationDAOOracleImpl;
+import DAO.LocationDAOOracleImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

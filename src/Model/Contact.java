@@ -50,23 +50,3 @@ public class Contact {
     }
 
 }
-
-
-    /*
-    public Contact(User user1, User user2, Location location, LocalDate dateReceived){
-        this.user1 = user1;
-        this.user2 = user2;
-        this.location = location;
-        this.dateReceived = dateReceived;
-    }
-    */
-
-    /*
-    public Contact(ArrayList<User> userList, Location location, LocalDate dateReceived){
-        this.userList = userList;
-        this.location = location;
-        this.dateReceived = dateReceived;
-    }
-
-}
-*/

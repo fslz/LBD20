@@ -1,5 +1,6 @@
-package Model;
+package DAO;
 
+import Model.Location;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
 

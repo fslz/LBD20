@@ -30,8 +30,30 @@ public class User {
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.dateOfDeath = dateOfDeath;
-
+        contactList = null;
+        relationshipList = null;
+        swabList = null;
+        serologicalTestList = null;
+        healthCheckList = null;
     }
+
+
+
+
+
+
+    public List<Contact> getContactList() {
+        return contactList;
+    }
+
+    public void setContactList(List<Contact> contactList) {
+        this.contactList = contactList;
+    }
+
+
+
+
+
 
 
     // Getters
