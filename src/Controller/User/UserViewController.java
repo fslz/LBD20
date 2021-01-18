@@ -142,7 +142,7 @@ public class UserViewController implements Initializable {
 
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserEditView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/OldViews/UserEditView.fxml"));
             Parent root = fxmlLoader.load();
 
             UserEditViewController userEditViewController = fxmlLoader.getController();
@@ -168,7 +168,7 @@ public class UserViewController implements Initializable {
 
         try{
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserAddView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/OldViews/UserAddView.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

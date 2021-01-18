@@ -39,9 +39,6 @@ public class User {
 
 
 
-
-
-
     public List<Contact> getContactList() {
         return contactList;
     }
@@ -49,10 +46,6 @@ public class User {
     public void setContactList(List<Contact> contactList) {
         this.contactList = contactList;
     }
-
-
-
-
 
 
 

@@ -7,18 +7,20 @@
 
 CREATE TABLE users
 (
-    user_id       INTEGER      NOT NULL,
-    username      VARCHAR2(25) NOT NULL,
-    first_name    VARCHAR2(25) NOT NULL,
-    last_name     VARCHAR2(25) NOT NULL,
-    gender        CHAR(1)      NOT NULL,
-    date_of_birth DATE         NOT NULL,
-    date_of_death DATE,
+    user_id        INTEGER      NOT NULL,
+    cf             VARCHAR2(25) NOT NULL,
+    first_name     VARCHAR2(25) NOT NULL,
+    last_name      VARCHAR2(25) NOT NULL,
+    gender         CHAR(1)      NOT NULL,
+    place_of_birth VARCHAR2(25) NOT NULL,
+    date_of_birth  TIMESTAMP         NOT NULL,
+    date_of_death  TIMESTAMP,
 
     CONSTRAINT users_pk PRIMARY KEY (user_id),
-    CONSTRAINT users_uq UNIQUE (username),
+    CONSTRAINT users_uq UNIQUE (cf),
     CONSTRAINT users_ck1 CHECK (date_of_death > date_of_birth),
-    CONSTRAINT users_ck2 CHECK (gender IN ('M', 'F'))
+    CONSTRAINT users_ck2 CHECK (gender IN ('M', 'F')),
+    CONSTRAINT users_ck3 CHECK ( REGEXP_LIKE(cf, '^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$') )
 );
 
 
@@ -54,7 +56,7 @@ CREATE TABLE participants
 (
     contact_id    INTEGER NOT NULL,
     user_id       INTEGER NOT NULL,
-    date_received DATE    NOT NULL,
+    date_received TIMESTAMP    NOT NULL,
 
     CONSTRAINT participants_pk PRIMARY KEY (contact_id, user_id),
     CONSTRAINT participants_uk UNIQUE (user_id, date_received)
@@ -91,7 +93,7 @@ CREATE TABLE swabs
 (
     swab_id     INTEGER,
     user_id     INTEGER NOT NULL,
-    date_result DATE    NOT NULL,
+    date_result TIMESTAMP    NOT NULL,
     positivity  CHAR(1) NOT NULL,
 
     CONSTRAINT swabs_pk PRIMARY KEY (swab_id),
@@ -100,18 +102,18 @@ CREATE TABLE swabs
 );
 
 
-CREATE TABLE serologicals
+CREATE TABLE serological_tests
 (
-    serological_id INTEGER,
-    user_id        INTEGER NOT NULL,
-    date_result    DATE    NOT NULL,
-    igm            CHAR(1) NOT NULL,
-    igg            CHAR(1) NOT NULL,
+    serological_test_id INTEGER,
+    user_id             INTEGER NOT NULL,
+    date_result         TIMESTAMP    NOT NULL,
+    igm                 CHAR(1) NOT NULL,
+    igg                 CHAR(1) NOT NULL,
 
-    CONSTRAINT serologicals_pk PRIMARY KEY (serological_id),
-    CONSTRAINT serologicals_uk UNIQUE (user_id, date_result),
-    CONSTRAINT serologicals_ck1 CHECK ( igm IN ('positive', 'negative') ),
-    CONSTRAINT serologicals_ck2 CHECK ( igg IN ('positive', 'negative') )
+    CONSTRAINT serological_tests_pk PRIMARY KEY (serological_test_id),
+    CONSTRAINT serological_tests_uk UNIQUE (user_id, date_result),
+    CONSTRAINT serological_tests_ck1 CHECK ( igm IN ('positive', 'negative') ),
+    CONSTRAINT serological_tests_ck2 CHECK ( igg IN ('positive', 'negative') )
 );
 
 
@@ -119,7 +121,7 @@ CREATE TABLE health_checks
 (
     health_check_id      INTEGER NOT NULL,
     user_id              INTEGER NOT NULL,
-    date_of_check        DATE    NOT NULL,
+    date_of_check        TIMESTAMP    NOT NULL,
     fever                CHAR(1) NOT NULL,
     respiratory_disorder CHAR(1) NOT NULL,
     smell_taste_disorder CHAR(1) NOT NULL,
@@ -168,9 +170,9 @@ ALTER TABLE health_checks
         CONSTRAINT hc_users_fk FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
         );
 
-ALTER TABLE serologicals
+ALTER TABLE serological_tests
     ADD (
-        CONSTRAINT serological_users_fk FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
+        CONSTRAINT serological_tests_users_fk FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
         );
 
 
@@ -186,7 +188,7 @@ CREATE SEQUENCE relationships_seq;
 CREATE SEQUENCE contacts_seq;
 CREATE SEQUENCE locations_seq;
 CREATE SEQUENCE swabs_seq;
-CREATE SEQUENCE serologicals_seq;
+CREATE SEQUENCE serological_tests_seq;
 CREATE SEQUENCE health_checks_seq;
 
 
@@ -209,28 +211,32 @@ FROM contacts c
 WHERE p1.user_id <> p2.user_id
   AND p1.user_id < p2.user_id;
 
-
 -- all contacts between users [used when fetching all contacts?]
 CREATE OR REPLACE VIEW contacts_all_v2 AS
-SELECT u1.user_id       AS user_id1,
-       u1.username      AS username1,
+SELECT -- User 1
+       u1.user_id       AS user_id1,
+       u1.cf      AS cf1,
        u1.first_name    AS first_name1,
        u1.last_name     AS last_name1,
+       u1.gender        AS gender1,
+       u1.place_of_birth AS place_of_birth1,
        u1.date_of_birth AS date_of_birth1,
        u1.date_of_death AS date_of_death1,
-
+       -- User 2
        u2.user_id       AS user_id2,
-       u2.username      AS username2,
+       u2.cf      AS cf2,
        u2.first_name    AS firstname2,
        u2.last_name     AS last_name2,
+       u2.gender        AS gender2,
+       u2.place_of_birth AS place_of_birth2,
        u2.date_of_birth AS date_of_birth2,
        u2.date_of_death AS date_of_death2,
-
+       -- Location
        l.location_id    AS location_id,
        l.name           AS location_name,
        l.city           AS location_city,
        l.category       AS location_category,
-
+       -- Date
        p1.date_received AS date_received
 
 FROM contacts c
@@ -241,7 +247,6 @@ FROM contacts c
          JOIN locations l ON c.location_id = l.location_id
 WHERE p1.user_id <> p2.user_id
   AND p1.user_id < p2.user_id;
-
 
 -- all relationships (user_id1, user_id2, relationship type)
 CREATE OR REPLACE VIEW relationships_all_v AS
@@ -359,9 +364,9 @@ BEGIN
 END;
 
 
-CREATE OR REPLACE TRIGGER serologicals_tr
+CREATE OR REPLACE TRIGGER serological_tests_tr
     BEFORE INSERT
-    ON serologicals
+    ON serological_tests
     FOR EACH ROW
 DECLARE
     l_date_of_birth DATE;
@@ -378,7 +383,7 @@ BEGIN
             RAISE_APPLICATION_ERROR(-20001, 'date result > date of death');
         END IF;
     END IF;
-    :new.serological_id := serologicals_seq.nextval;
+    :new.serological_test_id := serological_tests_seq.nextval;
 END;
 
 
@@ -405,6 +410,7 @@ BEGIN
 END;
 
 
+
 --     ___
 --    / _ \  ____ ___    ___   ___
 --   / // / / __// _ \  / _ \ (_-<
@@ -417,7 +423,7 @@ DROP SEQUENCE relationships_seq;
 DROP SEQUENCE locations_seq;
 DROP SEQUENCE contacts_seq;
 DROP SEQUENCE swabs_seq;
-DROP SEQUENCE serologicals_seq;
+DROP SEQUENCE serological_tests_seq;
 DROP SEQUENCE health_checks_seq;
 DROP TABLE membership CASCADE CONSTRAINTS;
 DROP TABLE relationships CASCADE CONSTRAINTS;
@@ -427,39 +433,7 @@ DROP TABLE locations CASCADE CONSTRAINTS;
 DROP TABLE swabs CASCADE CONSTRAINTS;
 DROP TABLE health_checks CASCADE CONSTRAINTS;
 DROP TABLE users CASCADE CONSTRAINTS;
-DROP TABLE serologicals CASCADE CONSTRAINTS;
+DROP TABLE serological_tests CASCADE CONSTRAINTS;
 DROP VIEW contacts_all_v;
 DROP VIEW contacts_all_v2;
 DROP VIEW relationships_all_v;
-
-
---    _      __   ____   ___
---   | | /| / /  /  _/  / _ \
---   | |/ |/ /  _/ /   / ___/
---   |__/|__/  /___/  /_/
---
-
-
-SELECT *
-FROM users;
-
-
-SELECT *
-FROM contacts_all_v;
-
-
--- tutti i contatti (coppia di user, luogo, data)
-SELECT p1.user_id, p2.user_id, c.location_id, p1.date_received
-FROM contacts c
-         JOIN participants p1 ON c.contact_id = p1.contact_id
-         JOIN participants p2 ON p1.contact_id = p2.contact_id
-WHERE p1.user_id <> p2.user_id;
-
-
--- calcola il numero di contatti di uno user nelle ultime 2 settimane (da controllare)
-SELECT COUNT(i.contact_id)
-FROM contacts i
-         JOIN participants p ON i.contact_id = p.contact_id
-WHERE p.user_id = 1
-  AND p.date_received BETWEEN TO_DATE('01-12-2020', 'dd-mm-yyyy') - 30 AND TO_DATE('01-12-2020', 'dd-mm-yyyy')
-ORDER BY p.date_received DESC;

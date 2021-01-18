@@ -267,9 +267,8 @@ public class ContactDAOOracleImpl implements ContactDAO {
 
             connection = new DbConnector().getConnection();
 
-            pstmt = connection.prepareStatement("SELECT * FROM contacts_all_v2 WHERE user_id1 = ? OR user_id2 = ?");
+            pstmt = connection.prepareStatement("SELECT * FROM contacts_all_v2 WHERE user_id1 = ?");
             pstmt.setInt(1, user.getId());
-            pstmt.setInt(2, user.getId());
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -322,6 +321,72 @@ public class ContactDAOOracleImpl implements ContactDAO {
         return contactList;
     }
 
+
+    public ObservableList<Contact> getAllBylocationId(Location location) throws SQLException{
+
+        ObservableList<Contact> contactList = FXCollections.observableArrayList();
+
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+
+            connection = new DbConnector().getConnection();
+
+            pstmt = connection.prepareStatement("SELECT * FROM contacts_all_v2 WHERE location_id = ?");
+            pstmt.setInt(1, location.getId());
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+
+                contactList.add(
+                        new Contact(new User(rs.getInt("user_id1"),
+                                rs.getString("username1"),
+                                rs.getString("first_name1"),
+                                rs.getString("last_name1"),
+                                rs.getString("gender1"),
+                                Util.convertToEntityAttribute(rs.getDate("date_of_birth1")),
+                                Util.convertToEntityAttribute(rs.getDate("date_of_death1"))
+                        ),
+
+                                new User(rs.getInt("user_id2"),
+                                        rs.getString("username2"),
+                                        rs.getString("firstname2"),
+                                        rs.getString("last_name2"),
+                                        rs.getString("gender2"),
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_birth2")),
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_death2"))
+                                ),
+
+                                new Location(rs.getInt("location_id"),
+                                        rs.getString("location_name"),
+                                        rs.getString("location_city"),
+                                        rs.getString("location_category")
+                                ),
+
+                                Util.convertToEntityAttribute(rs.getDate("date_received"))
+                        )
+                );
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+
+            try {
+                if (pstmt != null) pstmt.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                throw e;
+            }
+
+        }
+
+        return contactList;
+    }
 
 }
 

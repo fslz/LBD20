@@ -17,7 +17,7 @@ public class MainMenuViewController {
 
                 try{    // Load Users Menu scene in the current stage
 
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UsersView.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/OldViews/UsersView.fxml"));
                         Parent root = fxmlLoader.load();
                         Scene usersMenu = new Scene(root);
                         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -38,7 +38,7 @@ public class MainMenuViewController {
 
                 try{    // Load Locations Menu scene in the current stage
 
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Location/LocationsView.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/OldViews/LocationsView.fxml"));
                         Parent root = fxmlLoader.load();
                         Scene locationsMenu = new Scene(root);
                         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
