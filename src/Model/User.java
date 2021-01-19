@@ -1,6 +1,7 @@
 package Model;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -12,8 +13,10 @@ public class User {
     private String firstName;
     private String lastName;
     private String gender;
-    private LocalDate dateOfBirth;
-    private LocalDate dateOfDeath;
+    private LocalDateTime dateOfBirth;
+    private LocalDateTime dateOfDeath;
+
+    // Mapped Associations
     private List<Contact> contactList;
     private List<Relationship> relationshipList;
     private List<Swab> swabList;
@@ -21,7 +24,7 @@ public class User {
     private List<HealthCheck> healthCheckList;
 
 
-    public User(int id, String userName, String firstName, String lastName, String gender, LocalDate dateOfBirth, LocalDate dateOfDeath) {
+    public User(int id, String userName, String firstName, String lastName, String gender, LocalDateTime dateOfBirth, LocalDateTime dateOfDeath) {
 
         this.id = id;
         this.userName = userName;
@@ -47,9 +50,38 @@ public class User {
         this.contactList = contactList;
     }
 
+    public List<Relationship> getRelationshipList() {
+        return relationshipList;
+    }
 
+    public void setRelationshipList(List<Relationship> relationshipList) {
+        this.relationshipList = relationshipList;
+    }
 
-    // Getters
+    public List<Swab> getSwabList() {
+        return swabList;
+    }
+
+    public void setSwabList(List<Swab> swabList) {
+        this.swabList = swabList;
+    }
+
+    public List<SerologicalTest> getSerologicalTestList() {
+        return serologicalTestList;
+    }
+
+    public void setSerologicalTestList(List<SerologicalTest> serologicalTestList) {
+        this.serologicalTestList = serologicalTestList;
+    }
+
+    public List<HealthCheck> getHealthCheckList() {
+        return healthCheckList;
+    }
+
+    public void setHealthCheckList(List<HealthCheck> healthCheckList) {
+        this.healthCheckList = healthCheckList;
+    }
+
     public int getId() {
         return this.id;
     }
@@ -62,11 +94,10 @@ public class User {
 
     public String getGender() { return gender; }
 
-    public LocalDate getDateOfBirth() { return this.dateOfBirth; }
+    public LocalDateTime getDateOfBirth() { return this.dateOfBirth; }
 
-    public LocalDate getDateOfDeath() { return this.dateOfDeath; }
+    public LocalDateTime getDateOfDeath() { return this.dateOfDeath; }
 
-    // Setters
     public void setId(int id) { this.id = id; }
 
     public void setUserName(String userName) { this.userName = userName; }
@@ -77,11 +108,11 @@ public class User {
 
     public void setGender(String gender) { this.gender = gender; }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(LocalDateTime dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setDateOfDeath(LocalDate dateOfDeath) {
+    public void setDateOfDeath(LocalDateTime dateOfDeath) {
         this.dateOfDeath = dateOfDeath;
     }
 

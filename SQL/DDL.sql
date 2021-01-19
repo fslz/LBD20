@@ -8,19 +8,17 @@
 CREATE TABLE users
 (
     user_id        INTEGER      NOT NULL,
-    cf             VARCHAR2(25) NOT NULL,
+    username             VARCHAR2(25) NOT NULL,
     first_name     VARCHAR2(25) NOT NULL,
     last_name      VARCHAR2(25) NOT NULL,
     gender         CHAR(1)      NOT NULL,
-    place_of_birth VARCHAR2(25) NOT NULL,
     date_of_birth  TIMESTAMP         NOT NULL,
     date_of_death  TIMESTAMP,
 
     CONSTRAINT users_pk PRIMARY KEY (user_id),
-    CONSTRAINT users_uq UNIQUE (cf),
+    CONSTRAINT users_uq UNIQUE (username),
     CONSTRAINT users_ck1 CHECK (date_of_death > date_of_birth),
-    CONSTRAINT users_ck2 CHECK (gender IN ('M', 'F')),
-    CONSTRAINT users_ck3 CHECK ( REGEXP_LIKE(cf, '^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$') )
+    CONSTRAINT users_ck2 CHECK (gender IN ('M', 'F'))
 );
 
 
@@ -211,24 +209,23 @@ FROM contacts c
 WHERE p1.user_id <> p2.user_id
   AND p1.user_id < p2.user_id;
 
+
 -- all contacts between users [used when fetching all contacts?]
 CREATE OR REPLACE VIEW contacts_all_v2 AS
 SELECT -- User 1
        u1.user_id       AS user_id1,
-       u1.cf      AS cf1,
+       u1.username      AS username1,
        u1.first_name    AS first_name1,
        u1.last_name     AS last_name1,
        u1.gender        AS gender1,
-       u1.place_of_birth AS place_of_birth1,
        u1.date_of_birth AS date_of_birth1,
        u1.date_of_death AS date_of_death1,
        -- User 2
        u2.user_id       AS user_id2,
-       u2.cf      AS cf2,
+       u2.username      AS username2,
        u2.first_name    AS firstname2,
        u2.last_name     AS last_name2,
        u2.gender        AS gender2,
-       u2.place_of_birth AS place_of_birth2,
        u2.date_of_birth AS date_of_birth2,
        u2.date_of_death AS date_of_death2,
        -- Location
@@ -410,30 +407,3 @@ BEGIN
 END;
 
 
-
---     ___
---    / _ \  ____ ___    ___   ___
---   / // / / __// _ \  / _ \ (_-<
---  /____/ /_/   \___/ / .__//___/
---                    /_/
-
-
-DROP SEQUENCE users_seq;
-DROP SEQUENCE relationships_seq;
-DROP SEQUENCE locations_seq;
-DROP SEQUENCE contacts_seq;
-DROP SEQUENCE swabs_seq;
-DROP SEQUENCE serological_tests_seq;
-DROP SEQUENCE health_checks_seq;
-DROP TABLE membership CASCADE CONSTRAINTS;
-DROP TABLE relationships CASCADE CONSTRAINTS;
-DROP TABLE participants CASCADE CONSTRAINTS;
-DROP TABLE contacts CASCADE CONSTRAINTS;
-DROP TABLE locations CASCADE CONSTRAINTS;
-DROP TABLE swabs CASCADE CONSTRAINTS;
-DROP TABLE health_checks CASCADE CONSTRAINTS;
-DROP TABLE users CASCADE CONSTRAINTS;
-DROP TABLE serological_tests CASCADE CONSTRAINTS;
-DROP VIEW contacts_all_v;
-DROP VIEW contacts_all_v2;
-DROP VIEW relationships_all_v;

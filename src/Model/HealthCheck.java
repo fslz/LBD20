@@ -1,17 +1,17 @@
 package Model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class HealthCheck {
 
     private int id;
     private User user;
-    private LocalDate dateOfCheck;
+    private LocalDateTime dateOfCheck;
     private String fever;
     private String respiratoryDisorder;
     private String smellTasteDisorder;
 
-    public HealthCheck(int id, User user, LocalDate dateOfCheck, String fever, String respiratoryDisorder, String smellTasteDisorder) {
+    public HealthCheck(int id, User user, LocalDateTime dateOfCheck, String fever, String respiratoryDisorder, String smellTasteDisorder) {
         this.id = id;
         this.user = user;
         this.dateOfCheck = dateOfCheck;
@@ -36,11 +36,11 @@ public class HealthCheck {
         this.user = user;
     }
 
-    public LocalDate getDateOfCheck() {
+    public LocalDateTime getDateOfCheck() {
         return dateOfCheck;
     }
 
-    public void setDateOfCheck(LocalDate dateOfCheck) {
+    public void setDateOfCheck(LocalDateTime dateOfCheck) {
         this.dateOfCheck = dateOfCheck;
     }
 

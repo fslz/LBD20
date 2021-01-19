@@ -1,4 +1,4 @@
-package Controller.Location;
+package Controller.OldControllers;
 
 import Model.Location;
 import DAO.LocationDAOOracleImpl;
@@ -10,13 +10,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class LocationAddViewController implements Initializable {
+public class LocationEditViewController implements Initializable {
 
     @FXML
     private Button btnCancel;
@@ -27,6 +26,8 @@ public class LocationAddViewController implements Initializable {
     @FXML
     private ChoiceBox<String> cbCategory;
 
+
+    private Location selectedLocation;
 
     private ObservableList<String> availableChoices = FXCollections.observableArrayList("recreational", "entertainment", "religious", "education", "healthcare", "transportation", "business");
 
@@ -49,50 +50,70 @@ public class LocationAddViewController implements Initializable {
             // Ask for the user to confirm changes
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm changes");
-            confirmAlert.setContentText("The new location will be created. Are you sure you want to proceed?");
+            confirmAlert.setHeaderText("");
+            confirmAlert.setContentText("Apply changes?");
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
 
             // If user confirms
             if (result.get() == ButtonType.OK) {
-                // Then then the new location will be added on the db through the LocationDAOOracleImpl
+                // Then apply changes to the user on the db through the DAOOracle
                 try {
 
-                    new LocationDAOOracleImpl().create(
-                            new Location(0,
+                    new LocationDAOOracleImpl().update(
+                            new Location(selectedLocation.getId(),
                                     txtName.getText(),
                                     txtCity.getText(),
                                     cbCategory.getValue()
                             )
                     );
 
-                    // User successfully added. Show alert.
+                    // User successfully edited. Show alert.
                     Alert errorAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                    errorAlert.setContentText("Location successfully created.");
+                    errorAlert.setContentText("Location successfully edited.");
                     errorAlert.showAndWait();
 
-                    // Close the UserInsertView stage
+                    // Close the UserEditView stage
                     ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
 
                 } catch (SQLException e) {
 
                     // UNIQUE constraint violation
-                    if (e.getErrorCode() == 1) {    // TODO check constraint violation and error code
+                    if (e.getErrorCode() == 1) { // TODO check for violation and error code
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("A location with this name already exists.");
+                        errorAlert.setContentText("A location with this name in this city already exists.");
                         errorAlert.showAndWait();
                     }
 
                 }
 
-            } else {
+            }
+            else {
                 // Else close the confirmation dialog
                 confirmAlert.close();
 
             }
 
         }
+
+    }
+
+    public void setSelectedLocation(Location selectedLocation) {
+
+        this.selectedLocation = selectedLocation;
+
+        setComponentsValues();
+
+    }
+
+
+    private void setComponentsValues() {
+
+        txtName.setText(selectedLocation.getName());
+        txtCity.setText(selectedLocation.getCity());
+        cbCategory.setValue(selectedLocation.getCategory());
+
     }
 
 
@@ -102,17 +123,19 @@ public class LocationAddViewController implements Initializable {
         StringBuilder errorMsg = new StringBuilder();
 
         if (txtName.getText() == null || txtName.getText().trim().isEmpty()) {
-            errorMsg.append("- Please enter a username.\n");
+            errorMsg.append("- Please enter a location name.\n");
             isValid = false;
         }
         if (txtCity.getText() == null || txtCity.getText().trim().isEmpty()) {
-            errorMsg.append("- Please enter a first name.\n");
+            errorMsg.append("- Please enter a city.\n");
             isValid = false;
         }
+
         if (cbCategory.getValue() == null) {
-            errorMsg.append("- Please select gender.\n");
+            errorMsg.append("- Please select a category.\n");
             isValid = false;
         }
+
         if (!isValid) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Missing Information");
@@ -131,6 +154,5 @@ public class LocationAddViewController implements Initializable {
         cbCategory.setItems(availableChoices);
 
     }
-
 
 }

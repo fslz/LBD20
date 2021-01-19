@@ -1,4 +1,4 @@
-package Controller.User;
+package Controller.OldControllers;
 
 import Model.User;
 import DAO.UserDAOOracleImpl;
@@ -73,8 +73,8 @@ public class UserEditViewController implements Initializable {
                                     txtFirstName.getText(),
                                     txtLastName.getText(),
                                     cbGender.getValue(),
-                                    dpDateOfBirth.getValue(),
-                                    dpDateOfDeath.getValue()
+                                    dpDateOfBirth.getValue().atStartOfDay(),
+                                    dpDateOfDeath.getValue().atStartOfDay()
                             )
                     );
 
@@ -131,8 +131,8 @@ public class UserEditViewController implements Initializable {
         txtLastName.setText(selectedUser.getLastName());
         txtUserName.setText(selectedUser.getUserName());
         cbGender.setValue(selectedUser.getGender());
-        dpDateOfBirth.setValue(selectedUser.getDateOfBirth());
-        dpDateOfDeath.setValue(selectedUser.getDateOfDeath());
+        dpDateOfBirth.setValue(selectedUser.getDateOfBirth().toLocalDate());
+        dpDateOfDeath.setValue(selectedUser.getDateOfDeath().toLocalDate());
 
     }
 

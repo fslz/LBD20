@@ -1,15 +1,15 @@
 package Model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Swab {
 
     private int id;
     private User user;
-    private LocalDate dateResult;
+    private LocalDateTime dateResult;
     private String positivity;
 
-    public Swab(int id, User user, LocalDate dateResult, String positivity) {
+    public Swab(int id, User user, LocalDateTime dateResult, String positivity) {
         this.id = id;
         this.user = user;
         this.dateResult = dateResult;
@@ -32,11 +32,11 @@ public class Swab {
         this.user = user;
     }
 
-    public LocalDate getDateResult() {
+    public LocalDateTime getDateResult() {
         return dateResult;
     }
 
-    public void setDateResult(LocalDate dateResult) {
+    public void setDateResult(LocalDateTime dateResult) {
         this.dateResult = dateResult;
     }
 

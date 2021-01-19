@@ -1,4 +1,4 @@
-package Controller.Contact;
+package Controller.OldControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,53 +7,76 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 
-public class ContactsViewController {
+public class RelationshipsViewController {
 
     @FXML
-    private TableView<?> tblContact;
+    private TableView<?> tblRelationship;
     @FXML
     private TableColumn<?, ?> colUser1;
     @FXML
-    private TableColumn<?, ?> colUser1FirstName;
+    private TableColumn<?, ?> colUser1UserName;
     @FXML
-    private TableColumn<?, ?> colFirstName;
+    private TableColumn<?, ?> colUser1FirstName;
     @FXML
     private TableColumn<?, ?> colUser1LastName;
     @FXML
     private TableColumn<?, ?> colUser2;
     @FXML
+    private TableColumn<?, ?> colUser2UserName;
+    @FXML
     private TableColumn<?, ?> colUser2FirstName;
     @FXML
     private TableColumn<?, ?> colUser2LastName;
     @FXML
-    private TableColumn<?, ?> colDate;
-    @FXML
-    private TableColumn<?, ?> colLocation;
+    private TableColumn<?, ?> colContext;
     @FXML
     private Button btnToMainMenu;
     @FXML
-    private Button btnAddContact;
+    private Button btnAddRelationship;
     @FXML
-    private Button btnEditContact;
+    private Button btnEditRelationship;
     @FXML
-    private Button btnDeleteContact;
+    private Button btnDeleteRelationship;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
     @FXML
-    void btnAddContactOnAction(ActionEvent event) {
+    void btnAddRelationshipOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnDeleteContactOnAction(ActionEvent event) {
+    void btnDeleteRelationshipOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnEditContactOnAction(ActionEvent event) {
+    void btnEditRelationshipOnAction(ActionEvent event) {
 
     }
 
@@ -63,7 +86,7 @@ public class ContactsViewController {
     }
 
     @FXML
-    void tblContactsOnMouseClicked(MouseEvent event) {
+    void tblRelationshipOnMouseClicked(MouseEvent event) {
 
     }
 

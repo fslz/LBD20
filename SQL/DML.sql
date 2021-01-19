@@ -7,42 +7,42 @@
 
 
 -- USERS
-INSERT INTO users (user_id, cf, first_name, last_name, gender, place_of_birth, date_of_birth, date_of_death)
-VALUES (0, 'PRNDRN00E14G964W', 'Adriano', 'Peron', 'M', 'Pozzuoli', TO_TIMESTAMP('14-05-2000', 'dd-mm-yyyy'), NULL); -- [1]
+INSERT INTO users (user_id, username, first_name, last_name, gender, date_of_birth, date_of_death)
+VALUES (0, 'FQhQiP7q8T', 'Adriano', 'Peron', 'M', TO_TIMESTAMP('14-05-2000', 'dd-mm-yyyy'), NULL); -- [1]
 INSERT INTO users
-VALUES (0, 'BNRMSM64E15F839R', 'Massimo', 'Benerecetti', 'M', 'Napoli', TO_TIMESTAMP('15-05-1964', 'dd-mm-yyyy'), NULL); -- [2]
+VALUES (0, 'MqG7vDdFeW', 'Massimo', 'Benerecetti', 'M', TO_TIMESTAMP('15-05-1964', 'dd-mm-yyyy'), NULL); -- [2]
 INSERT INTO users
-VALUES (0, 'BNTPRI94L20A944U', 'Piero', 'Bonatti', 'M', 'Bologna', TO_TIMESTAMP('20-07-1994', 'dd-mm-yyyy'), NULL); -- [3]
+VALUES (0, 'VOPvSqXQOR', 'Piero', 'Bonatti', 'M', TO_TIMESTAMP('20-07-1994', 'dd-mm-yyyy'), NULL); -- [3]
 INSERT INTO users
-VALUES (0, 'LSSDLC75T30H501Z', 'Alessandro', 'De Luca', 'M', 'Roma', TO_TIMESTAMP('30-12-1975', 'dd-mm-yyyy'), NULL); -- [4]
+VALUES (0, 'gE6PRLVzuv', 'Alessandro', 'De Luca', 'M', TO_TIMESTAMP('30-12-1975', 'dd-mm-yyyy'), NULL); -- [4]
 INSERT INTO users
-VALUES (0, 'RSSGDU80A02G273R', 'Guido', 'Russo', 'M', 'Palermo', TO_TIMESTAMP('02-01-1980', 'dd-mm-yyyy'), NULL); -- [5]
+VALUES (0, 'tmgTgX2dAR', 'Guido', 'Russo', 'M', TO_TIMESTAMP('02-01-1980', 'dd-mm-yyyy'), NULL); -- [5]
 INSERT INTO users
-VALUES (0, 'SRGDRT79L19L245D', 'Sergio', 'Di Martino', 'M', 'Torre Annunziata', TO_TIMESTAMP('19-09-1979', 'dd-mm-yyyy'), NULL); -- [6]
+VALUES (0, 'vKWTmaHClS', 'Sergio', 'Di Martino', 'M', TO_TIMESTAMP('19-09-1979', 'dd-mm-yyyy'), NULL); -- [6]
 INSERT INTO users
-VALUES (0, 'TMBGLL80T06D612P', 'Guglielmo', 'Tamburrini', 'M', 'Firenze', TO_TIMESTAMP('06-12-1980', 'dd-mm-yyyy'), NULL); -- [7]
+VALUES (0, 'x54gAgw2rJ', 'Guglielmo', 'Tamburrini', 'M', TO_TIMESTAMP('06-12-1980', 'dd-mm-yyyy'), NULL); -- [7]
 INSERT INTO users
-VALUES (0, 'RCCDNL68S29E506J', 'Daniel', 'Riccio', 'M', 'Lecce', TO_TIMESTAMP('29-11-1968', 'dd-mm-yyyy'), NULL); -- [8]
+VALUES (0, 'RllNXsLSTG', 'Daniel', 'Riccio', 'M', TO_TIMESTAMP('29-11-1968', 'dd-mm-yyyy'), NULL); -- [8]
 INSERT INTO users
-VALUES (0, 'LSALRT92L17L424H', 'Alberto', 'Aloisio', 'M', 'Trieste', TO_TIMESTAMP('17-07-1992', 'dd-mm-yyyy'), NULL); -- [9]
+VALUES (0, 'c5YBrzhfwx', 'Alberto', 'Aloisio', 'M', TO_TIMESTAMP('17-07-1992', 'dd-mm-yyyy'), NULL); -- [9]
 INSERT INTO users
-VALUES (0, 'CTLGNN57T06C352F', 'Giovanni', 'Cutolo', 'M', 'Catanzaro', TO_TIMESTAMP('06-12-1957', 'dd-mm-yyyy'), NULL); -- [10]
+VALUES (0, 'zQiM1y2UiT', 'Giovanni', 'Cutolo', 'M', TO_TIMESTAMP('06-12-1957', 'dd-mm-yyyy'), NULL); -- [10]
 INSERT INTO users
-VALUES (0, 'BLZWTR01R22B519K', 'Walter', 'Balzano', 'M', 'Campobasso', TO_TIMESTAMP('22-10-2001', 'dd-mm-yyyy'), NULL); -- [11]
+VALUES (0, 'ICOu5xMvu7', 'Walter', 'Balzano', 'M', TO_TIMESTAMP('22-10-2001', 'dd-mm-yyyy'), NULL); -- [11]
 INSERT INTO users
-VALUES (0, 'MRNNLL52P15D969K', 'Aniello', 'Murano', 'M', 'Genova', TO_TIMESTAMP('15-09-1952', 'dd-mm-yyyy'), NULL); -- [12]
+VALUES (0, '71pSnWAwNr', 'Aniello', 'Murano', 'M', TO_TIMESTAMP('15-09-1952', 'dd-mm-yyyy'), NULL); -- [12]
 INSERT INTO users
-VALUES (0, 'CFFFNC66H53L219I', 'Francesca', 'Cioffi', 'F', 'Torino', TO_TIMESTAMP('13-06-1966', 'dd-mm-yyyy'), NULL); -- [13]
+VALUES (0, '481W21pgr5', 'Francesca', 'Cioffi', 'F', TO_TIMESTAMP('13-06-1966', 'dd-mm-yyyy'), NULL); -- [13]
 INSERT INTO users
-VALUES (0, 'FSTPLA83R67A509V', 'Paola', 'Festa', 'F', 'Avellino', TO_TIMESTAMP('27-10-1983', 'dd-mm-yyyy'), NULL); -- [14]
+VALUES (0, 'z5v1Mzgc3X', 'Paola', 'Festa', 'F', TO_TIMESTAMP('27-10-1983', 'dd-mm-yyyy'), NULL); -- [14]
 INSERT INTO users
-VALUES (0, 'SGRFNC85M07H703N', 'Francesco', 'Isgro', 'M', 'Salerno', TO_TIMESTAMP('07-08-1985', 'dd-mm-yyyy'), NULL); -- [15]
+VALUES (0, 'wNqbMIpKR9', 'Francesco', 'Isgro', 'M', TO_TIMESTAMP('07-08-1985', 'dd-mm-yyyy'), NULL); -- [15]
 INSERT INTO users
-VALUES (0, 'PRVRRT91E20E932L', 'Roberto', 'Prevete', 'M', 'Marcianise', TO_TIMESTAMP('20-05-1991', 'dd-mm-yyyy'), NULL); -- [16]
+VALUES (0, 'eFvFTJ6X4k', 'Roberto', 'Prevete', 'M', TO_TIMESTAMP('20-05-1991', 'dd-mm-yyyy'), NULL); -- [16]
 INSERT INTO users
-VALUES (0, 'CPTLGU79P42L781Y', 'Luigia', 'Caputo', 'F', 'Verona', TO_TIMESTAMP('02-09-1979', 'dd-mm-yyyy'), NULL); -- [17]
+VALUES (0, 'RzQqsBWuQ5', 'Luigia', 'Caputo', 'F', TO_TIMESTAMP('02-09-1979', 'dd-mm-yyyy'), NULL); -- [17]
 INSERT INTO users
-VALUES (0, 'TRMFNC69A17F284Q', 'Francesco', 'Tramontano', 'M', 'Molfetta', TO_TIMESTAMP('17-01-1969', 'dd-mm-yyyy'), NULL);
+VALUES (0, 'ylcgTzRGt1', 'Francesco', 'Tramontano', 'M', TO_TIMESTAMP('17-01-1969', 'dd-mm-yyyy'), NULL);
 -- [18]
 
 

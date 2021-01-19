@@ -1,4 +1,4 @@
-package Controller.Location;
+package Controller.OldControllers;
 
 import Model.Location;
 import DAO.LocationDAOOracleImpl;

@@ -1,6 +1,6 @@
 package Model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 public class Contact {
@@ -8,9 +8,9 @@ public class Contact {
     User user1;
     User user2;
     Location location;
-    LocalDate dateReceived;
+    LocalDateTime dateReceived;
 
-    public Contact(User user1, User user2, Location location, LocalDate dateReceived){
+    public Contact(User user1, User user2, Location location, LocalDateTime dateReceived){
         this.user1 = user1;
         this.user2 = user2;
         this.location = location;
@@ -41,11 +41,11 @@ public class Contact {
         this.location = location;
     }
 
-    public LocalDate getDateReceived() {
+    public LocalDateTime getDateReceived() {
         return dateReceived;
     }
 
-    public void setDateReceived(LocalDate dateReceived) {
+    public void setDateReceived(LocalDateTime dateReceived) {
         this.dateReceived = dateReceived;
     }
 

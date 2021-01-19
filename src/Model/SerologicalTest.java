@@ -1,16 +1,16 @@
 package Model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class SerologicalTest {
 
     private int id;
     private User user;
-    private LocalDate dateResult;
+    private LocalDateTime dateResult;
     private String igm;
     private String igg;
 
-    public SerologicalTest(int id, User user, LocalDate dateResult, String igm, String igg) {
+    public SerologicalTest(int id, User user, LocalDateTime dateResult, String igm, String igg) {
         this.id = id;
         this.user = user;
         this.dateResult = dateResult;
@@ -34,11 +34,11 @@ public class SerologicalTest {
         this.user = user;
     }
 
-    public LocalDate getDateResult() {
+    public LocalDateTime getDateResult() {
         return dateResult;
     }
 
-    public void setDateResult(LocalDate dateResult) {
+    public void setDateResult(LocalDateTime dateResult) {
         this.dateResult = dateResult;
     }
 

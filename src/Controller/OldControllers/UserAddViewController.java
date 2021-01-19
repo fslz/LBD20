@@ -1,4 +1,4 @@
-package Controller.User;
+package Controller.OldControllers;
 
 import Model.User;
 import DAO.UserDAOOracleImpl;
@@ -70,8 +70,8 @@ public class UserAddViewController implements Initializable {
                                     txtFirstName.getText(),
                                     txtLastName.getText(),
                                     cbGender.getValue(),
-                                    dpDateOfBirth.getValue(),
-                                    dpDateOfDeath.getValue()
+                                    dpDateOfBirth.getValue().atStartOfDay(),
+                                    dpDateOfDeath.getValue().atStartOfDay()
                             )
                     );
 
