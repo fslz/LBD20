@@ -7,13 +7,13 @@
 
 CREATE TABLE users
 (
-    user_id        INTEGER      NOT NULL,
-    username             VARCHAR2(25) NOT NULL,
-    first_name     VARCHAR2(25) NOT NULL,
-    last_name      VARCHAR2(25) NOT NULL,
-    gender         CHAR(1)      NOT NULL,
-    date_of_birth  TIMESTAMP         NOT NULL,
-    date_of_death  TIMESTAMP,
+    user_id       INTEGER      NOT NULL,
+    username      VARCHAR2(25) NOT NULL,
+    first_name    VARCHAR2(25) NOT NULL,
+    last_name     VARCHAR2(25) NOT NULL,
+    gender        CHAR(1)      NOT NULL,
+    date_of_birth TIMESTAMP    NOT NULL,
+    date_of_death TIMESTAMP,
 
     CONSTRAINT users_pk PRIMARY KEY (user_id),
     CONSTRAINT users_uq UNIQUE (username),
@@ -52,9 +52,9 @@ CREATE TABLE contacts
 
 CREATE TABLE participants
 (
-    contact_id    INTEGER NOT NULL,
-    user_id       INTEGER NOT NULL,
-    date_received TIMESTAMP    NOT NULL,
+    contact_id    INTEGER   NOT NULL,
+    user_id       INTEGER   NOT NULL,
+    date_received TIMESTAMP NOT NULL,
 
     CONSTRAINT participants_pk PRIMARY KEY (contact_id, user_id),
     CONSTRAINT participants_uk UNIQUE (user_id, date_received)
@@ -90,9 +90,9 @@ CREATE TABLE locations
 CREATE TABLE swabs
 (
     swab_id     INTEGER,
-    user_id     INTEGER NOT NULL,
-    date_result TIMESTAMP    NOT NULL,
-    positivity  CHAR(1) NOT NULL,
+    user_id     INTEGER   NOT NULL,
+    date_result TIMESTAMP NOT NULL,
+    positivity  CHAR(1)   NOT NULL,
 
     CONSTRAINT swabs_pk PRIMARY KEY (swab_id),
     CONSTRAINT swabs_ck1 CHECK ( positivity IN ('y', 'n') ),
@@ -103,10 +103,10 @@ CREATE TABLE swabs
 CREATE TABLE serological_tests
 (
     serological_test_id INTEGER,
-    user_id             INTEGER NOT NULL,
-    date_result         TIMESTAMP    NOT NULL,
-    igm                 CHAR(1) NOT NULL,
-    igg                 CHAR(1) NOT NULL,
+    user_id             INTEGER   NOT NULL,
+    date_result         TIMESTAMP NOT NULL,
+    igm                 CHAR(1)   NOT NULL,
+    igg                 CHAR(1)   NOT NULL,
 
     CONSTRAINT serological_tests_pk PRIMARY KEY (serological_test_id),
     CONSTRAINT serological_tests_uk UNIQUE (user_id, date_result),
@@ -117,12 +117,12 @@ CREATE TABLE serological_tests
 
 CREATE TABLE health_checks
 (
-    health_check_id      INTEGER NOT NULL,
-    user_id              INTEGER NOT NULL,
-    date_of_check        TIMESTAMP    NOT NULL,
-    fever                CHAR(1) NOT NULL,
-    respiratory_disorder CHAR(1) NOT NULL,
-    smell_taste_disorder CHAR(1) NOT NULL,
+    health_check_id      INTEGER   NOT NULL,
+    user_id              INTEGER   NOT NULL,
+    date_of_check        TIMESTAMP NOT NULL,
+    fever                CHAR(1)   NOT NULL,
+    respiratory_disorder CHAR(1)   NOT NULL,
+    smell_taste_disorder CHAR(1)   NOT NULL,
 
     CONSTRAINT health_checks_ck1 CHECK (fever IN ('Y', 'N')),
     CONSTRAINT health_checks_ck2 CHECK (respiratory_disorder IN ('Y', 'N')),
@@ -199,20 +199,22 @@ CREATE SEQUENCE health_checks_seq;
 
 -- all contacts between users (user_id1, user_id2, location_id, date_received) [used when inserting a new contact]
 CREATE OR REPLACE VIEW contacts_all_v AS
-SELECT p1.user_id       AS user_id1,
+SELECT c.contact_id     AS contact_id,
+       p1.user_id       AS user_id1,
        p2.user_id       AS user_id2,
        c.location_id    AS location_id,
        p1.date_received AS date_received
 FROM contacts c
          JOIN participants p1 ON c.contact_id = p1.contact_id
          JOIN participants p2 ON p1.contact_id = p2.contact_id
-WHERE p1.user_id <> p2.user_id
-  AND p1.user_id < p2.user_id;
+WHERE p1.user_id <> p2.user_id;
+--  AND p1.user_id < p2.user_id;
 
 
 -- all contacts between users [used when fetching all contacts?]
 CREATE OR REPLACE VIEW contacts_all_v2 AS
-SELECT -- User 1
+SELECT c.contact_id     AS contact_id,
+-- User 1
        u1.user_id       AS user_id1,
        u1.username      AS username1,
        u1.first_name    AS first_name1,
@@ -242,12 +244,15 @@ FROM contacts c
          JOIN users u1 ON p1.user_id = u1.user_id
          JOIN users u2 ON p2.user_id = u2.user_id
          JOIN locations l ON c.location_id = l.location_id
-WHERE p1.user_id <> p2.user_id
-  AND p1.user_id < p2.user_id;
+WHERE p1.user_id <> p2.user_id;
+  --AND p1.user_id < p2.user_id;
 
 -- all relationships (user_id1, user_id2, relationship type)
 CREATE OR REPLACE VIEW relationships_all_v AS
-SELECT m1.user_id AS user_id1, m2.user_id AS user_id2, r.type
+SELECT r.relationship_id AS relationship_id,
+       m1.user_id AS user_id1,
+       m2.user_id AS user_id2,
+       r.type
 FROM relationships r
          JOIN membership m1 ON r.relationship_id = m1.relationship_id
          JOIN membership m2 ON m1.relationship_id = m2.relationship_id;
@@ -406,4 +411,32 @@ BEGIN
     :new.health_check_id := health_checks_seq.nextval;
 END;
 
+
+
+--     ___
+--    / _ \  ____ ___    ___   ___
+--   / // / / __// _ \  / _ \ (_-<
+--  /____/ /_/   \___/ / .__//___/
+--                    /_/
+
+
+DROP SEQUENCE users_seq;
+DROP SEQUENCE relationships_seq;
+DROP SEQUENCE locations_seq;
+DROP SEQUENCE contacts_seq;
+DROP SEQUENCE swabs_seq;
+DROP SEQUENCE serological_tests_seq;
+DROP SEQUENCE health_checks_seq;
+DROP TABLE membership CASCADE CONSTRAINTS;
+DROP TABLE relationships CASCADE CONSTRAINTS;
+DROP TABLE participants CASCADE CONSTRAINTS;
+DROP TABLE contacts CASCADE CONSTRAINTS;
+DROP TABLE locations CASCADE CONSTRAINTS;
+DROP TABLE swabs CASCADE CONSTRAINTS;
+DROP TABLE health_checks CASCADE CONSTRAINTS;
+DROP TABLE users CASCADE CONSTRAINTS;
+DROP TABLE serological_tests CASCADE CONSTRAINTS;
+DROP VIEW contacts_all_v;
+DROP VIEW contacts_all_v2;
+DROP VIEW relationships_all_v;
 

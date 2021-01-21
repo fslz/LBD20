@@ -1,4 +1,4 @@
-package Controller.OldControllers;
+package Controller.Location;
 
 import Model.Location;
 import DAO.LocationDAOOracleImpl;
@@ -134,7 +134,7 @@ public class LocationsViewController implements Initializable {
 
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/OldViews/LocationEditView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Location/LocationEditView.fxml"));
             Parent root = fxmlLoader.load();
 
             LocationEditViewController LocationEditViewController = fxmlLoader.getController();
@@ -160,7 +160,7 @@ public class LocationsViewController implements Initializable {
 
         try{
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/OldViews/LocationAddView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Location/LocationAddView.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

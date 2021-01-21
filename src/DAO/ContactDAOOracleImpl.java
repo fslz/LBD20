@@ -26,7 +26,8 @@ public class ContactDAOOracleImpl implements ContactDAO {
             pstmt = connection.prepareStatement("SELECT * FROM contacts_all_v2 WHERE contact_id = ?");
             rs = pstmt.executeQuery();
 
-            contact = new Contact(new User(rs.getInt("user_id1"),
+            contact = new Contact(rs.getInt("contact_id"),
+                    new User(rs.getInt("user_id1"),
                     rs.getString("username1"),
                     rs.getString("first_name1"),
                     rs.getString("last_name1"),
@@ -92,7 +93,8 @@ public class ContactDAOOracleImpl implements ContactDAO {
             while (rs.next()) {
 
                 contactList.add(
-                        new Contact(new User(rs.getInt("user_id1"),
+                        new Contact(rs.getInt("contact_id"),
+                                new User(rs.getInt("user_id1"),
                                 rs.getString("username1"),
                                 rs.getString("first_name1"),
                                 rs.getString("last_name1"),
@@ -275,7 +277,8 @@ public class ContactDAOOracleImpl implements ContactDAO {
             while (rs.next()) {
 
                 contactList.add(
-                        new Contact(new User(rs.getInt("user_id1"),
+                        new Contact(rs.getInt("contact_id"),
+                                new User(rs.getInt("user_id1"),
                                 rs.getString("username1"),
                                 rs.getString("first_name1"),
                                 rs.getString("last_name1"),
@@ -342,7 +345,8 @@ public class ContactDAOOracleImpl implements ContactDAO {
             while (rs.next()) {
 
                 contactList.add(
-                        new Contact(new User(rs.getInt("user_id1"),
+                        new Contact(rs.getInt("contact_id"),
+                                new User(rs.getInt("user_id1"),
                                 rs.getString("username1"),
                                 rs.getString("first_name1"),
                                 rs.getString("last_name1"),

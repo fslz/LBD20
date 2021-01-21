@@ -1,4 +1,4 @@
-package Controller.OldControllers;
+package Controller.User;
 
 import Model.User;
 import DAO.UserDAOOracleImpl;
@@ -10,12 +10,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserEditViewController implements Initializable {
+public class UserAddViewController implements Initializable {
 
     @FXML
     private Button btnCancel;
@@ -33,8 +34,6 @@ public class UserEditViewController implements Initializable {
     private ChoiceBox<String> cbGender;
 
 
-    private User selectedUser;
-
     private ObservableList<String> availableChoices = FXCollections.observableArrayList("M", "F");
 
 
@@ -48,7 +47,6 @@ public class UserEditViewController implements Initializable {
 
     }
 
-
     @FXML
     void btnSaveOnAction(ActionEvent event) {
 
@@ -57,18 +55,17 @@ public class UserEditViewController implements Initializable {
             // Ask for the user to confirm changes
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm changes");
-            confirmAlert.setHeaderText("");
-            confirmAlert.setContentText("Apply changes?");
+            confirmAlert.setContentText("The new user will be created. Are you sure you want to proceed?");
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
 
             // If user confirms
             if (result.get() == ButtonType.OK) {
-                // Then apply changes to the user on the db through the DAOOracle
+                // Then then the new user will be added on the db through the DAOOracle
                 try {
 
-                    new UserDAOOracleImpl().update(
-                            new User(selectedUser.getId(),
+                    new UserDAOOracleImpl().create(
+                            new User(0,
                                     txtUserName.getText(),
                                     txtFirstName.getText(),
                                     txtLastName.getText(),
@@ -78,12 +75,12 @@ public class UserEditViewController implements Initializable {
                             )
                     );
 
-                    // User successfully edited. Show alert.
+                    // User successfully added. Show alert.
                     Alert errorAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                    errorAlert.setContentText("User successfully edited.");
+                    errorAlert.setContentText("User successfully created.");
                     errorAlert.showAndWait();
 
-                    // Close the UserEditView stage
+                    // Close the UserInsertView stage
                     ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
 
@@ -116,27 +113,6 @@ public class UserEditViewController implements Initializable {
     }
 
 
-    public void setSelectedUser(User selectedUser) {
-
-        this.selectedUser = selectedUser;
-
-        setComponentsValues();
-
-    }
-
-
-    private void setComponentsValues() {
-
-        txtFirstName.setText(selectedUser.getFirstName());
-        txtLastName.setText(selectedUser.getLastName());
-        txtUserName.setText(selectedUser.getUserName());
-        cbGender.setValue(selectedUser.getGender());
-        dpDateOfBirth.setValue(selectedUser.getDateOfBirth().toLocalDate());
-        dpDateOfDeath.setValue(selectedUser.getDateOfDeath().toLocalDate());
-
-    }
-
-
     private boolean validation() {
 
         boolean isValid = true;
@@ -155,7 +131,7 @@ public class UserEditViewController implements Initializable {
             isValid = false;
         }
         if (cbGender.getValue() == null) {
-            errorMsg.append("- Please select a gender.\n");
+            errorMsg.append("- Please select gender.\n");
             isValid = false;
         }
         if (dpDateOfBirth.getValue() == null) {
@@ -174,11 +150,13 @@ public class UserEditViewController implements Initializable {
 
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         cbGender.setItems(availableChoices);
 
     }
+
 
 }

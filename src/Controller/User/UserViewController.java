@@ -1,4 +1,4 @@
-package Controller.OldControllers;
+package Controller.User;
 
 import DAO.ContactDAOOracleImpl;
 import Model.User;
@@ -40,6 +40,16 @@ public class UserViewController implements Initializable {
     private TableColumn<User, LocalDate> colDateOfBirth;
     @FXML
     private TableColumn<User, LocalDate> colDateOfDeath;
+    @FXML
+    private MenuItem cmContacts;
+    @FXML
+    private MenuItem cmRelationships;
+    @FXML
+    private MenuItem cmSwabs;
+    @FXML
+    private MenuItem cmSerologicalTests;
+    @FXML
+    private MenuItem cmHealthChecks;
 
     private ObservableList<User> userList;
 
@@ -98,6 +108,63 @@ public class UserViewController implements Initializable {
 
 
     @FXML
+    private void cmContactsOnAction(ActionEvent event) throws SQLException {
+
+        System.out.println(selectedUser + " user instance in UserViewController");
+        selectedUser.setContactList(new ContactDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
+
+        try{
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserContactsView.fxml"));
+            Parent root = fxmlLoader.load();
+
+            UserContactsViewController userContactsViewController = fxmlLoader.getController();
+            userContactsViewController.setSelectedUser(selectedUser);
+
+            Stage stage = (Stage) tblUser.getScene().getWindow(); // getScene() is only available for components that inherit from Node. A MenuItem does not inherit from Node.
+
+            Scene userContactsView = new Scene(root);
+            stage.setTitle("User Contacts");
+            root.requestFocus();
+            stage.setScene(userContactsView);
+
+        }
+
+        catch(IOException e){
+            // TODO Handle exceptions
+        }
+
+    }
+
+    @FXML
+    private void cmRelationshipsOnAction(ActionEvent event) {
+
+        // Show Relationships stage for selectedUser
+
+    }
+
+    @FXML
+    private void cmSwabsOnAction(ActionEvent event) {
+
+        // Show Swabs stage for selectedUser
+
+    }
+
+    @FXML
+    private void cmSerologicalTestsOnAction(ActionEvent event) {
+
+        // Show Serological Tests stage for selectedUser
+
+    }
+
+    @FXML
+    private void cmHealthChecksOnAction(ActionEvent event) {
+
+        // Show Health Checks stage for selectedUser
+
+    }
+
+    @FXML
     private void btnDeleteUserOnAction(ActionEvent event) {
 
         if (selectedUser != null) {
@@ -142,7 +209,7 @@ public class UserViewController implements Initializable {
 
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/OldViews/UserEditView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserEditView.fxml"));
             Parent root = fxmlLoader.load();
 
             UserEditViewController userEditViewController = fxmlLoader.getController();
@@ -168,7 +235,7 @@ public class UserViewController implements Initializable {
 
         try{
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/OldViews/UserAddView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserAddView.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -215,6 +282,7 @@ public class UserViewController implements Initializable {
 
             userList = new UserDAOOracleImpl().getAll();
 
+            /*
             for(User user : userList){ // lazy loading test
 
                 if(user.getContactList() == null){  // if the list of contact has yet to be initialized
@@ -223,7 +291,7 @@ public class UserViewController implements Initializable {
                 }
 
             }
-
+            */
 
         } catch (SQLException e) {
 

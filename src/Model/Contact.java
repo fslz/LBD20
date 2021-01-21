@@ -5,12 +5,14 @@ import java.time.LocalDateTime;
 
 public class Contact {
 
-    User user1;
-    User user2;
-    Location location;
-    LocalDateTime dateReceived;
+    private int id;
+    private User user1;
+    private User user2;
+    private Location location;
+    private LocalDateTime dateReceived;
 
-    public Contact(User user1, User user2, Location location, LocalDateTime dateReceived){
+    public Contact(int id, User user1, User user2, Location location, LocalDateTime dateReceived){
+        this.id = id;
         this.user1 = user1;
         this.user2 = user2;
         this.location = location;
