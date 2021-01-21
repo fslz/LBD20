@@ -1,3 +1,4 @@
+
 --     ____                        __
 --    /  _/  ___   ___ ___   ____ / /_  ___
 --   _/ /   / _ \ (_-</ -_) / __// __/ (_-<
@@ -70,38 +71,38 @@ VALUES (0, 'Piazza Affari', 'Milano', 'business');
 
 
 -- CONTACTS (View)
-INSERT INTO contacts_all_v (user_id1, user_id2, location_id, date_received)
-VALUES (1, 5, 1, TO_TIMESTAMP('01-11-2020 17:30:14', 'dd-mm-yyyy hh24:mi:ss')); -- [1]
+INSERT INTO contacts_all_v (contact_id, user_id1, user_id2, location_id, date_received)
+VALUES (0, 1, 5, 1, TO_TIMESTAMP('01-11-2020 17:30:14', 'dd-mm-yyyy hh24:mi:ss')); -- [1]
 INSERT INTO contacts_all_v
-VALUES (6, 2, 2, TO_TIMESTAMP('02-11-2020 09:30:14', 'dd-mm-yyyy hh24:mi:ss')); -- [2]
+VALUES (0, 6, 2, 2, TO_TIMESTAMP('02-11-2020 09:30:14', 'dd-mm-yyyy hh24:mi:ss')); -- [2]
 INSERT INTO contacts_all_v
-VALUES (3, 7, 4, TO_TIMESTAMP('03-11-2020 20:30:14', 'dd-mm-yyyy hh24:mi:ss')); -- [3]
+VALUES (0, 3, 7, 4, TO_TIMESTAMP('03-11-2020 20:30:14', 'dd-mm-yyyy hh24:mi:ss')); -- [3]
 INSERT INTO contacts_all_v
-VALUES (12, 14, 3, TO_TIMESTAMP('09-11-2020 12:27:00', 'dd-mm-yyyy hh24:mi:ss')); -- [4]
+VALUES (0, 12, 14, 3, TO_TIMESTAMP('09-11-2020 12:27:00', 'dd-mm-yyyy hh24:mi:ss')); -- [4]
 INSERT INTO contacts_all_v
-VALUES (13, 15, 1, TO_TIMESTAMP('11-11-2020 10:30:14', 'dd-mm-yyyy hh24:mi:ss')); -- [5]
+VALUES (0, 13, 15, 1, TO_TIMESTAMP('11-11-2020 10:30:14', 'dd-mm-yyyy hh24:mi:ss')); -- [5]
 INSERT INTO contacts_all_v
-VALUES (10, 13, 3, TO_TIMESTAMP('12-11-2020 14:30:14', 'dd-mm-yyyy hh24:mi:ss')); -- [6]
+VALUES (0, 10, 13, 3, TO_TIMESTAMP('12-11-2020 14:30:14', 'dd-mm-yyyy hh24:mi:ss')); -- [6]
 INSERT INTO contacts_all_v
-VALUES (11, 8, 2, TO_TIMESTAMP('13-11-2020 14:50:14', 'dd-mm-yyyy hh24:mi:ss')); -- [7]
+VALUES (0, 11, 8, 2, TO_TIMESTAMP('13-11-2020 14:50:14', 'dd-mm-yyyy hh24:mi:ss')); -- [7]
 INSERT INTO contacts_all_v
-VALUES (4, 9, 4, TO_TIMESTAMP('15-11-2020 08:50:14', 'dd-mm-yyyy hh24:mi:ss')); -- [8]
+VALUES (0, 4, 9, 4, TO_TIMESTAMP('15-11-2020 08:50:14', 'dd-mm-yyyy hh24:mi:ss')); -- [8]
 INSERT INTO contacts_all_v
-VALUES (14, 2, 3, TO_TIMESTAMP('18-11-2020 19:50:14', 'dd-mm-yyyy hh24:mi:ss')); -- [9]
+VALUES (0, 14, 2, 3, TO_TIMESTAMP('18-11-2020 19:50:14', 'dd-mm-yyyy hh24:mi:ss')); -- [9]
 INSERT INTO contacts_all_v
-VALUES (5, 2, 5, TO_TIMESTAMP('18-11-2020 11:21:14', 'dd-mm-yyyy hh24:mi:ss')); -- [10]
+VALUES (0, 5, 2, 5, TO_TIMESTAMP('18-11-2020 11:21:14', 'dd-mm-yyyy hh24:mi:ss')); -- [10]
 INSERT INTO contacts_all_v
-VALUES (4, 11, 3, TO_TIMESTAMP('23-11-2020 10:11:14', 'dd-mm-yyyy hh24:mi:ss')); -- [11]
+VALUES (0, 4, 11, 3, TO_TIMESTAMP('23-11-2020 10:11:14', 'dd-mm-yyyy hh24:mi:ss')); -- [11]
 INSERT INTO contacts_all_v
-VALUES (12, 10, 3, TO_TIMESTAMP('24-11-2020 17:01:33', 'dd-mm-yyyy hh24:mi:ss')); -- [12]
+VALUES (0, 12, 10, 3, TO_TIMESTAMP('24-11-2020 17:01:33', 'dd-mm-yyyy hh24:mi:ss')); -- [12]
 INSERT INTO contacts_all_v
-VALUES (9, 8, 2, TO_TIMESTAMP('25-11-2020 21:10:00', 'dd-mm-yyyy hh24:mi:ss')); -- [13]
+VALUES (0, 9, 8, 2, TO_TIMESTAMP('25-11-2020 21:10:00', 'dd-mm-yyyy hh24:mi:ss')); -- [13]
 INSERT INTO contacts_all_v
-VALUES (7, 1, 4, TO_TIMESTAMP('28-11-2020 20:13:27', 'dd-mm-yyyy hh24:mi:ss')); -- [14]
+VALUES (0, 7, 1, 4, TO_TIMESTAMP('28-11-2020 20:13:27', 'dd-mm-yyyy hh24:mi:ss')); -- [14]
 INSERT INTO contacts_all_v
-VALUES (3, 6, 1, TO_TIMESTAMP('29-11-2020 15:31:07', 'dd-mm-yyyy hh24:mi:ss')); -- [15]
+VALUES (0, 3, 6, 1, TO_TIMESTAMP('29-11-2020 15:31:07', 'dd-mm-yyyy hh24:mi:ss')); -- [15]
 INSERT INTO contacts_all_v
-VALUES (15, 13, 1, TO_TIMESTAMP('29-11-2020 12:22:58', 'dd-mm-yyyy hh24:mi:ss')); -- [16]
+VALUES (0, 15, 13, 1, TO_TIMESTAMP('29-11-2020 12:22:58', 'dd-mm-yyyy hh24:mi:ss')); -- [16]
 INSERT INTO contacts_all_v
-VALUES (16, 5, 3, TO_TIMESTAMP('30-11-2020 16:02:38', 'dd-mm-yyyy hh24:mi:ss'));
+VALUES (0, 16, 5, 3, TO_TIMESTAMP('30-11-2020 16:02:38', 'dd-mm-yyyy hh24:mi:ss'));
 -- [17]

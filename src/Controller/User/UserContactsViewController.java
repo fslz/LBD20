@@ -152,6 +152,38 @@ public class UserContactsViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
+
+        setupUserTable();
+        //updateUserTable();
+
+    }
+
+/*
+    private void updateUserTable() {
+
+        try {
+
+            userContactsList = new ContactDAOOracleImpl().getAllByUserId(selectedUser);
+
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+        // Set the ObservableList of users as the content of the table
+        tblUserContacts.setItems(userContactsList);
+
+    }
+ */
+
+
+    private void setupUserTable() {
+
+        // Setup the columns in the table
+
         colUserName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Contact, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Contact, String> c) {
@@ -189,40 +221,6 @@ public class UserContactsViewController implements Initializable {
 
         // Setting up Date column
         colDateReceived.setCellValueFactory(new PropertyValueFactory<Contact, LocalDateTime>("dateReceived"));
-
-
-        //setupUserTable();
-        //updateUserTable();
-
-    }
-
-
-    private void updateUserTable() {
-
-
-        try {
-
-            userContactsList = new ContactDAOOracleImpl().getAllByUserId(selectedUser);
-
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-
-        }
-
-
-
-        // Set the ObservableList of users as the content of the table
-        tblUserContacts.setItems(userContactsList);
-
-    }
-
-
-    private void setupUserTable() {
-
-        // Setup the columns in the table
-
 
 
 
