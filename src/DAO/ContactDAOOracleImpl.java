@@ -4,6 +4,7 @@ import Model.*;
 import Util.Util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,14 +27,17 @@ public class ContactDAOOracleImpl implements ContactDAO {
             pstmt = connection.prepareStatement("SELECT * FROM contacts_all_v2 WHERE contact_id = ?");
             rs = pstmt.executeQuery();
 
-            contact = new Contact(rs.getInt("contact_id"),
+            contact = new Contact(
+
+                    rs.getInt("contact_id"),
+
                     new User(rs.getInt("user_id1"),
-                    rs.getString("username1"),
-                    rs.getString("first_name1"),
-                    rs.getString("last_name1"),
-                    rs.getString("gender1"),
-                    Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth1")),
-                    Util.convertToEntityAttribute(rs.getTimestamp("date_of_death1"))
+                            rs.getString("username1"),
+                            rs.getString("first_name1"),
+                            rs.getString("last_name1"),
+                            rs.getString("gender1"),
+                            Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth1")),
+                            Util.convertToEntityAttribute(rs.getTimestamp("date_of_death1"))
                     ),
 
                     new User(rs.getInt("user_id2"),
@@ -93,15 +97,19 @@ public class ContactDAOOracleImpl implements ContactDAO {
             while (rs.next()) {
 
                 contactList.add(
-                        new Contact(rs.getInt("contact_id"),
+
+                        new Contact(
+
+                                rs.getInt("contact_id"),
+
                                 new User(rs.getInt("user_id1"),
-                                rs.getString("username1"),
-                                rs.getString("first_name1"),
-                                rs.getString("last_name1"),
-                                rs.getString("gender1"),
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth1")),
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_of_death1"))
-                        ),
+                                        rs.getString("username1"),
+                                        rs.getString("first_name1"),
+                                        rs.getString("last_name1"),
+                                        rs.getString("gender1"),
+                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth1")),
+                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_death1"))
+                                ),
 
                                 new User(rs.getInt("user_id2"),
                                         rs.getString("username2"),
@@ -144,7 +152,6 @@ public class ContactDAOOracleImpl implements ContactDAO {
     @Override
     public void create(Contact contact) throws SQLException {
 
-
         Connection connection = null;
         PreparedStatement pstmt = null;
 
@@ -161,7 +168,7 @@ public class ContactDAOOracleImpl implements ContactDAO {
             pstmt.setInt(3, contact.getLocation().getId());
             pstmt.setTimestamp(4, Util.convertToDatabaseColumn(contact.getDateReceived()));
 
-            //  Execute update
+            //  Execute update (Insert into contacts)
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -258,7 +265,7 @@ public class ContactDAOOracleImpl implements ContactDAO {
     }
 
 
-    public ObservableList<Contact> getAllByUserId(User user) throws SQLException{
+    public ObservableList<Contact> getAllByUserId(User user) throws SQLException {
 
         ObservableList<Contact> contactList = FXCollections.observableArrayList();
 
@@ -277,15 +284,19 @@ public class ContactDAOOracleImpl implements ContactDAO {
             while (rs.next()) {
 
                 contactList.add(
-                        new Contact(rs.getInt("contact_id"),
+
+                        new Contact(
+
+                                rs.getInt("contact_id"),
+
                                 new User(rs.getInt("user_id1"),
-                                rs.getString("username1"),
-                                rs.getString("first_name1"),
-                                rs.getString("last_name1"),
-                                rs.getString("gender1"),
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth1")),
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_of_death1"))
-                        ),
+                                        rs.getString("username1"),
+                                        rs.getString("first_name1"),
+                                        rs.getString("last_name1"),
+                                        rs.getString("gender1"),
+                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth1")),
+                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_death1"))
+                                ),
 
                                 new User(rs.getInt("user_id2"),
                                         rs.getString("username2"),
@@ -326,7 +337,7 @@ public class ContactDAOOracleImpl implements ContactDAO {
     }
 
 
-    public ObservableList<Contact> getAllBylocationId(Location location) throws SQLException{
+    public ObservableList<Contact> getAllBylocationId(Location location) throws SQLException {
 
         ObservableList<Contact> contactList = FXCollections.observableArrayList();
 
@@ -345,15 +356,19 @@ public class ContactDAOOracleImpl implements ContactDAO {
             while (rs.next()) {
 
                 contactList.add(
-                        new Contact(rs.getInt("contact_id"),
+
+                        new Contact(
+
+                                rs.getInt("contact_id"),
+
                                 new User(rs.getInt("user_id1"),
-                                rs.getString("username1"),
-                                rs.getString("first_name1"),
-                                rs.getString("last_name1"),
-                                rs.getString("gender1"),
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth1")),
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_of_death1"))
-                        ),
+                                        rs.getString("username1"),
+                                        rs.getString("first_name1"),
+                                        rs.getString("last_name1"),
+                                        rs.getString("gender1"),
+                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth1")),
+                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_death1"))
+                                ),
 
                                 new User(rs.getInt("user_id2"),
                                         rs.getString("username2"),
