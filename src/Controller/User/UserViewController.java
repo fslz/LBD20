@@ -110,7 +110,6 @@ public class UserViewController implements Initializable {
     @FXML
     private void cmContactsOnAction(ActionEvent event) throws SQLException {
 
-        System.out.println(selectedUser + " user instance in UserViewController");
         selectedUser.setContactList(new ContactDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
 
         try{

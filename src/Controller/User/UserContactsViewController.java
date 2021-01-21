@@ -133,18 +133,13 @@ public class UserContactsViewController implements Initializable {
 
     public void setSelectedUser(User selectedUser) {
 
+        // Set the user instance
         this.selectedUser = selectedUser;
 
-        this.userContactsList = (ObservableList<Contact>) selectedUser.getContactList();
+        //this.userContactsList = (ObservableList<Contact>) selectedUser.getContactList();
 
-        System.out.println(selectedUser + " user instance in UserContactsViewController");
-
-        for(Contact contact : userContactsList){
-            System.out.println(contact.getLocation().getCity());
-        }
-
-
-        tblUserContacts.setItems(userContactsList);
+        // Assign the list of contacts of the user as the TableView content.
+        tblUserContacts.setItems((ObservableList<Contact>)selectedUser.getContactList());
 
     }
 
