@@ -289,14 +289,7 @@ public class ContactDAOOracleImpl implements ContactDAO {
 
                                 rs.getInt("contact_id"),
 
-                                new User(rs.getInt("user_id1"),
-                                        rs.getString("username1"),
-                                        rs.getString("first_name1"),
-                                        rs.getString("last_name1"),
-                                        rs.getString("gender1"),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth1")),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_death1"))
-                                ),
+                                user,
 
                                 new User(rs.getInt("user_id2"),
                                         rs.getString("username2"),
@@ -379,11 +372,7 @@ public class ContactDAOOracleImpl implements ContactDAO {
                                         Util.convertToEntityAttribute(rs.getTimestamp("date_of_death2"))
                                 ),
 
-                                new Location(rs.getInt("location_id"),
-                                        rs.getString("location_name"),
-                                        rs.getString("location_city"),
-                                        rs.getString("location_category")
-                                ),
+                                location,
 
                                 Util.convertToEntityAttribute(rs.getTimestamp("date_received"))
                         )

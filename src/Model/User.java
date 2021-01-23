@@ -38,6 +38,7 @@ public class User {
         swabList = null;
         serologicalTestList = null;
         healthCheckList = null;
+
     }
 
 

@@ -33,7 +33,6 @@ import java.util.ResourceBundle;
 public class UserContactsViewController implements Initializable {
 
     private User selectedUser;
-    private User contactUser;
     private Location contactLocation;
 
     private ObservableList<Contact> userContactsList;
@@ -74,9 +73,6 @@ public class UserContactsViewController implements Initializable {
     private Button btnEditUserContact;
     @FXML
     private Button btnDeleteUserContact;
-
-
-
 
 
 

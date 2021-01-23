@@ -131,8 +131,14 @@ public class UserEditViewController implements Initializable {
         txtLastName.setText(selectedUser.getLastName());
         txtUserName.setText(selectedUser.getUserName());
         cbGender.setValue(selectedUser.getGender());
-        dpDateOfBirth.setValue(selectedUser.getDateOfBirth().toLocalDate());
-        dpDateOfDeath.setValue(selectedUser.getDateOfDeath().toLocalDate());
+        if(selectedUser.getDateOfBirth() == null)
+            dpDateOfBirth.setValue(null);
+        else
+            dpDateOfBirth.setValue(selectedUser.getDateOfBirth().toLocalDate());
+        if(selectedUser.getDateOfDeath() == null)
+            dpDateOfDeath.setValue(null);
+        else
+            dpDateOfDeath.setValue(selectedUser.getDateOfDeath().toLocalDate());
 
     }
 
