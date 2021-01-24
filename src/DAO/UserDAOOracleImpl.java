@@ -8,7 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
 
-public class UserDAOOracleImpl implements UserDAO {
+public class UserDAOOracleImpl implements DAO<User> {
 
 
     public User getById(int id) throws SQLException {

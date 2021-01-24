@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LocationDAOOracleImpl implements LocationDAO{
+public class LocationDAOOracleImpl implements DAO<Location>{
 
     @Override
     public Location getById(int id) throws SQLException {

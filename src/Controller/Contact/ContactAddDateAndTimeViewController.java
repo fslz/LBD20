@@ -95,16 +95,16 @@ public class ContactAddDateAndTimeViewController implements Initializable {
                         errorAlert.setContentText("One, or both, of the users already participate in a contact in that moment. Please check your date and time.");
                         errorAlert.showAndWait();
                     }
-                    // CHECK date constraint violation
+                    // CHECK date of birth trigger exception raised
                     if (e.getErrorCode() == 20001) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("This contact is happening before the date of birth of one, or both the users.");
+                        errorAlert.setContentText("This contact is happening before the date of birth of one, or of both the users.");
                         errorAlert.showAndWait();
                     }
-                    // CHECK date constraint violation
+                    // CHECK date of death trigger exception raised
                     if (e.getErrorCode() == 20002) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("This contact is happening after the date of death of one, or both the users.");
+                        errorAlert.setContentText("This contact is happening after the date of death of one, or of both the users.");
                         errorAlert.showAndWait();
                     }
 

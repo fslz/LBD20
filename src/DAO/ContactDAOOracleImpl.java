@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ContactDAOOracleImpl implements ContactDAO {
+public class ContactDAOOracleImpl implements DAO<Contact> {
 
     @Override
     public Contact getById(int id) throws SQLException {
