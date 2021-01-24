@@ -281,17 +281,6 @@ public class UserViewController implements Initializable {
 
             userList = new UserDAOOracleImpl().getAll();
 
-            /*
-            for(User user : userList){ // lazy loading test
-
-                if(user.getContactList() == null){  // if the list of contact has yet to be initialized
-                    user.setContactList(new ContactDAOOracleImpl().getAllByUserId(user));
-                    System.out.println(user.getContactList());
-                }
-
-            }
-            */
-
         } catch (SQLException e) {
 
             e.printStackTrace();

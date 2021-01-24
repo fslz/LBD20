@@ -1,7 +1,6 @@
 package Controller.User;
 
-import DAO.ContactDAOOracleImpl;
-import DAO.UserDAOOracleImpl;
+import Controller.Contact.ContactAddSecondUserViewController;
 import Model.Contact;
 import Model.Location;
 import Model.User;
@@ -21,12 +20,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
@@ -81,7 +80,33 @@ public class UserContactsViewController implements Initializable {
     @FXML
     void btnAddUserContactOnAction(ActionEvent event) {
 
-        // Add Contact
+        Contact contact = new Contact();
+        contact.setUser1(selectedUser);
+
+        try{
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Contact/ContactAddSecondUserView.fxml"));
+            Parent root = fxmlLoader.load();
+
+            // Access controller
+            ContactAddSecondUserViewController contactAddSecondUserViewController = fxmlLoader.getController();
+            // Set contact
+            contactAddSecondUserViewController.setContact(contact);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Pick a user");
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+        }
+
+        catch(IOException e){
+
+            e.printStackTrace();
+
+        }
 
     }
 
@@ -143,8 +168,6 @@ public class UserContactsViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
-
         setupUserTable();
         //updateUserTable();
 
@@ -182,12 +205,14 @@ public class UserContactsViewController implements Initializable {
             }
         });
 
+
         colFirstName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Contact, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Contact, String> c) {
                 return new SimpleStringProperty(c.getValue().getUser2().getFirstName());
             }
         });
+
 
         colLastName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Contact, String>, ObservableValue<String>>() {
             @Override

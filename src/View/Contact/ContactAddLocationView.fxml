@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="624.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Contact.ContactAddLocationViewController">
+
+    <children>
+        <TableView fx:id="tblLocation" focusTraversable="false" layoutX="15.0" layoutY="37.0" onMouseClicked="#tblLocationOnMouseClicked" prefHeight="533.0" prefWidth="570.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="44.0">
+            <columns>
+                <TableColumn fx:id="colName" editable="false" prefWidth="207.0" sortType="DESCENDING" text="Name" />
+                <TableColumn fx:id="colCity" editable="false" prefWidth="169.0" resizable="false" sortType="DESCENDING" text="City" />
+                <TableColumn fx:id="colCategory" editable="false" prefWidth="193.0" resizable="false" sortType="DESCENDING" text="Category" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <Button fx:id="btnNext" layoutX="429.0" layoutY="585.0" mnemonicParsing="false" onAction="#btnNextOnAction" prefHeight="25.0" prefWidth="70.0" text="Next" />
+        <Button fx:id="btnCancel" layoutX="515.0" layoutY="585.0" mnemonicParsing="false" onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="70.0" text="Cancel" />
+        <Label layoutX="15.0" layoutY="14.0" text="Pick a location from the table:" />
+
+    </children>
+
+</AnchorPane>

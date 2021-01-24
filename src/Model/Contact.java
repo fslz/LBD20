@@ -11,6 +11,8 @@ public class Contact {
     private Location location;
     private LocalDateTime dateReceived;
 
+    public Contact(){}
+
     public Contact(int id, User user1, User user2, Location location, LocalDateTime dateReceived){
         this.id = id;
         this.user1 = user1;

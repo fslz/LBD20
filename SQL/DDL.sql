@@ -302,7 +302,7 @@ BEGIN
                 RAISE_APPLICATION_ERROR(-20001, 'date received < date of birth');
             ELSIF (user_row.date_of_death IS NOT NULL) THEN
                 IF (:new.date_received > user_row.date_of_death) THEN
-                    RAISE_APPLICATION_ERROR(-20001, 'date received > date of death');
+                    RAISE_APPLICATION_ERROR(-20002, 'date received > date of death');
                 END IF;
             END IF;
         END LOOP;
@@ -359,7 +359,7 @@ BEGIN
         RAISE_APPLICATION_ERROR(-20001, 'date result < date of birth');
     ELSIF (l_date_of_death IS NOT NULL) THEN
         IF (:new.date_result < l_date_of_death) THEN
-            RAISE_APPLICATION_ERROR(-20001, 'date result > date of death');
+            RAISE_APPLICATION_ERROR(-20002, 'date result > date of death');
         END IF;
     END IF;
     :new.swab_id := swabs_seq.nextval;
@@ -382,7 +382,7 @@ BEGIN
         RAISE_APPLICATION_ERROR(-20001, 'date result < date of birth');
     ELSIF (l_date_of_death IS NOT NULL) THEN
         IF (:new.date_result < l_date_of_death) THEN
-            RAISE_APPLICATION_ERROR(-20001, 'date result > date of death');
+            RAISE_APPLICATION_ERROR(-20002, 'date result > date of death');
         END IF;
     END IF;
     :new.serological_test_id := serological_tests_seq.nextval;
@@ -405,7 +405,7 @@ BEGIN
         RAISE_APPLICATION_ERROR(-20001, 'date of check < date of birth');
     ELSIF (l_date_of_death IS NOT NULL) THEN
         IF (:new.date_of_check < l_date_of_death) THEN
-            RAISE_APPLICATION_ERROR(-20001, 'date of check > date of death');
+            RAISE_APPLICATION_ERROR(-20002, 'date of check > date of death');
         END IF;
     END IF;
     :new.health_check_id := health_checks_seq.nextval;
@@ -439,4 +439,3 @@ DROP TABLE serological_tests CASCADE CONSTRAINTS;
 DROP VIEW contacts_all_v;
 DROP VIEW contacts_all_v2;
 DROP VIEW relationships_all_v;
-

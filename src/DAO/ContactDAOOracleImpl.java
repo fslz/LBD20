@@ -160,11 +160,11 @@ public class ContactDAOOracleImpl implements ContactDAO {
             //  Establish connection to database
             connection = new DbConnector().getConnection();
             //  Set the query
-            pstmt = connection.prepareStatement("INSERT INTO contact_all_v (user_id1, user_id2, location_id, date_received)" +
+            pstmt = connection.prepareStatement("INSERT INTO contacts_all_v (contact_id, user_id1, user_id2, location_id, date_received)" +
                     "VALUES (0, ?, ?, ?, ?)");
             //  Set parameters
             pstmt.setInt(1, contact.getUser1().getId());
-            pstmt.setInt(2, contact.getUser1().getId());
+            pstmt.setInt(2, contact.getUser2().getId());
             pstmt.setInt(3, contact.getLocation().getId());
             pstmt.setTimestamp(4, Util.convertToDatabaseColumn(contact.getDateReceived()));
 
@@ -173,9 +173,11 @@ public class ContactDAOOracleImpl implements ContactDAO {
 
         } catch (SQLException e) {
 
+            System.out.println("Error code: " + e.getErrorCode() + " SQL State: " + e.getSQLState());
             throw e;
 
-        } finally {
+        }
+        finally {
 
             try {
                 if (pstmt != null) pstmt.close();
