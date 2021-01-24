@@ -48,4 +48,12 @@ public class Location {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public List<Contact> getContactList() {
+        return contactList;
+    }
+
+    public void setContactList(List<Contact> contactList) {
+        this.contactList = contactList;
+    }
 }

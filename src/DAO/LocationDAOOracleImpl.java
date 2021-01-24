@@ -1,6 +1,7 @@
 package DAO;
 
 
+import Model.Contact;
 import Model.DbConnector;
 import Model.Location;
 import javafx.collections.FXCollections;
@@ -9,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class LocationDAOOracleImpl implements DAO<Location>{
 
@@ -215,4 +217,6 @@ public class LocationDAOOracleImpl implements DAO<Location>{
         }
         
     }
+
+
 }

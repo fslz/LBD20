@@ -108,11 +108,11 @@ public class UserViewController implements Initializable {
 
 
     @FXML
-    private void cmContactsOnAction(ActionEvent event) throws SQLException {
-
-        selectedUser.setContactList(new ContactDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
+    private void cmContactsOnAction(ActionEvent event) {
 
         try{
+
+            selectedUser.setContactList(new ContactDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserContactsView.fxml"));
             Parent root = fxmlLoader.load();
@@ -130,6 +130,9 @@ public class UserViewController implements Initializable {
         }
 
         catch(IOException e){
+            // TODO Handle exceptions
+        }
+        catch(SQLException e){
             // TODO Handle exceptions
         }
 

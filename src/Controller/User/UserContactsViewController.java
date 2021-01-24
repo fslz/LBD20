@@ -31,10 +31,10 @@ import java.util.ResourceBundle;
 
 public class UserContactsViewController implements Initializable {
 
-    private User selectedUser;
-    private Location contactLocation;
+    private User selectedUser = null;
+    private Location contactLocation = null;
 
-    private ObservableList<Contact> userContactsList;
+    private ObservableList<Contact> userContactsList = null;
 
     @FXML
     private TableView<Contact> tblUserContacts;
@@ -75,6 +75,24 @@ public class UserContactsViewController implements Initializable {
 
 
 
+
+    // Back to Users List
+    @FXML
+    void btnToUsersOnAction(ActionEvent event) {
+
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/User/UsersView.fxml"));
+            Scene usersView = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            root.requestFocus();
+            stage.setScene(usersView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
     @FXML
@@ -123,25 +141,6 @@ public class UserContactsViewController implements Initializable {
     void btnEditUserContactOnAction(ActionEvent event) {
 
         // Edit Contact?
-
-    }
-
-
-    // Back to Users List
-    @FXML
-    void btnToUsersOnAction(ActionEvent event) {
-
-        try {
-
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("View/User/UsersView.fxml"));
-            Scene usersView = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            root.requestFocus();
-            stage.setScene(usersView);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -237,9 +236,6 @@ public class UserContactsViewController implements Initializable {
 
         // Setting up Date column
         colDateReceived.setCellValueFactory(new PropertyValueFactory<Contact, LocalDateTime>("dateReceived"));
-
-
-
 
     }
 

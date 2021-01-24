@@ -94,7 +94,6 @@ public class ContactAddLocationViewController implements Initializable {
     public void setContact(Contact contact) {
 
         this.contact = contact;
-        // Remove "firstUser" from the list
 
     }
 

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="624.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Contact.ContactAddSecondUserViewController">
+<AnchorPane prefHeight="624.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Contact.ContactAddFirstUserViewController">
    <children>
       <TableView fx:id="tblUser" focusTraversable="false" layoutX="15.0" layoutY="37.0" onMouseClicked="#tblUserOnMouseClicked" prefHeight="533.0" prefWidth="570.0">
          <columns>
@@ -23,6 +23,6 @@
       </TableView>
       <Button fx:id="btnNext" layoutX="429.0" layoutY="585.0" mnemonicParsing="false" onAction="#btnNextOnAction" prefHeight="25.0" prefWidth="70.0" text="Next" />
       <Button fx:id="btnCancel" layoutX="515.0" layoutY="585.0" mnemonicParsing="false" onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="70.0" text="Cancel" />
-      <Label layoutX="15.0" layoutY="14.0" text="Pick the second user from the table:" />
+      <Label layoutX="15.0" layoutY="14.0" text="Pick the first user from the table:" />
    </children>
 </AnchorPane>

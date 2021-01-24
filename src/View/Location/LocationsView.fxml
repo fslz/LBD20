@@ -4,6 +4,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ContextMenu?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Location.LocationsViewController">
     <children>
@@ -16,6 +18,13 @@
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
+            <contextMenu>
+                <ContextMenu>
+                    <items>
+                        <MenuItem fx:id="cmContacts" mnemonicParsing="false" onAction="#cmContactsOnAction" text="Contacts" />
+                    </items>
+                </ContextMenu>
+            </contextMenu>
         </TableView>
         <Button fx:id="btnToMainMenu" focusTraversable="false" layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnToMainMenuOnAction" prefHeight="30.0" prefWidth="149.0" text="&lt;- Main Menu" />
         <Button fx:id="btnAddLocation" focusTraversable="false" layoutX="51.0" layoutY="613.0" mnemonicParsing="false" onAction="#btnAddLocationOnAction" prefHeight="39.0" prefWidth="149.0" text="Add Location" />

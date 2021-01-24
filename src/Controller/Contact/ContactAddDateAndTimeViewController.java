@@ -1,20 +1,13 @@
 package Controller.Contact;
 
 import DAO.ContactDAOOracleImpl;
-import DAO.UserDAOOracleImpl;
 import Model.Contact;
-import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -98,13 +91,13 @@ public class ContactAddDateAndTimeViewController implements Initializable {
                     // CHECK date of birth trigger exception raised
                     if (e.getErrorCode() == 20001) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("This contact is happening before the date of birth of one, or of both the users.");
+                        errorAlert.setContentText("This contact is happening before the date of birth of one, or of both users.");
                         errorAlert.showAndWait();
                     }
                     // CHECK date of death trigger exception raised
                     if (e.getErrorCode() == 20002) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("This contact is happening after the date of death of one, or of both the users.");
+                        errorAlert.setContentText("This contact is happening after the date of death of one, or of both users.");
                         errorAlert.showAndWait();
                     }
 

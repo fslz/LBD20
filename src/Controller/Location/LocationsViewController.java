@@ -1,5 +1,7 @@
 package Controller.Location;
 
+import Controller.User.UserContactsViewController;
+import DAO.ContactDAOOracleImpl;
 import Model.Location;
 import DAO.LocationDAOOracleImpl;
 import javafx.collections.ObservableList;
@@ -35,6 +37,37 @@ public class LocationsViewController implements Initializable {
     ObservableList<Location> locationList;
 
     Location selectedLocation = null;
+
+    @FXML
+    public void cmContactsOnAction(ActionEvent actionEvent) {
+
+        try{
+
+            selectedLocation.setContactList(new ContactDAOOracleImpl().getAllByLocationId(selectedLocation)); // Load all contacts of the selected User
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Location/LocationContactsView.fxml"));
+            Parent root = fxmlLoader.load();
+
+            LocationContactsViewController locationContactsViewController = fxmlLoader.getController();
+            locationContactsViewController.setSelectedLocation(selectedLocation);
+
+            Stage stage = (Stage) tblLocation.getScene().getWindow(); // getScene() is only available for components that inherit from Node. A MenuItem does not inherit from Node.
+
+            Scene userContactsView = new Scene(root);
+            stage.setTitle("Location Contacts");
+            root.requestFocus();
+            stage.setScene(userContactsView);
+
+        }
+
+        catch(IOException e){
+            // TODO Handle exceptions
+        }
+        catch(SQLException e){
+            // TODO Handle exceptions
+        }
+
+    }
 
 
     @FXML
@@ -131,27 +164,6 @@ public class LocationsViewController implements Initializable {
 
 
     private void showEditLocationView() {
-
-        try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Location/LocationEditView.fxml"));
-            Parent root = fxmlLoader.load();
-
-            LocationEditViewController LocationEditViewController = fxmlLoader.getController();
-            LocationEditViewController.setSelectedLocation(selectedLocation);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Edit Location");
-            stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (cannot interact with the calling stage)
-            stage.showAndWait();
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        }
 
     }
 

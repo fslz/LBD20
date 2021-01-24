@@ -332,7 +332,7 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
     }
 
 
-    public ObservableList<Contact> getAllBylocationId(Location location) throws SQLException {
+    public ObservableList<Contact> getAllByLocationId(Location location) throws SQLException {
 
         ObservableList<Contact> contactList = FXCollections.observableArrayList();
 

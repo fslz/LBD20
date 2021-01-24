@@ -16,7 +16,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,7 +24,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class ContactAddSecondUserViewController implements Initializable {
+public class ContactAddFirstUserViewController implements Initializable {
 
     @FXML
     private TableView<User> tblUser;
@@ -49,7 +48,6 @@ public class ContactAddSecondUserViewController implements Initializable {
 
     private ObservableList<User> userList = null;
 
-    private User firstUser = null;
     private User selectedUser = null;
     private Contact contact = null;
 
@@ -65,70 +63,36 @@ public class ContactAddSecondUserViewController implements Initializable {
 
     }
 
-
     @FXML
     void btnNextOnAction(ActionEvent event) {
 
-        contact.setUser2(selectedUser);
+        contact.setUser1(selectedUser);
 
-        // If the location has yet to be inserted
-        if(contact.getLocation() == null) {
+        try{
 
-            try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Contact/ContactAddSecondUserView.fxml"));
+            Parent root = fxmlLoader.load();
 
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Contact/ContactAddLocationView.fxml"));
-                Parent root = fxmlLoader.load();
-
-                // Access controller
-                ContactAddLocationViewController contactAddLocationViewController = fxmlLoader.getController();
-                // Set contact
-                contactAddLocationViewController.setContact(contact);
+            // Access controller
+            ContactAddSecondUserViewController contactAddSecondUserViewController = fxmlLoader.getController();
+            // Set contact
+            contactAddSecondUserViewController.setContact(contact);
 
 
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setTitle("Pick a location:");
-                root.requestFocus();
-                stage.setScene(new Scene(root));
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-
-            }
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            stage.setTitle("Pick the first user from the table:");
+            root.requestFocus();
+            stage.setScene(new Scene(root));
 
         }
 
-        // Else proceed directly to the date and time settings
-        else {
+        catch(IOException e){
 
-            try{
-
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Contact/ContactAddDateAndTimeView.fxml"));
-                Parent root = fxmlLoader.load();
-
-                // Access controller
-                ContactAddDateAndTimeViewController contactAddDateAndTimeViewController = fxmlLoader.getController();
-                // Set contact
-                contactAddDateAndTimeViewController.setContact(contact);
-
-
-                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                stage.setTitle("Pick date and time:");
-                root.requestFocus();
-                stage.setScene(new Scene(root));
-
-            }
-
-            catch(IOException e){
-
-                e.printStackTrace();
-
-            }
+            e.printStackTrace();
 
         }
 
     }
-
 
     @FXML
     void tblUserOnMouseClicked(MouseEvent event) {
@@ -137,22 +101,17 @@ public class ContactAddSecondUserViewController implements Initializable {
 
     }
 
+    public void setContact(Contact contact) {
+
+        this.contact = contact;
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         setupUserTable();
-        // Remove "firstUser" from the list
         updateUserTable();
-
-    }
-
-    public void setContact(Contact contact) {
-
-        this.contact = contact;
-        // Remove "firstUser" from the list
-        userList.removeIf(user -> user.getId() == contact.getUser1().getId());
-
     }
 
     private void setupUserTable() {
@@ -166,6 +125,7 @@ public class ContactAddSecondUserViewController implements Initializable {
         colDateOfDeath.setCellValueFactory(new PropertyValueFactory<User, LocalDate>("dateOfDeath"));
 
     }
+
 
     private void updateUserTable() {
 
@@ -185,4 +145,6 @@ public class ContactAddSecondUserViewController implements Initializable {
         tblUser.setItems(userList);
 
     }
+
+
 }
