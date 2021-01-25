@@ -9,10 +9,11 @@ public class Program extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // The controller class is specified in the root element of the FXML file using the fx:controller attribute.
-        // fx:controller attribute in the root element (the VBox element).
-        // This attribute contains the name of the controller class.
-        // An instance of this class is created when the FXML file is loaded.
+
+        //The controller class is specified in the root element of the FXML file using the fx:controller attribute.
+        //fx:controller attribute in the root element (the VBox element).
+        //This attribute contains the name of the controller class.
+        //An instance of this class is created when the FXML file is loaded.
         // The start method provides an input reference of a stage, therefore it's unnecessary to instantiate a new stage
         // Instantiate loader in order to load the .fxml file
         // The controller class is specified in the root element of the FXML file using the fx:controller attribute
