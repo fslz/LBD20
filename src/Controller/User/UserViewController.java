@@ -1,6 +1,7 @@
 package Controller.User;
 
 import DAO.ContactDAOOracleImpl;
+import DAO.RelationshipDAOOracleImpl;
 import Model.User;
 import DAO.UserDAOOracleImpl;
 import javafx.collections.ObservableList;
@@ -40,16 +41,6 @@ public class UserViewController implements Initializable {
     private TableColumn<User, LocalDate> colDateOfBirth;
     @FXML
     private TableColumn<User, LocalDate> colDateOfDeath;
-    @FXML
-    private MenuItem cmContacts;
-    @FXML
-    private MenuItem cmRelationships;
-    @FXML
-    private MenuItem cmSwabs;
-    @FXML
-    private MenuItem cmSerologicalTests;
-    @FXML
-    private MenuItem cmHealthChecks;
 
     private ObservableList<User> userList;
 
@@ -142,6 +133,31 @@ public class UserViewController implements Initializable {
     private void cmRelationshipsOnAction(ActionEvent event) {
 
         // Show Relationships stage for selectedUser
+        try{
+
+            selectedUser.setRelationshipList(new RelationshipDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserRelationshipsView.fxml"));
+            Parent root = fxmlLoader.load();
+
+            UserRelationshipsViewController userRelationshipsViewController = fxmlLoader.getController();
+            userRelationshipsViewController.setSelectedUser(selectedUser);
+
+            Stage stage = (Stage) tblUser.getScene().getWindow(); // getScene() is only available for components that inherit from Node. A MenuItem does not inherit from Node.
+
+            Scene userRelationshipsView = new Scene(root);
+            stage.setTitle("User Relationships");
+            root.requestFocus();
+            stage.setScene(userRelationshipsView);
+
+        }
+
+        catch(IOException e){
+            // TODO Handle exceptions
+        }
+        catch(SQLException e){
+            // TODO Handle exceptions
+        }
 
     }
 

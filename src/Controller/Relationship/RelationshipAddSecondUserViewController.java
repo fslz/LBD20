@@ -1,7 +1,10 @@
-package Controller.Contact;
+package Controller.Relationship;
 
+import Controller.Contact.ContactAddDateAndTimeViewController;
+import Controller.Contact.ContactAddLocationViewController;
 import DAO.UserDAOOracleImpl;
 import Model.Contact;
+import Model.Relationship;
 import Model.User;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +19,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,7 +27,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class ContactAddSecondUserViewController implements Initializable {
+public class RelationshipAddSecondUserViewController implements Initializable {
+
 
     @FXML
     private TableView<User> tblUser;
@@ -50,13 +53,13 @@ public class ContactAddSecondUserViewController implements Initializable {
     private ObservableList<User> userList = null;
 
     private User selectedUser = null;
-    private Contact contact = null;
+    private Relationship relationship = null;
 
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
 
-        contact = null;
+        relationship = null;
         // Get the stage the button pressed belongs to
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         // Close it
@@ -68,20 +71,19 @@ public class ContactAddSecondUserViewController implements Initializable {
     @FXML
     void btnNextOnAction(ActionEvent event) {
 
-        contact.setUser2(selectedUser);
 
-        // If the location has yet to be inserted
-        if(contact.getLocation() == null) {
+        relationship.setUser2(selectedUser);
+
 
             try {
 
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Contact/ContactAddLocationView.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Relationship/RelationshipAddTypeView.fxml"));
                 Parent root = fxmlLoader.load();
 
                 // Access controller
-                ContactAddLocationViewController contactAddLocationViewController = fxmlLoader.getController();
+                RelationshipAddTypeViewController relationshipAddTypeViewController = fxmlLoader.getController();
                 // Set contact
-                contactAddLocationViewController.setContact(contact);
+                relationshipAddTypeViewController.setRelationship(relationship);
 
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -94,37 +96,6 @@ public class ContactAddSecondUserViewController implements Initializable {
                 e.printStackTrace();
 
             }
-
-        }
-
-        // Else proceed directly to the date and time settings
-        else {
-
-            try{
-
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Contact/ContactAddDateAndTimeView.fxml"));
-                Parent root = fxmlLoader.load();
-
-                // Access controller
-                ContactAddDateAndTimeViewController contactAddDateAndTimeViewController = fxmlLoader.getController();
-                // Set contact
-                contactAddDateAndTimeViewController.setContact(contact);
-
-
-                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                stage.setTitle("Pick date and time:");
-                root.requestFocus();
-                stage.setScene(new Scene(root));
-
-            }
-
-            catch(IOException e){
-
-                e.printStackTrace();
-
-            }
-
-        }
 
     }
 
@@ -146,13 +117,15 @@ public class ContactAddSecondUserViewController implements Initializable {
 
     }
 
-    public void setContact(Contact contact) {
 
-        this.contact = contact;
+    public void setRelationship(Relationship relationship) {
+
+        this.relationship = relationship;
         // Remove "firstUser" from the list
-        userList.removeIf(user -> user.getId() == contact.getUser1().getId());
+        userList.removeIf(user -> user.getId() == relationship.getUser1().getId());
 
     }
+
 
     private void setupUserTable() {
 
@@ -165,6 +138,7 @@ public class ContactAddSecondUserViewController implements Initializable {
         colDateOfDeath.setCellValueFactory(new PropertyValueFactory<User, LocalDate>("dateOfDeath"));
 
     }
+
 
     private void updateUserTable() {
 
@@ -184,4 +158,6 @@ public class ContactAddSecondUserViewController implements Initializable {
         tblUser.setItems(userList);
 
     }
+
+
 }

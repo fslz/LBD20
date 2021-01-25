@@ -243,9 +243,8 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
 
             connection = new DbConnector().getConnection();
 
-            pstmt = connection.prepareStatement("DELETE FROM contact_all_v WHERE user_id1 = ? OR user_id2 = ?");
-            pstmt.setInt(1, contact.getUser1().getId());
-            pstmt.setInt(2, contact.getUser2().getId());
+            pstmt = connection.prepareStatement("DELETE FROM contact_all_v WHERE contact_id = ?");
+            pstmt.setInt(1, contact.getId());
 
             pstmt.executeUpdate();
 

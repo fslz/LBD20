@@ -21,6 +21,14 @@ public class Contact {
         this.dateReceived = dateReceived;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public User getUser1() {
         return user1;
     }

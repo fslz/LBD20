@@ -1,5 +1,7 @@
 package Model;
 
+import javax.management.relation.Relation;
+
 public class Relationship {
 
     private int id;
@@ -7,7 +9,11 @@ public class Relationship {
     private User user2;
     private String type;
 
-    public Relationship(User user1, User user2, String type) {
+    public Relationship(){
+
+    }
+
+    public Relationship(int id, User user1, User user2, String type) {
         this.id = id;
         this.user1 = user1;
         this.user2 = user2;

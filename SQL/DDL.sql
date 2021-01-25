@@ -211,7 +211,7 @@ WHERE p1.user_id <> p2.user_id;
 --  AND p1.user_id < p2.user_id;
 
 
--- all contacts between users [used when fetching all contacts?]
+-- all contacts between users [used when fetching all contacts]
 CREATE OR REPLACE VIEW contacts_all_v2 AS
 SELECT c.contact_id     AS contact_id,
 -- User 1
@@ -245,17 +245,51 @@ FROM contacts c
          JOIN users u2 ON p2.user_id = u2.user_id
          JOIN locations l ON c.location_id = l.location_id
 WHERE p1.user_id <> p2.user_id;
-  --AND p1.user_id < p2.user_id;
+--AND p1.user_id < p2.user_id;
+
 
 -- all relationships (user_id1, user_id2, relationship type)
 CREATE OR REPLACE VIEW relationships_all_v AS
 SELECT r.relationship_id AS relationship_id,
-       m1.user_id AS user_id1,
-       m2.user_id AS user_id2,
+       m1.user_id        AS user_id1,
+       m2.user_id        AS user_id2,
        r.type
 FROM relationships r
          JOIN membership m1 ON r.relationship_id = m1.relationship_id
-         JOIN membership m2 ON m1.relationship_id = m2.relationship_id;
+         JOIN membership m2 ON m1.relationship_id = m2.relationship_id
+WHERE m1.user_id <> m2.user_id;
+
+
+-- all relationships between users [used when fetching all relatioships]
+CREATE OR REPLACE VIEW relationships_all_v2 AS
+SELECT r.relationship_id AS relationship_id,
+       -- User 1
+       u1.user_id        AS user_id1,
+       u1.username       AS username1,
+       u1.first_name     AS first_name1,
+       u1.last_name      AS last_name1,
+       u1.gender         AS gender1,
+       u1.date_of_birth  AS date_of_birth1,
+       u1.date_of_death  AS date_of_death1,
+
+       -- User 2
+       u2.user_id        AS user_id2,
+       u2.username       AS username2,
+       u2.first_name     AS firstname2,
+       u2.last_name      AS last_name2,
+       u2.gender         AS gender2,
+       u2.date_of_birth  AS date_of_birth2,
+       u2.date_of_death  AS date_of_death2,
+
+       -- Relationship Type
+       r.type            AS relationship_type
+
+FROM relationships r
+         JOIN membership m1 ON r.relationship_id = m1.relationship_id
+         JOIN membership m2 ON m1.relationship_id = m2.relationship_id
+         JOIN users u1 ON m1.user_id = u1.user_id
+         JOIN users u2 ON m2.user_id = u2.user_id
+WHERE m1.user_id <> m2.user_id;
 
 
 --   ______         _
