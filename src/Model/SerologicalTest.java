@@ -10,6 +10,10 @@ public class SerologicalTest {
     private String igm;
     private String igg;
 
+    public SerologicalTest(){
+
+    }
+
     public SerologicalTest(int id, User user, LocalDateTime dateResult, String igm, String igg) {
         this.id = id;
         this.user = user;

@@ -1,6 +1,8 @@
 package DAO;
 
-import Model.*;
+import Model.DbConnector;
+import Model.SerologicalTest;
+import Model.User;
 import Util.Util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,20 +12,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class SwabDAOOracleImpl implements DAO<Swab>{
+public class SerologicalTestDAOOracleImpl implements DAO<SerologicalTest> {
+
 
     @Override
-    public Swab getById(int id) throws SQLException {
+    public SerologicalTest getById(int id) throws SQLException {
         return null;
     }
 
     @Override
-    public ObservableList<Swab> getAll() throws SQLException {
+    public ObservableList<SerologicalTest> getAll() throws SQLException {
         return null;
     }
 
     @Override
-    public void create(Swab swab) throws SQLException {
+    public void create(SerologicalTest serologicalTest) throws SQLException {
 
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -33,13 +36,14 @@ public class SwabDAOOracleImpl implements DAO<Swab>{
             //  Establish connection to database
             connection = new DbConnector().getConnection();
             //  Set the query
-            pstmt = connection.prepareStatement("INSERT INTO swabs (swab_id, user_id, date_result, positivity)" +
-                    "VALUES (0, ?, ?, ?)");
+            pstmt = connection.prepareStatement("INSERT INTO serological_tests (serological_test_id, user_id, date_result, igm, igg)" +
+                    "VALUES (0, ?, ?, ?, ?)");
             //  Set parameters
-            pstmt.setInt(1, swab.getUser().getId());
-            pstmt.setTimestamp(2, Util.convertToDatabaseColumn(swab.getDateResult()));
-            pstmt.setString(3, swab.getPositivity());
-            //  Execute update (Insert into swabs)
+            pstmt.setInt(1, serologicalTest.getUser().getId());
+            pstmt.setTimestamp(2, Util.convertToDatabaseColumn(serologicalTest.getDateResult()));
+            pstmt.setString(3, serologicalTest.getIgg());
+            pstmt.setString(4, serologicalTest.getIgm());
+            //  Execute update (Insert into serological_tests)
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -61,15 +65,13 @@ public class SwabDAOOracleImpl implements DAO<Swab>{
 
     }
 
-
     @Override
-    public void update(Swab swab) throws SQLException {
-        // TODO
+    public void update(SerologicalTest serologicalTest) throws SQLException {
+
     }
 
-
     @Override
-    public void delete(Swab swab) throws SQLException {
+    public void delete(SerologicalTest serologicalTest) throws SQLException {
 
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -78,8 +80,8 @@ public class SwabDAOOracleImpl implements DAO<Swab>{
 
             connection = new DbConnector().getConnection();
 
-            pstmt = connection.prepareStatement("DELETE FROM swabs WHERE swab_id = ?");
-            pstmt.setInt(1, swab.getId());
+            pstmt = connection.prepareStatement("DELETE FROM serological_tests WHERE serological_test_id = ?");
+            pstmt.setInt(1, serologicalTest.getId());
 
             pstmt.executeUpdate();
 
@@ -90,8 +92,10 @@ public class SwabDAOOracleImpl implements DAO<Swab>{
         } finally {
 
             try {
+
                 if (pstmt != null) pstmt.close();
                 if (connection != null) connection.close();
+
             } catch (SQLException e) {
                 throw e;
             }
@@ -100,9 +104,10 @@ public class SwabDAOOracleImpl implements DAO<Swab>{
 
     }
 
-    public ObservableList<Swab> getAllByUserId(User user) throws SQLException {
 
-        ObservableList<Swab> swabList = FXCollections.observableArrayList();
+    public ObservableList<SerologicalTest> getAllByUserId(User user) throws SQLException {
+
+        ObservableList<SerologicalTest> serologicalTestList = FXCollections.observableArrayList();
 
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -112,23 +117,26 @@ public class SwabDAOOracleImpl implements DAO<Swab>{
 
             connection = new DbConnector().getConnection();
 
-            pstmt = connection.prepareStatement("SELECT * FROM swabs WHERE user_id = ?");
+            pstmt = connection.prepareStatement("SELECT * FROM serological_tests WHERE user_id = ?");
             pstmt.setInt(1, user.getId());
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
 
-                swabList.add(
+                serologicalTestList.add(
 
-                        new Swab(
+                        new SerologicalTest(
 
-                                rs.getInt("swab_id"),
+                                rs.getInt("serological_test_id"),
 
                                 user,
 
                                 Util.convertToEntityAttribute(rs.getTimestamp("date_result")),
 
-                                rs.getString("positivity")
+                                rs.getString("igm"),
+
+                                rs.getString("igg")
+
                         )
                 );
 
@@ -148,7 +156,7 @@ public class SwabDAOOracleImpl implements DAO<Swab>{
 
         }
 
-        return swabList;
+        return serologicalTestList;
     }
 
 
