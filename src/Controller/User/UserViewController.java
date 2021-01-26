@@ -227,6 +227,31 @@ public class UserViewController implements Initializable {
     private void cmHealthChecksOnAction(ActionEvent event) {
 
         // Show Health Checks stage for selectedUser
+        try{
+
+            selectedUser.setHealthCheckList(new HealthCheckDAOOracleImpl().getAllByUserId(selectedUser)); // Load all health checks of the selected User
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserHealthChecksView.fxml"));
+            Parent root = fxmlLoader.load();
+
+            UserHealthChecksViewController userHealthChecksViewController = fxmlLoader.getController();
+            userHealthChecksViewController.setSelectedUser(selectedUser);
+
+            Stage stage = (Stage) tblUser.getScene().getWindow(); // getScene() is only available for components that inherit from Node. A MenuItem does not inherit from Node.
+
+            Scene userHealthChecksView = new Scene(root);
+            stage.setTitle("User Health Checks");
+            root.requestFocus();
+            stage.setScene(userHealthChecksView);
+
+        }
+
+        catch(IOException e){
+            // TODO Handle exceptions
+        }
+        catch(SQLException e){
+            // TODO Handle exceptions
+        }
 
     }
 

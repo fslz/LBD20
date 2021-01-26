@@ -82,7 +82,7 @@ public class HealthCheckDAOOracleImpl implements DAO<HealthCheck> {
 
             connection = new DbConnector().getConnection();
 
-            pstmt = connection.prepareStatement("DELETE FROM health_check WHERE health_check_id = ?");
+            pstmt = connection.prepareStatement("DELETE FROM health_checks WHERE health_check_id = ?");
             pstmt.setInt(1, healthCheck.getId());
 
             pstmt.executeUpdate();
