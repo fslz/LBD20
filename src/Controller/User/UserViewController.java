@@ -1,10 +1,7 @@
 package Controller.User;
 
-import DAO.ContactDAOOracleImpl;
-import DAO.RelationshipDAOOracleImpl;
-import DAO.SwabDAOOracleImpl;
+import DAO.*;
 import Model.User;
-import DAO.UserDAOOracleImpl;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -198,6 +195,31 @@ public class UserViewController implements Initializable {
     private void cmSerologicalTestsOnAction(ActionEvent event) {
 
         // Show Serological Tests stage for selectedUser
+        try{
+
+            selectedUser.setSerologicalTestList(new SerologicalTestDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserSerologicalTestsView.fxml"));
+            Parent root = fxmlLoader.load();
+
+            UserSerologicalTestsViewController userSerologicalTestsViewController = fxmlLoader.getController();
+            userSerologicalTestsViewController.setSelectedUser(selectedUser);
+
+            Stage stage = (Stage) tblUser.getScene().getWindow(); // getScene() is only available for components that inherit from Node. A MenuItem does not inherit from Node.
+
+            Scene userSerologicalTestsView = new Scene(root);
+            stage.setTitle("User Serological Tests");
+            root.requestFocus();
+            stage.setScene(userSerologicalTestsView);
+
+        }
+
+        catch(IOException e){
+            // TODO Handle exceptions
+        }
+        catch(SQLException e){
+            // TODO Handle exceptions
+        }
 
     }
 

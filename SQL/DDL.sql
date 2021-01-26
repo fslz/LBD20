@@ -105,8 +105,8 @@ CREATE TABLE serological_tests
     serological_test_id INTEGER,
     user_id             INTEGER   NOT NULL,
     date_result         TIMESTAMP NOT NULL,
-    igm                 CHAR(1)   NOT NULL,
-    igg                 CHAR(1)   NOT NULL,
+    igm                 VARCHAR2(8)   NOT NULL,
+    igg                 VARCHAR2(8)   NOT NULL,
 
     CONSTRAINT serological_tests_pk PRIMARY KEY (serological_test_id),
     CONSTRAINT serological_tests_uk UNIQUE (user_id, date_result),

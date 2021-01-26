@@ -64,7 +64,7 @@ public class UserSerologicalTestsViewController implements Initializable {
 
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabAddPropertiesView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/SerologicalTest/SerologicalTestAddPropertiesView.fxml"));
             Parent root = fxmlLoader.load();
 
             // Access controller
@@ -119,8 +119,8 @@ public class UserSerologicalTestsViewController implements Initializable {
         else {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Please select a swab from the table");
-            alert.setHeaderText("Swab not selected");
+            alert.setContentText("Please select a serological test from the table");
+            alert.setHeaderText("Serological test not selected");
             alert.showAndWait();
 
         }
@@ -134,12 +134,6 @@ public class UserSerologicalTestsViewController implements Initializable {
 
     }
 
-    @FXML
-    void tblUserSwabsOnMouseClicked(MouseEvent event) {
-
-        this.selectedSerologicalTest = tblUserSerologicalTest.getSelectionModel().getSelectedItem();
-
-    }
 
     @FXML
     void btnToUsersOnAction(ActionEvent event) {
@@ -160,6 +154,8 @@ public class UserSerologicalTestsViewController implements Initializable {
 
     @FXML
     void tblUserSerologicalTestOnMouseClicked(MouseEvent event) {
+
+        this.selectedSerologicalTest = tblUserSerologicalTest.getSelectionModel().getSelectedItem();
 
     }
 
