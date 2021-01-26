@@ -9,6 +9,10 @@ public class Swab {
     private LocalDateTime dateResult;
     private String positivity;
 
+    public Swab(){
+
+    }
+
     public Swab(int id, User user, LocalDateTime dateResult, String positivity) {
         this.id = id;
         this.user = user;

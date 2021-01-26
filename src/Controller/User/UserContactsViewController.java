@@ -31,6 +31,7 @@ import java.util.ResourceBundle;
 
 public class UserContactsViewController implements Initializable {
 
+    private Contact selectedContact = null;
     private User selectedUser = null;
     private Location contactLocation = null;
 
@@ -147,6 +148,8 @@ public class UserContactsViewController implements Initializable {
 
     @FXML
     void tblUserContactsOnMouseClicked(MouseEvent event) {
+
+        this.selectedContact = tblUserContacts.getSelectionModel().getSelectedItem();
 
     }
 

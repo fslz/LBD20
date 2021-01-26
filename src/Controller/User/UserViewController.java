@@ -2,6 +2,7 @@ package Controller.User;
 
 import DAO.ContactDAOOracleImpl;
 import DAO.RelationshipDAOOracleImpl;
+import DAO.SwabDAOOracleImpl;
 import Model.User;
 import DAO.UserDAOOracleImpl;
 import javafx.collections.ObservableList;
@@ -165,6 +166,31 @@ public class UserViewController implements Initializable {
     private void cmSwabsOnAction(ActionEvent event) {
 
         // Show Swabs stage for selectedUser
+        try{
+
+            selectedUser.setSwabList(new SwabDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserSwabsView.fxml"));
+            Parent root = fxmlLoader.load();
+
+            UserSwabsViewController userSwabsViewController = fxmlLoader.getController();
+            userSwabsViewController.setSelectedUser(selectedUser);
+
+            Stage stage = (Stage) tblUser.getScene().getWindow(); // getScene() is only available for components that inherit from Node. A MenuItem does not inherit from Node.
+
+            Scene userSwabsView = new Scene(root);
+            stage.setTitle("User Swabs");
+            root.requestFocus();
+            stage.setScene(userSwabsView);
+
+        }
+
+        catch(IOException e){
+            // TODO Handle exceptions
+        }
+        catch(SQLException e){
+            // TODO Handle exceptions
+        }
 
     }
 

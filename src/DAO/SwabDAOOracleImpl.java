@@ -126,7 +126,7 @@ public class SwabDAOOracleImpl implements DAO<Swab>{
 
                                 user,
 
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_received")),
+                                Util.convertToEntityAttribute(rs.getTimestamp("date_result")),
 
                                 rs.getString("positivity")
                         )
