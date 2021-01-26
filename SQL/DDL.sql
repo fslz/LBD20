@@ -92,10 +92,10 @@ CREATE TABLE swabs
     swab_id     INTEGER,
     user_id     INTEGER   NOT NULL,
     date_result TIMESTAMP NOT NULL,
-    positivity  CHAR(1)   NOT NULL,
+    positivity  VARCHAR(8)   NOT NULL,
 
     CONSTRAINT swabs_pk PRIMARY KEY (swab_id),
-    CONSTRAINT swabs_ck1 CHECK ( positivity IN ('y', 'n') ),
+    CONSTRAINT swabs_ck1 CHECK ( positivity IN ('positive', 'negative') ),
     CONSTRAINT swabs_uk UNIQUE (user_id, date_result)
 );
 
@@ -446,7 +446,6 @@ BEGIN
 END;
 
 
-
 --     ___
 --    / _ \  ____ ___    ___   ___
 --   / // / / __// _ \  / _ \ (_-<
@@ -473,3 +472,4 @@ DROP TABLE serological_tests CASCADE CONSTRAINTS;
 DROP VIEW contacts_all_v;
 DROP VIEW contacts_all_v2;
 DROP VIEW relationships_all_v;
+DROP View relationships_all_v2;
