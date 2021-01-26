@@ -11,6 +11,10 @@ public class HealthCheck {
     private String respiratoryDisorder;
     private String smellTasteDisorder;
 
+    public HealthCheck(){
+
+    }
+
     public HealthCheck(int id, User user, LocalDateTime dateOfCheck, String fever, String respiratoryDisorder, String smellTasteDisorder) {
         this.id = id;
         this.user = user;
