@@ -17,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -26,6 +25,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class UserHealthChecksViewController implements Initializable {
+
 
     @FXML
     private TableView<HealthCheck> tblUserHealthCheck;
@@ -37,14 +37,6 @@ public class UserHealthChecksViewController implements Initializable {
     private TableColumn<HealthCheck, String> colSmellTasteDisorder;
     @FXML
     private TableColumn<HealthCheck, LocalDateTime> colDateOfCheck;
-    @FXML
-    private Button btnToUsers;
-    @FXML
-    private Button btnAddUserHealthCheck;
-    @FXML
-    private Button btnEditUserHealthCheck;
-    @FXML
-    private Button btnDeleteUserHealthCheck;
 
 
     private User selectedUser = null;
@@ -196,6 +188,7 @@ public class UserHealthChecksViewController implements Initializable {
         }
 
     }
+
 
     private void setupUserTable() {
 

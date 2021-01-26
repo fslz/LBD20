@@ -102,13 +102,13 @@ public class SwabAddPropertiesViewController implements Initializable {
                     // CHECK date of birth trigger exception raised
                     if (e.getErrorCode() == 20001) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("This contact is happening before the date of birth of one, or of both users.");
+                        errorAlert.setContentText("The date of death of the user is more than the date of the swab.");
                         errorAlert.showAndWait();
                     }
                     // CHECK date of death trigger exception raised
                     if (e.getErrorCode() == 20002) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("This contact is happening after the date of death of one, or of both users.");
+                        errorAlert.setContentText("The date of death of the user is less than the date of the swab.");
                         errorAlert.showAndWait();
                     }
 

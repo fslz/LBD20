@@ -392,7 +392,7 @@ BEGIN
     IF (:new.date_result < l_date_of_birth) THEN
         RAISE_APPLICATION_ERROR(-20001, 'date result < date of birth');
     ELSIF (l_date_of_death IS NOT NULL) THEN
-        IF (:new.date_result < l_date_of_death) THEN
+        IF (:new.date_result > l_date_of_death) THEN
             RAISE_APPLICATION_ERROR(-20002, 'date result > date of death');
         END IF;
     END IF;
@@ -415,7 +415,7 @@ BEGIN
     IF (:new.date_result < l_date_of_birth) THEN
         RAISE_APPLICATION_ERROR(-20001, 'date result < date of birth');
     ELSIF (l_date_of_death IS NOT NULL) THEN
-        IF (:new.date_result < l_date_of_death) THEN
+        IF (:new.date_result > l_date_of_death) THEN
             RAISE_APPLICATION_ERROR(-20002, 'date result > date of death');
         END IF;
     END IF;
@@ -438,12 +438,16 @@ BEGIN
     IF (:new.date_of_check < l_date_of_birth) THEN
         RAISE_APPLICATION_ERROR(-20001, 'date of check < date of birth');
     ELSIF (l_date_of_death IS NOT NULL) THEN
-        IF (:new.date_of_check < l_date_of_death) THEN
+        IF (:new.date_of_check > l_date_of_death) THEN
             RAISE_APPLICATION_ERROR(-20002, 'date of check > date of death');
         END IF;
     END IF;
     :new.health_check_id := health_checks_seq.nextval;
 END;
+
+
+-- Trigger when user date of death != null, then remove
+-- any tuple in health checks, swabs, serologicals, contacts with a date > than the date of death of the user.
 
 
 --     ___
@@ -473,3 +477,4 @@ DROP VIEW contacts_all_v;
 DROP VIEW contacts_all_v2;
 DROP VIEW relationships_all_v;
 DROP View relationships_all_v2;
+

@@ -1,6 +1,7 @@
 package Controller.Location;
 
 import Controller.User.UserContactsViewController;
+import Controller.User.UserEditViewController;
 import DAO.ContactDAOOracleImpl;
 import Model.Location;
 import DAO.LocationDAOOracleImpl;
@@ -98,7 +99,6 @@ public class LocationsViewController implements Initializable {
     }
 
 
-
     @FXML
     void btnEditLocationOnAction(ActionEvent event) {
 
@@ -152,7 +152,7 @@ public class LocationsViewController implements Initializable {
         else {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Please select a location from the table");
+            alert.setContentText("Please select a location from the table.");
             alert.setHeaderText("Location not selected");
             alert.showAndWait();
 
@@ -164,6 +164,27 @@ public class LocationsViewController implements Initializable {
 
 
     private void showEditLocationView() {
+
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Location/LocationEditView.fxml"));
+            Parent root = fxmlLoader.load();
+
+            LocationEditViewController locationEditViewController = fxmlLoader.getController();
+            locationEditViewController.setSelectedLocation(selectedLocation);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Edit Location");
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
+            stage.showAndWait();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
 
     }
 
