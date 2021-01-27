@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -18,7 +19,8 @@ import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class SwabAddPropertiesViewController implements Initializable {
+public class SwabEditViewController implements Initializable {
+
 
     private LocalDateTime localDateTime = null;
     private Swab swab = null;
@@ -33,13 +35,13 @@ public class SwabAddPropertiesViewController implements Initializable {
     @FXML
     private Button btnSave;
     @FXML
-    private DatePicker dpContactDate;
+    private DatePicker dpSwabDate;
     @FXML
-    private Spinner<Integer> spContactHours;
+    private Spinner<Integer> spSwabHours;
     @FXML
-    private Spinner<Integer> spContactSeconds;
+    private Spinner<Integer> spSwabSeconds;
     @FXML
-    private Spinner<Integer> spContactMinutes;
+    private Spinner<Integer> spSwabMinutes;
 
 
     @FXML
@@ -59,15 +61,15 @@ public class SwabAddPropertiesViewController implements Initializable {
 
             swab.setPositivity(cbPositivity.getValue());
 
-            LocalDate localDate = dpContactDate.getValue();
-            LocalTime localTime = LocalTime.of(spContactHours.getValue(), spContactMinutes.getValue(), spContactSeconds.getValue());
+            LocalDate localDate = dpSwabDate.getValue();
+            LocalTime localTime = LocalTime.of(spSwabHours.getValue(), spSwabMinutes.getValue(), spSwabSeconds.getValue());
             localDateTime = LocalDateTime.of(localDate, localTime);
             swab.setDateResult(localDateTime);
 
             // Ask for the user to confirm changes
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm changes");
-            confirmAlert.setContentText("The new swab will be created. Are you sure you want to proceed?");
+            confirmAlert.setContentText("The swab will be modified. Are you sure you want to proceed?");
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
 
@@ -76,11 +78,11 @@ public class SwabAddPropertiesViewController implements Initializable {
                 // Then then the new contact will be added on the db through the DAOOracle
                 try {
 
-                    new SwabDAOOracleImpl().create(swab);
+                    new SwabDAOOracleImpl().update(swab);
 
                     // Contact successfully added. Show alert.
                     Alert errorAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                    errorAlert.setContentText("Swab successfully created.");
+                    errorAlert.setContentText("Swab successfully modified.");
                     errorAlert.showAndWait();
 
                     // Close the UserInsertView stage
@@ -125,6 +127,22 @@ public class SwabAddPropertiesViewController implements Initializable {
 
         this.swab = swab;
 
+        setComponentsValues();
+
+    }
+
+
+    private void setComponentsValues() {
+
+
+        cbPositivity.setValue(swab.getPositivity());
+
+        dpSwabDate.setValue(swab.getDateResult().toLocalDate());
+
+        spSwabHours.getValueFactory().setValue(swab.getDateResult().getHour());
+        spSwabMinutes.getValueFactory().setValue(swab.getDateResult().getMinute());
+        spSwabSeconds.getValueFactory().setValue(swab.getDateResult().getSecond());
+
     }
 
 
@@ -133,22 +151,22 @@ public class SwabAddPropertiesViewController implements Initializable {
         boolean isValid = true;
         StringBuilder errorMsg = new StringBuilder();
 
-        if (dpContactDate.getValue() == null) {
+        if (dpSwabDate.getValue() == null) {
             errorMsg.append("- Please select a valid date.\n");
             isValid = false;
         }
 
-        if (spContactHours.getValue() == null || spContactHours.getValue() > 23 || spContactHours.getValue() < 0) {
+        if (spSwabHours.getValue() == null || spSwabHours.getValue() > 23 || spSwabHours.getValue() < 0) {
             errorMsg.append("- Please enter a valid value for the hours.\n");
             isValid = false;
         }
 
-        if (spContactMinutes.getValue() == null || spContactMinutes.getValue() > 59 || spContactMinutes.getValue() < 0) {
+        if (spSwabMinutes.getValue() == null || spSwabMinutes.getValue() > 59 || spSwabMinutes.getValue() < 0) {
             errorMsg.append("- Please enter a valid value for the minutes.\n");
             isValid = false;
         }
 
-        if (spContactSeconds.getValue() == null || spContactSeconds.getValue() > 59 || spContactSeconds.getValue() < 0) {
+        if (spSwabSeconds.getValue() == null || spSwabSeconds.getValue() > 59 || spSwabSeconds.getValue() < 0) {
             errorMsg.append("- Please enter a valid value for the seconds.\n");
             isValid = false;
         }
@@ -176,11 +194,33 @@ public class SwabAddPropertiesViewController implements Initializable {
         cbPositivity.setItems(availableChoices);
 
         SpinnerValueFactory<Integer> hoursSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
-        this.spContactHours.setValueFactory(hoursSpinnerValueFactory);
+        this.spSwabHours.setValueFactory(hoursSpinnerValueFactory);
         SpinnerValueFactory<Integer> minutesSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
-        this.spContactMinutes.setValueFactory(minutesSpinnerValueFactory);
+        this.spSwabMinutes.setValueFactory(minutesSpinnerValueFactory);
         SpinnerValueFactory<Integer> secondsSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
-        this.spContactSeconds.setValueFactory(secondsSpinnerValueFactory);
+        this.spSwabSeconds.setValueFactory(secondsSpinnerValueFactory);
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

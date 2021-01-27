@@ -1,7 +1,9 @@
 package Controller.User;
 
 import Controller.Contact.ContactAddSecondUserViewController;
+import Controller.Location.LocationEditViewController;
 import Controller.Swab.SwabAddPropertiesViewController;
+import Controller.Swab.SwabEditViewController;
 import DAO.SwabDAOOracleImpl;
 import DAO.UserDAOOracleImpl;
 import Model.Contact;
@@ -76,7 +78,7 @@ public class UserSwabsViewController implements Initializable {
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("Enter swab informations");
+            stage.setTitle("Enter swab info");
             stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
@@ -135,6 +137,43 @@ public class UserSwabsViewController implements Initializable {
 
     @FXML
     void btnEditUserSwabOnAction(ActionEvent event) {
+
+
+        if (selectedSwab != null) {
+
+            try {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabEditView.fxml"));
+                Parent root = fxmlLoader.load();
+
+                SwabEditViewController swabEditViewControllerEditViewController = fxmlLoader.getController();
+                swabEditViewControllerEditViewController.setSwab(selectedSwab);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Edit swab");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
+                stage.showAndWait();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
+
+        }
+
+        else{
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Please select a swab from the table");
+            alert.setHeaderText("Swab not selected");
+            alert.showAndWait();
+
+        }
+
+        updateSwabTable();
 
     }
 

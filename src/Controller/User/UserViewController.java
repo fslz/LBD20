@@ -304,7 +304,7 @@ public class UserViewController implements Initializable {
             Parent root = fxmlLoader.load();
 
             UserEditViewController userEditViewController = fxmlLoader.getController();
-            userEditViewController.setSelectedUser(selectedUser);
+            userEditViewController.setUser(selectedUser);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

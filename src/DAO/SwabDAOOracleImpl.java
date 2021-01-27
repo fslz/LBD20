@@ -65,7 +65,37 @@ public class SwabDAOOracleImpl implements DAO<Swab>{
     @Override
     public void update(Swab swab) throws SQLException {
 
-        // TODO
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+
+        try {
+
+            connection = new DbConnector().getConnection();
+
+            pstmt = connection.prepareStatement("UPDATE swabs SET date_result = ?, positivity = ? WHERE swab_id = ?");
+
+            pstmt.setTimestamp(1, Util.convertToDatabaseColumn(swab.getDateResult()));
+            pstmt.setString(2, swab.getPositivity());
+            pstmt.setInt(3, swab.getId());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+
+            throw e;
+
+        }
+        finally{
+
+            try{
+                if(pstmt != null)   pstmt.close();
+                if(connection != null)  connection.close();
+            }
+            catch(SQLException e){
+                throw e;
+            }
+
+        }
 
     }
 

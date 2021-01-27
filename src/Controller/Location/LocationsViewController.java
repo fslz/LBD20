@@ -104,7 +104,26 @@ public class LocationsViewController implements Initializable {
 
         if (selectedLocation != null) {
 
-            showEditLocationView();
+            try {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Location/LocationEditView.fxml"));
+                Parent root = fxmlLoader.load();
+
+                LocationEditViewController locationEditViewController = fxmlLoader.getController();
+                locationEditViewController.setSelectedLocation(selectedLocation);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Edit Location");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
+                stage.showAndWait();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
 
         }
 
@@ -118,6 +137,30 @@ public class LocationsViewController implements Initializable {
         }
 
         updateLocationTable();
+
+    }
+
+
+    private void showAddLocationView(){
+
+        try{
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Location/LocationAddView.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Add Location");
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+        }
+
+        catch(IOException e){
+
+            e.printStackTrace();
+
+        }
 
     }
 
@@ -159,56 +202,6 @@ public class LocationsViewController implements Initializable {
         }
 
         updateLocationTable();
-
-    }
-
-
-    private void showEditLocationView() {
-
-        try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Location/LocationEditView.fxml"));
-            Parent root = fxmlLoader.load();
-
-            LocationEditViewController locationEditViewController = fxmlLoader.getController();
-            locationEditViewController.setSelectedLocation(selectedLocation);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Edit Location");
-            stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
-            stage.showAndWait();
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        }
-
-    }
-
-
-    private void showAddLocationView(){
-
-        try{
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Location/LocationAddView.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Add Location");
-            stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-
-        }
-
-        catch(IOException e){
-
-            e.printStackTrace();
-
-        }
 
     }
 

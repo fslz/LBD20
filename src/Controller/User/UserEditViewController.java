@@ -116,7 +116,7 @@ public class UserEditViewController implements Initializable {
     }
 
 
-    public void setSelectedUser(User selectedUser) {
+    public void setUser(User selectedUser) {
 
         this.selectedUser = selectedUser;
 
