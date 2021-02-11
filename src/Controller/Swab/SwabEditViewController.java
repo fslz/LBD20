@@ -36,12 +36,7 @@ public class SwabEditViewController implements Initializable {
     private Button btnSave;
     @FXML
     private DatePicker dpSwabDate;
-    @FXML
-    private Spinner<Integer> spSwabHours;
-    @FXML
-    private Spinner<Integer> spSwabSeconds;
-    @FXML
-    private Spinner<Integer> spSwabMinutes;
+
 
 
     @FXML
@@ -62,9 +57,7 @@ public class SwabEditViewController implements Initializable {
             swab.setPositivity(cbPositivity.getValue());
 
             LocalDate localDate = dpSwabDate.getValue();
-            LocalTime localTime = LocalTime.of(spSwabHours.getValue(), spSwabMinutes.getValue(), spSwabSeconds.getValue());
-            localDateTime = LocalDateTime.of(localDate, localTime);
-            swab.setDateResult(localDateTime);
+            swab.setDateResult(localDate);
 
             // Ask for the user to confirm changes
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -137,11 +130,7 @@ public class SwabEditViewController implements Initializable {
 
         cbPositivity.setValue(swab.getPositivity());
 
-        dpSwabDate.setValue(swab.getDateResult().toLocalDate());
-
-        spSwabHours.getValueFactory().setValue(swab.getDateResult().getHour());
-        spSwabMinutes.getValueFactory().setValue(swab.getDateResult().getMinute());
-        spSwabSeconds.getValueFactory().setValue(swab.getDateResult().getSecond());
+        dpSwabDate.setValue(swab.getDateResult());
 
     }
 
@@ -153,21 +142,6 @@ public class SwabEditViewController implements Initializable {
 
         if (dpSwabDate.getValue() == null) {
             errorMsg.append("- Please select a valid date.\n");
-            isValid = false;
-        }
-
-        if (spSwabHours.getValue() == null || spSwabHours.getValue() > 23 || spSwabHours.getValue() < 0) {
-            errorMsg.append("- Please enter a valid value for the hours.\n");
-            isValid = false;
-        }
-
-        if (spSwabMinutes.getValue() == null || spSwabMinutes.getValue() > 59 || spSwabMinutes.getValue() < 0) {
-            errorMsg.append("- Please enter a valid value for the minutes.\n");
-            isValid = false;
-        }
-
-        if (spSwabSeconds.getValue() == null || spSwabSeconds.getValue() > 59 || spSwabSeconds.getValue() < 0) {
-            errorMsg.append("- Please enter a valid value for the seconds.\n");
             isValid = false;
         }
 
@@ -192,13 +166,6 @@ public class SwabEditViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         cbPositivity.setItems(availableChoices);
-
-        SpinnerValueFactory<Integer> hoursSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
-        this.spSwabHours.setValueFactory(hoursSpinnerValueFactory);
-        SpinnerValueFactory<Integer> minutesSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
-        this.spSwabMinutes.setValueFactory(minutesSpinnerValueFactory);
-        SpinnerValueFactory<Integer> secondsSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
-        this.spSwabSeconds.setValueFactory(secondsSpinnerValueFactory);
 
     }
 

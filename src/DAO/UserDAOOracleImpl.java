@@ -31,8 +31,8 @@ public class UserDAOOracleImpl implements DAO<User> {
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getString("gender"),
-                    Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth")),
-                    Util.convertToEntityAttribute(rs.getTimestamp("date_of_death"))
+                    Util.convertToEntityAttribute(rs.getDate("date_of_birth")),
+                    Util.convertToEntityAttribute(rs.getDate("date_of_death"))
             );
 
         } catch (SQLException e) {
@@ -87,8 +87,8 @@ public class UserDAOOracleImpl implements DAO<User> {
                                 rs.getString("first_name"),
                                 rs.getString("last_name"),
                                 rs.getString("gender"),
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth")),
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_of_death"))
+                                Util.convertToEntityAttribute(rs.getDate("date_of_birth")),
+                                Util.convertToEntityAttribute(rs.getDate("date_of_death"))
                         )
                 );
 
@@ -138,8 +138,8 @@ public class UserDAOOracleImpl implements DAO<User> {
             pstmt.setString(2, user.getFirstName());
             pstmt.setString(3, user.getLastName());
             pstmt.setString(4, user.getGender());
-            pstmt.setTimestamp(5, Util.convertToDatabaseColumn(user.getDateOfBirth()));
-            pstmt.setTimestamp(6, Util.convertToDatabaseColumn(user.getDateOfDeath()));
+            pstmt.setDate(5, Util.convertToDatabaseColumn(user.getDateOfBirth()));
+            pstmt.setDate(6, Util.convertToDatabaseColumn(user.getDateOfDeath()));
             //  Execute update
             pstmt.executeUpdate();
 
@@ -184,8 +184,8 @@ public class UserDAOOracleImpl implements DAO<User> {
             pstmt.setString(2, user.getFirstName());
             pstmt.setString(3, user.getLastName());
             pstmt.setString(4, user.getGender());
-            pstmt.setTimestamp(5, Util.convertToDatabaseColumn(user.getDateOfBirth()));
-            pstmt.setTimestamp(6, Util.convertToDatabaseColumn(user.getDateOfDeath()));
+            pstmt.setDate(5, Util.convertToDatabaseColumn(user.getDateOfBirth()));
+            pstmt.setDate(6, Util.convertToDatabaseColumn(user.getDateOfDeath()));
             pstmt.setInt(7, user.getId());
 
             pstmt.executeUpdate();

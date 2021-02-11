@@ -40,7 +40,7 @@ public class HealthCheckDAOOracleImpl implements DAO<HealthCheck> {
                     "VALUES (0, ?, ?, ?, ?, ?)");
             //  Set parameters
             pstmt.setInt(1, healthCheck.getUser().getId());
-            pstmt.setTimestamp(2, Util.convertToDatabaseColumn(healthCheck.getDateOfCheck()));
+            pstmt.setDate(2, Util.convertToDatabaseColumn(healthCheck.getDateOfCheck()));
             pstmt.setString(3, healthCheck.getFever());
             pstmt.setString(4, healthCheck.getRespiratoryDisorder());
             pstmt.setString(5, healthCheck.getSmellTasteDisorder());
@@ -133,7 +133,7 @@ public class HealthCheckDAOOracleImpl implements DAO<HealthCheck> {
 
                                 user,
 
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_of_check")),
+                                Util.convertToEntityAttribute(rs.getDate("date_of_check")),
 
                                 rs.getString("fever"),
 

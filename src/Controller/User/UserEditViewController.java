@@ -73,8 +73,8 @@ public class UserEditViewController implements Initializable {
                                     txtFirstName.getText(),
                                     txtLastName.getText(),
                                     cbGender.getValue(),
-                                    dpDateOfBirth.getValue().atStartOfDay(),
-                                    dpDateOfDeath.getValue().atStartOfDay()
+                                    dpDateOfBirth.getValue(),
+                                    dpDateOfDeath.getValue()
                             )
                     );
 
@@ -135,12 +135,12 @@ public class UserEditViewController implements Initializable {
         if(selectedUser.getDateOfBirth() == null)
             dpDateOfBirth.setValue(null);
         else
-            dpDateOfBirth.setValue(selectedUser.getDateOfBirth().toLocalDate());
+            dpDateOfBirth.setValue(selectedUser.getDateOfBirth());
 
         if(selectedUser.getDateOfDeath() == null)
             dpDateOfDeath.setValue(null);
         else
-            dpDateOfDeath.setValue(selectedUser.getDateOfDeath().toLocalDate());
+            dpDateOfDeath.setValue(selectedUser.getDateOfDeath());
 
     }
 

@@ -70,8 +70,8 @@ public class UserAddViewController implements Initializable {
                                     txtFirstName.getText(),
                                     txtLastName.getText(),
                                     cbGender.getValue(),
-                                    dpDateOfBirth.getValue().atStartOfDay(),
-                                    dpDateOfDeath.getValue().atStartOfDay()
+                                    dpDateOfBirth.getValue(),
+                                    dpDateOfDeath.getValue()
                             )
                     );
 

@@ -37,12 +37,6 @@ public class HealthCheckAddPropertiesViewController implements Initializable {
     @FXML
     private DatePicker dpContactDate;
     @FXML
-    private Spinner<Integer> spContactHours;
-    @FXML
-    private Spinner<Integer> spContactSeconds;
-    @FXML
-    private Spinner<Integer> spContactMinutes;
-    @FXML
     private ChoiceBox<String> cbRespiratoryDisorders;
     @FXML
     private Label lblRespiratoryDisorders;
@@ -77,9 +71,7 @@ public class HealthCheckAddPropertiesViewController implements Initializable {
             healthCheck.setSmellTasteDisorder(cbSmellTasteDIsorders.getValue());
 
             LocalDate localDate = dpContactDate.getValue();
-            LocalTime localTime = LocalTime.of(spContactHours.getValue(), spContactMinutes.getValue(), spContactSeconds.getValue());
-            localDateTime = LocalDateTime.of(localDate, localTime);
-            healthCheck.setDateOfCheck(localDateTime);
+            healthCheck.setDateOfCheck(localDate);
 
             // Ask for the user to confirm changes
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -148,21 +140,6 @@ public class HealthCheckAddPropertiesViewController implements Initializable {
             isValid = false;
         }
 
-        if (spContactHours.getValue() == null || spContactHours.getValue() > 23 || spContactHours.getValue() < 0) {
-            errorMsg.append("- Please enter a valid value for the hours.\n");
-            isValid = false;
-        }
-
-        if (spContactMinutes.getValue() == null || spContactMinutes.getValue() > 59 || spContactMinutes.getValue() < 0) {
-            errorMsg.append("- Please enter a valid value for the minutes.\n");
-            isValid = false;
-        }
-
-        if (spContactSeconds.getValue() == null || spContactSeconds.getValue() > 59 || spContactSeconds.getValue() < 0) {
-            errorMsg.append("- Please enter a valid value for the seconds.\n");
-            isValid = false;
-        }
-
         if(cbFever.getValue() == null) {
             errorMsg.append("- Please select a value for Fever.\n");
             isValid = false;
@@ -196,13 +173,6 @@ public class HealthCheckAddPropertiesViewController implements Initializable {
         cbFever.setItems(availableChoices);
         cbRespiratoryDisorders.setItems(availableChoices);
         cbSmellTasteDIsorders.setItems(availableChoices);
-
-        SpinnerValueFactory<Integer> hoursSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
-        this.spContactHours.setValueFactory(hoursSpinnerValueFactory);
-        SpinnerValueFactory<Integer> minutesSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
-        this.spContactMinutes.setValueFactory(minutesSpinnerValueFactory);
-        SpinnerValueFactory<Integer> secondsSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
-        this.spContactSeconds.setValueFactory(secondsSpinnerValueFactory);
 
     }
 

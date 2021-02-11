@@ -37,7 +37,7 @@ public class SwabDAOOracleImpl implements DAO<Swab>{
                     "VALUES (0, ?, ?, ?)");
             //  Set parameters
             pstmt.setInt(1, swab.getUser().getId());
-            pstmt.setTimestamp(2, Util.convertToDatabaseColumn(swab.getDateResult()));
+            pstmt.setDate(2, Util.convertToDatabaseColumn(swab.getDateResult()));
             pstmt.setString(3, swab.getPositivity());
             //  Execute update (Insert into swabs)
             pstmt.executeUpdate();
@@ -74,7 +74,7 @@ public class SwabDAOOracleImpl implements DAO<Swab>{
 
             pstmt = connection.prepareStatement("UPDATE swabs SET date_result = ?, positivity = ? WHERE swab_id = ?");
 
-            pstmt.setTimestamp(1, Util.convertToDatabaseColumn(swab.getDateResult()));
+            pstmt.setDate(1, Util.convertToDatabaseColumn(swab.getDateResult()));
             pstmt.setString(2, swab.getPositivity());
             pstmt.setInt(3, swab.getId());
 
@@ -158,7 +158,7 @@ public class SwabDAOOracleImpl implements DAO<Swab>{
 
                                 user,
 
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_result")),
+                                Util.convertToEntityAttribute(rs.getDate("date_result")),
 
                                 rs.getString("positivity")
                         )

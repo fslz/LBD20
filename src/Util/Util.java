@@ -13,7 +13,9 @@ public class Util {
      *
      * @return java.sql.Date
      */
-    public static Timestamp convertToDatabaseColumn(LocalDateTime localDateTime) { return (localDateTime == null ? null : Timestamp.valueOf(localDateTime)); }
+    public static Date convertToDatabaseColumn(LocalDate localDate) {
+        return (localDate == null ? null : Date.valueOf(localDate));
+    }
 
     /**
      * Called internally,
@@ -21,8 +23,8 @@ public class Util {
      *
      * @return LocalDate
      */
-    public static LocalDateTime convertToEntityAttribute(Timestamp timestamp) {
-        return (timestamp == null ? null : timestamp.toLocalDateTime());
+    public static LocalDate convertToEntityAttribute(Date date) {
+        return (date == null ? null : date.toLocalDate());
     }
 
 }

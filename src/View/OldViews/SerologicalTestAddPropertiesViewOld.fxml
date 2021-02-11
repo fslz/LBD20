@@ -4,15 +4,23 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="316.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SerologicalTest.SerologicalTestAddPropertiesViewController">
+
+<AnchorPane prefHeight="316.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SerologicalTest.SerologicalTestAddPropertiesViewController">
    <children>
       <ChoiceBox fx:id="cbIgM" focusTraversable="false" layoutX="44.0" layoutY="178.0" prefHeight="25.0" prefWidth="149.0" />
       <Label fx:id="lblIgM" layoutX="45.0" layoutY="161.0" text="IgM*" />
       <Button fx:id="btnCancel" focusTraversable="false" layoutX="354.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="76.0" text="Cancel" />
       <Button fx:id="btnSave" focusTraversable="false" layoutX="258.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="76.0" text="Save" />
       <DatePicker fx:id="dpContactDate" focusTraversable="false" layoutX="44.0" layoutY="77.0" prefHeight="25.0" prefWidth="137.0" />
+      <Label layoutX="219.0" layoutY="58.0" text="Hours:" />
+      <Spinner fx:id="spContactHours" focusTraversable="false" layoutX="219.0" layoutY="77.0" prefHeight="25.0" prefWidth="55.0" />
+      <Spinner fx:id="spContactSeconds" focusTraversable="false" layoutX="360.0" layoutY="77.0" prefHeight="25.0" prefWidth="55.0" />
+      <Spinner fx:id="spContactMinutes" focusTraversable="false" layoutX="289.0" layoutY="77.0" prefHeight="25.0" prefWidth="55.0" />
+      <Label layoutX="289.0" layoutY="58.0" text="Minutes:" />
+      <Label layoutX="360.0" layoutY="58.0" text="Seconds:" />
       <Label layoutX="46.0" layoutY="60.0" text="Date:" />
       <Label layoutX="24.0" layoutY="24.0" text="Pick date and time:" />
       <Label layoutX="24.0" layoutY="126.0" text="Choose IgM and IgG result:" />

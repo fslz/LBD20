@@ -12,8 +12,8 @@ CREATE TABLE users
     first_name    VARCHAR2(25) NOT NULL,
     last_name     VARCHAR2(25) NOT NULL,
     gender        CHAR(1)      NOT NULL,
-    date_of_birth TIMESTAMP    NOT NULL,
-    date_of_death TIMESTAMP,
+    date_of_birth DATE    NOT NULL,
+    date_of_death DATE,
 
     CONSTRAINT users_pk PRIMARY KEY (user_id),
     CONSTRAINT users_uq UNIQUE (username),
@@ -54,7 +54,7 @@ CREATE TABLE participants
 (
     contact_id    INTEGER   NOT NULL,
     user_id       INTEGER   NOT NULL,
-    date_received TIMESTAMP NOT NULL,
+    date_received DATE NOT NULL,
 
     CONSTRAINT participants_pk PRIMARY KEY (contact_id, user_id),
     CONSTRAINT participants_uk UNIQUE (user_id, date_received)
@@ -90,9 +90,9 @@ CREATE TABLE locations
 CREATE TABLE swabs
 (
     swab_id     INTEGER,
-    user_id     INTEGER   NOT NULL,
-    date_result TIMESTAMP NOT NULL,
-    positivity  VARCHAR(8)   NOT NULL,
+    user_id     INTEGER    NOT NULL,
+    date_result DATE  NOT NULL,
+    positivity  VARCHAR(8) NOT NULL,
 
     CONSTRAINT swabs_pk PRIMARY KEY (swab_id),
     CONSTRAINT swabs_ck1 CHECK ( positivity IN ('positive', 'negative') ),
@@ -103,10 +103,10 @@ CREATE TABLE swabs
 CREATE TABLE serological_tests
 (
     serological_test_id INTEGER,
-    user_id             INTEGER   NOT NULL,
-    date_result         TIMESTAMP NOT NULL,
-    igm                 VARCHAR2(8)   NOT NULL,
-    igg                 VARCHAR2(8)   NOT NULL,
+    user_id             INTEGER     NOT NULL,
+    date_result         DATE   NOT NULL,
+    igm                 VARCHAR2(8) NOT NULL,
+    igg                 VARCHAR2(8) NOT NULL,
 
     CONSTRAINT serological_tests_pk PRIMARY KEY (serological_test_id),
     CONSTRAINT serological_tests_uk UNIQUE (user_id, date_result),
@@ -119,7 +119,7 @@ CREATE TABLE health_checks
 (
     health_check_id      INTEGER   NOT NULL,
     user_id              INTEGER   NOT NULL,
-    date_of_check        TIMESTAMP NOT NULL,
+    date_of_check        DATE NOT NULL,
     fever                CHAR(1)   NOT NULL,
     respiratory_disorder CHAR(1)   NOT NULL,
     smell_taste_disorder CHAR(1)   NOT NULL,
@@ -477,4 +477,3 @@ DROP VIEW contacts_all_v;
 DROP VIEW contacts_all_v2;
 DROP VIEW relationships_all_v;
 DROP View relationships_all_v2;
-

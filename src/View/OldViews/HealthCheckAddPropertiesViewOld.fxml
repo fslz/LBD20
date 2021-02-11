@@ -4,7 +4,9 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.AnchorPane?>
+
 
 <AnchorPane prefHeight="377.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HealthCheck.HealthCheckAddPropertiesViewController">
    <children>
@@ -13,6 +15,12 @@
       <Button fx:id="btnCancel" focusTraversable="false" layoutX="385.0" layoutY="338.0" mnemonicParsing="false" onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="76.0" text="Cancel" />
       <Button fx:id="btnSave" focusTraversable="false" layoutX="289.0" layoutY="338.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="76.0" text="Save" />
       <DatePicker fx:id="dpContactDate" focusTraversable="false" layoutX="54.0" layoutY="87.0" prefHeight="25.0" prefWidth="137.0" />
+      <Label layoutX="229.0" layoutY="68.0" text="Hours:" />
+      <Spinner fx:id="spContactHours" focusTraversable="false" layoutX="229.0" layoutY="87.0" prefHeight="25.0" prefWidth="55.0" />
+      <Spinner fx:id="spContactSeconds" focusTraversable="false" layoutX="370.0" layoutY="87.0" prefHeight="25.0" prefWidth="55.0" />
+      <Spinner fx:id="spContactMinutes" focusTraversable="false" layoutX="299.0" layoutY="87.0" prefHeight="25.0" prefWidth="55.0" />
+      <Label layoutX="299.0" layoutY="68.0" text="Minutes:" />
+      <Label layoutX="370.0" layoutY="68.0" text="Seconds:" />
       <Label layoutX="56.0" layoutY="70.0" text="Date:" />
       <Label layoutX="34.0" layoutY="34.0" text="Pick date and time:" />
       <Label layoutX="34.0" layoutY="136.0" text="Insert diagnosis result:" />

@@ -40,7 +40,7 @@ public class SerologicalTestDAOOracleImpl implements DAO<SerologicalTest> {
                     "VALUES (0, ?, ?, ?, ?)");
             //  Set parameters
             pstmt.setInt(1, serologicalTest.getUser().getId());
-            pstmt.setTimestamp(2, Util.convertToDatabaseColumn(serologicalTest.getDateResult()));
+            pstmt.setDate(2, Util.convertToDatabaseColumn(serologicalTest.getDateResult()));
             pstmt.setString(3, serologicalTest.getIgg());
             pstmt.setString(4, serologicalTest.getIgm());
             //  Execute update (Insert into serological_tests)
@@ -131,7 +131,7 @@ public class SerologicalTestDAOOracleImpl implements DAO<SerologicalTest> {
 
                                 user,
 
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_result")),
+                                Util.convertToEntityAttribute(rs.getDate("date_result")),
 
                                 rs.getString("igm"),
 

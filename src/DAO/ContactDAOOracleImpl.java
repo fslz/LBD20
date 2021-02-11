@@ -36,8 +36,8 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
                             rs.getString("first_name1"),
                             rs.getString("last_name1"),
                             rs.getString("gender1"),
-                            Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth1")),
-                            Util.convertToEntityAttribute(rs.getTimestamp("date_of_death1"))
+                            Util.convertToEntityAttribute(rs.getDate("date_of_birth1")),
+                            Util.convertToEntityAttribute(rs.getDate("date_of_death1"))
                     ),
 
                     new User(rs.getInt("user_id2"),
@@ -45,8 +45,8 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
                             rs.getString("firstname2"),
                             rs.getString("last_name2"),
                             rs.getString("gender2"),
-                            Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth2")),
-                            Util.convertToEntityAttribute(rs.getTimestamp("date_of_death2"))
+                            Util.convertToEntityAttribute(rs.getDate("date_of_birth2")),
+                            Util.convertToEntityAttribute(rs.getDate("date_of_death2"))
                     ),
 
                     new Location(rs.getInt("location_id"),
@@ -55,7 +55,7 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
                             rs.getString("location_category")
                     ),
 
-                    Util.convertToEntityAttribute(rs.getTimestamp("date_received"))
+                    Util.convertToEntityAttribute(rs.getDate("date_received"))
             );
 
 
@@ -107,8 +107,8 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
                                         rs.getString("first_name1"),
                                         rs.getString("last_name1"),
                                         rs.getString("gender1"),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth1")),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_death1"))
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_birth1")),
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_death1"))
                                 ),
 
                                 new User(rs.getInt("user_id2"),
@@ -116,8 +116,8 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
                                         rs.getString("firstname2"),
                                         rs.getString("last_name2"),
                                         rs.getString("gender2"),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth2")),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_death2"))
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_birth2")),
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_death2"))
                                 ),
 
                                 new Location(rs.getInt("location_id"),
@@ -126,7 +126,7 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
                                         rs.getString("location_category")
                                 ),
 
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_received"))
+                                Util.convertToEntityAttribute(rs.getDate("date_received"))
                         )
                 );
 
@@ -166,7 +166,7 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
             pstmt.setInt(1, contact.getUser1().getId());
             pstmt.setInt(2, contact.getUser2().getId());
             pstmt.setInt(3, contact.getLocation().getId());
-            pstmt.setTimestamp(4, Util.convertToDatabaseColumn(contact.getDateReceived()));
+            pstmt.setDate(4, Util.convertToDatabaseColumn(contact.getDateReceived()));
 
             //  Execute update (Insert into contacts)
             pstmt.executeUpdate();
@@ -297,8 +297,8 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
                                         rs.getString("firstname2"),
                                         rs.getString("last_name2"),
                                         rs.getString("gender2"),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth2")),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_death2"))
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_birth2")),
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_death2"))
                                 ),
 
                                 new Location(rs.getInt("location_id"),
@@ -307,7 +307,7 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
                                         rs.getString("location_category")
                                 ),
 
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_received"))
+                                Util.convertToEntityAttribute(rs.getDate("date_received"))
                         )
                 );
 
@@ -360,8 +360,8 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
                                         rs.getString("first_name1"),
                                         rs.getString("last_name1"),
                                         rs.getString("gender1"),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth1")),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_death1"))
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_birth1")),
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_death1"))
                                 ),
 
                                 new User(rs.getInt("user_id2"),
@@ -369,13 +369,13 @@ public class ContactDAOOracleImpl implements DAO<Contact> {
                                         rs.getString("firstname2"),
                                         rs.getString("last_name2"),
                                         rs.getString("gender2"),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth2")),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_death2"))
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_birth2")),
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_death2"))
                                 ),
 
                                 location,
 
-                                Util.convertToEntityAttribute(rs.getTimestamp("date_received"))
+                                Util.convertToEntityAttribute(rs.getDate("date_received"))
                         )
                 );
 

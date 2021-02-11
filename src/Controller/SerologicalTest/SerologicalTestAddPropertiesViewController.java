@@ -35,12 +35,6 @@ public class SerologicalTestAddPropertiesViewController implements Initializable
     @FXML
     private DatePicker dpContactDate;
     @FXML
-    private Spinner<Integer> spContactHours;
-    @FXML
-    private Spinner<Integer> spContactSeconds;
-    @FXML
-    private Spinner<Integer> spContactMinutes;
-    @FXML
     private ChoiceBox<String> cbIgG;
     @FXML
     private Label lblIgG;
@@ -72,9 +66,7 @@ public class SerologicalTestAddPropertiesViewController implements Initializable
 
 
             LocalDate localDate = dpContactDate.getValue();
-            LocalTime localTime = LocalTime.of(spContactHours.getValue(), spContactMinutes.getValue(), spContactSeconds.getValue());
-            localDateTime = LocalDateTime.of(localDate, localTime);
-            serologicalTest.setDateResult(localDateTime);
+            serologicalTest.setDateResult(localDate);
 
             // Ask for the user to confirm changes
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -143,21 +135,6 @@ public class SerologicalTestAddPropertiesViewController implements Initializable
             isValid = false;
         }
 
-        if (spContactHours.getValue() == null || spContactHours.getValue() > 23 || spContactHours.getValue() < 0) {
-            errorMsg.append("- Please enter a valid value for the hours.\n");
-            isValid = false;
-        }
-
-        if (spContactMinutes.getValue() == null || spContactMinutes.getValue() > 59 || spContactMinutes.getValue() < 0) {
-            errorMsg.append("- Please enter a valid value for the minutes.\n");
-            isValid = false;
-        }
-
-        if (spContactSeconds.getValue() == null || spContactSeconds.getValue() > 59 || spContactSeconds.getValue() < 0) {
-            errorMsg.append("- Please enter a valid value for the seconds.\n");
-            isValid = false;
-        }
-
         if(cbIgM.getValue() == null) {
             errorMsg.append("- Please select IgM positivity.\n");
             isValid = false;
@@ -185,13 +162,6 @@ public class SerologicalTestAddPropertiesViewController implements Initializable
 
         cbIgM.setItems(availableChoices);
         cbIgG.setItems(availableChoices);
-
-        SpinnerValueFactory<Integer> hoursSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
-        this.spContactHours.setValueFactory(hoursSpinnerValueFactory);
-        SpinnerValueFactory<Integer> minutesSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
-        this.spContactMinutes.setValueFactory(minutesSpinnerValueFactory);
-        SpinnerValueFactory<Integer> secondsSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
-        this.spContactSeconds.setValueFactory(secondsSpinnerValueFactory);
 
     }
 

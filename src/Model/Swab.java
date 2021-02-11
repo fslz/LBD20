@@ -1,19 +1,20 @@
 package Model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 public class Swab {
 
     private int id;
     private User user;
-    private LocalDateTime dateResult;
+    private LocalDate dateResult;
     private String positivity;
 
     public Swab(){
 
     }
 
-    public Swab(int id, User user, LocalDateTime dateResult, String positivity) {
+    public Swab(int id, User user, LocalDate dateResult, String positivity) {
         this.id = id;
         this.user = user;
         this.dateResult = dateResult;
@@ -36,11 +37,11 @@ public class Swab {
         this.user = user;
     }
 
-    public LocalDateTime getDateResult() {
+    public LocalDate getDateResult() {
         return dateResult;
     }
 
-    public void setDateResult(LocalDateTime dateResult) {
+    public void setDateResult(LocalDate dateResult) {
         this.dateResult = dateResult;
     }
 

@@ -138,8 +138,8 @@ public class RelationshipDAOOracleImpl implements DAO<Relationship> {
                                         rs.getString("firstname2"),
                                         rs.getString("last_name2"),
                                         rs.getString("gender2"),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_birth2")),
-                                        Util.convertToEntityAttribute(rs.getTimestamp("date_of_death2"))
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_birth2")),
+                                        Util.convertToEntityAttribute(rs.getDate("date_of_death2"))
                                 ),
 
                                 // Get relationship type

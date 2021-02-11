@@ -1,7 +1,6 @@
 package Model;
 
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -13,8 +12,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String gender;
-    private LocalDateTime dateOfBirth;
-    private LocalDateTime dateOfDeath;
+    private LocalDate dateOfBirth;
+    private LocalDate dateOfDeath;
 
     // Mapped Associations
     private List<Contact> contactList;
@@ -24,7 +23,7 @@ public class User {
     private List<HealthCheck> healthCheckList;
 
 
-    public User(int id, String userName, String firstName, String lastName, String gender, LocalDateTime dateOfBirth, LocalDateTime dateOfDeath) {
+    public User(int id, String userName, String firstName, String lastName, String gender, LocalDate dateOfBirth, LocalDate dateOfDeath) {
 
         this.id = id;
         this.userName = userName;
@@ -95,9 +94,9 @@ public class User {
 
     public String getGender() { return gender; }
 
-    public LocalDateTime getDateOfBirth() { return this.dateOfBirth; }
+    public LocalDate getDateOfBirth() { return this.dateOfBirth; }
 
-    public LocalDateTime getDateOfDeath() { return this.dateOfDeath; }
+    public LocalDate getDateOfDeath() { return this.dateOfDeath; }
 
     public void setId(int id) { this.id = id; }
 
@@ -109,11 +108,11 @@ public class User {
 
     public void setGender(String gender) { this.gender = gender; }
 
-    public void setDateOfBirth(LocalDateTime dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setDateOfDeath(LocalDateTime dateOfDeath) {
+    public void setDateOfDeath(LocalDate dateOfDeath) {
         this.dateOfDeath = dateOfDeath;
     }
 

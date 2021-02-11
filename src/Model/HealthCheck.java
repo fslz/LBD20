@@ -1,12 +1,12 @@
 package Model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class HealthCheck {
 
     private int id;
     private User user;
-    private LocalDateTime dateOfCheck;
+    private LocalDate dateOfCheck;
     private String fever;
     private String respiratoryDisorder;
     private String smellTasteDisorder;
@@ -15,7 +15,7 @@ public class HealthCheck {
 
     }
 
-    public HealthCheck(int id, User user, LocalDateTime dateOfCheck, String fever, String respiratoryDisorder, String smellTasteDisorder) {
+    public HealthCheck(int id, User user, LocalDate dateOfCheck, String fever, String respiratoryDisorder, String smellTasteDisorder) {
         this.id = id;
         this.user = user;
         this.dateOfCheck = dateOfCheck;
@@ -40,11 +40,11 @@ public class HealthCheck {
         this.user = user;
     }
 
-    public LocalDateTime getDateOfCheck() {
+    public LocalDate getDateOfCheck() {
         return dateOfCheck;
     }
 
-    public void setDateOfCheck(LocalDateTime dateOfCheck) {
+    public void setDateOfCheck(LocalDate dateOfCheck) {
         this.dateOfCheck = dateOfCheck;
     }
 
