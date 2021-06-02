@@ -65,6 +65,7 @@ public class UserDAOOracleImpl implements DAO<User> {
      */
     public ObservableList<User> getAll() throws SQLException {
 
+        // Declare and instantiate an empty ObservableList.
         ObservableList<User> userList = FXCollections.observableArrayList();
 
         Connection connection = null;
@@ -73,6 +74,7 @@ public class UserDAOOracleImpl implements DAO<User> {
 
         try {
 
+            // Assign a DB connection.
             connection = new DbConnector().getConnection();
 
             pstmt = connection.prepareStatement("SELECT * FROM users");

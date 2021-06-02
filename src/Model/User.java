@@ -41,7 +41,6 @@ public class User {
     }
 
 
-
     public List<Contact> getContactList() {
         return contactList;
     }

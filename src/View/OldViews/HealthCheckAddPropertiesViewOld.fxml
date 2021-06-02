@@ -26,7 +26,7 @@
       <Label layoutX="34.0" layoutY="136.0" text="Insert diagnosis result:" />
       <ChoiceBox fx:id="cbRespiratoryDisorders" focusTraversable="false" layoutX="54.0" layoutY="239.0" prefHeight="25.0" prefWidth="149.0" />
       <Label fx:id="lblRespiratoryDisorders" layoutX="55.0" layoutY="222.0" text="Respiratory Disorders*" />
-      <ChoiceBox fx:id="cbSmellTasteDIsorders" focusTraversable="false" layoutX="54.0" layoutY="290.0" prefHeight="25.0" prefWidth="149.0" />
+      <ChoiceBox fx:id="cbSmellTasteDisorders" focusTraversable="false" layoutX="54.0" layoutY="290.0" prefHeight="25.0" prefWidth="149.0" />
       <Label fx:id="lblSmellTasteDIsorders" layoutX="55.0" layoutY="273.0" text="Smell/Taste Disorders*" />
    </children>
 </AnchorPane>

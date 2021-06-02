@@ -1,9 +1,7 @@
 package Controller.HealthCheck;
 
 import DAO.HealthCheckDAOOracleImpl;
-import DAO.SerologicalTestDAOOracleImpl;
 import Model.HealthCheck;
-import Model.SerologicalTest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,7 +15,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -27,7 +24,7 @@ public class HealthCheckAddPropertiesViewController implements Initializable {
     @FXML
     private ChoiceBox<String> cbFever;
     @FXML
-    private ChoiceBox<String> cbSmellTasteDIsorders;
+    private ChoiceBox<String> cbSmellTasteDisorders;
     @FXML
     private Label lblFever;
     @FXML
@@ -40,9 +37,8 @@ public class HealthCheckAddPropertiesViewController implements Initializable {
     private ChoiceBox<String> cbRespiratoryDisorders;
     @FXML
     private Label lblRespiratoryDisorders;
-
     @FXML
-    private Label lblSmellTasteDIsorders;
+    private Label lblSmellTasteDisorders;
 
 
     private LocalDateTime localDateTime = null;
@@ -68,7 +64,7 @@ public class HealthCheckAddPropertiesViewController implements Initializable {
 
             healthCheck.setFever(cbFever.getValue());
             healthCheck.setRespiratoryDisorder(cbRespiratoryDisorders.getValue());
-            healthCheck.setSmellTasteDisorder(cbSmellTasteDIsorders.getValue());
+            healthCheck.setSmellTasteDisorder(cbSmellTasteDisorders.getValue());
 
             LocalDate localDate = dpContactDate.getValue();
             healthCheck.setDateOfCheck(localDate);
@@ -150,7 +146,7 @@ public class HealthCheckAddPropertiesViewController implements Initializable {
             isValid = false;
         }
 
-        if(cbSmellTasteDIsorders.getValue() == null) {
+        if(cbSmellTasteDisorders.getValue() == null) {
             errorMsg.append("- Please select a value for Smell/Taste Disorder.\n");
             isValid = false;
         }
@@ -172,7 +168,7 @@ public class HealthCheckAddPropertiesViewController implements Initializable {
 
         cbFever.setItems(availableChoices);
         cbRespiratoryDisorders.setItems(availableChoices);
-        cbSmellTasteDIsorders.setItems(availableChoices);
+        cbSmellTasteDisorders.setItems(availableChoices);
 
     }
 
