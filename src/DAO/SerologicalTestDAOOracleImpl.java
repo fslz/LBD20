@@ -68,6 +68,40 @@ public class SerologicalTestDAOOracleImpl implements DAO<SerologicalTest> {
     @Override
     public void update(SerologicalTest serologicalTest) throws SQLException {
 
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+
+        try {
+
+            connection = new DbConnector().getConnection();
+
+            pstmt = connection.prepareStatement("UPDATE SEROLOGICAL_TEST SET USER_ID = ?, DATE_RESULT = ?, IGM = ?, IGG = ? WHERE SEROLOGICAL_ID = ?");
+
+            pstmt.setInt(1, serologicalTest.getUser().getId());
+            pstmt.setDate(2, Util.convertToDatabaseColumn(serologicalTest.getDateResult()));
+            pstmt.setString(3, serologicalTest.getIgm());
+            pstmt.setString(4, serologicalTest.getIgg());
+            pstmt.setInt(5, serologicalTest.getId());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+
+            throw e;
+
+        }
+        finally{
+
+            try{
+                if(pstmt != null)   pstmt.close();
+                if(connection != null)  connection.close();
+            }
+            catch(SQLException e){
+                throw e;
+            }
+
+        }
+
     }
 
     @Override
