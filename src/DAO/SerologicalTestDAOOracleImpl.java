@@ -15,9 +15,62 @@ import java.sql.SQLException;
 public class SerologicalTestDAOOracleImpl implements DAO<SerologicalTest> {
 
 
+    /*
+    DAO<User> userDAO;
+
+    public SerologicalTestDAOOracleImpl(DAO<User> userDAO){
+        this.userDAO = userDAO;
+    }
+
+    */
     @Override
     public SerologicalTest getById(int id) throws SQLException {
+
+        /*
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        SerologicalTest serologicalTest = null;
+
+        try{
+
+            connection = new DbConnector().getConnection();
+
+            pstmt = connection.prepareStatement("SELECT * FROM serological_tests WHERE serological_test_id = ?");
+            // TODO setString
+            rs = pstmt.executeQuery();
+
+            serologicalTest = new SerologicalTest(
+                    rs.getInt("serological_test_id"),
+                    // calling the UserDAO in order to fetch user data.
+                    userDAO.getById(rs.getInt("user_id")),
+                    Util.convertToEntityAttribute(rs.getDate("date_result")),
+                    rs.getString("igm"),
+                    rs.getString("igg")
+            );
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            return null;
+
+        }
+        finally{
+
+            try{
+                if(pstmt != null)   pstmt.close();
+                if(connection != null)  connection.close();
+            }
+            catch(SQLException e){
+                throw e;
+            }
+
+        }
+
+        return serologicalTest;
+        */
         return null;
+
     }
 
     @Override

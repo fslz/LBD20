@@ -4,6 +4,7 @@ import Controller.SerologicalTest.SerologicalTestAddPropertiesViewController;
 import Controller.Swab.SwabAddPropertiesViewController;
 import DAO.SerologicalTestDAOOracleImpl;
 import DAO.SwabDAOOracleImpl;
+import DAO.UserDAOOracleImpl;
 import Model.SerologicalTest;
 import Model.Swab;
 import Model.User;

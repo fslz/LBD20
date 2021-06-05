@@ -23,6 +23,7 @@ public class UserDAOOracleImpl implements DAO<User> {
             connection = new DbConnector().getConnection();
 
             pstmt = connection.prepareStatement("SELECT * FROM users WHERE user_id = ?");
+            pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
 
             user = new User(

@@ -33,7 +33,7 @@ public class SwabAddPropertiesViewController implements Initializable {
     @FXML
     private Button btnSave;
     @FXML
-    private DatePicker dpContactDate;
+    private DatePicker dpSwabDate;
 
 
 
@@ -54,7 +54,7 @@ public class SwabAddPropertiesViewController implements Initializable {
 
             swab.setPositivity(cbPositivity.getValue());
 
-            LocalDate localDate = dpContactDate.getValue();
+            LocalDate localDate = dpSwabDate.getValue();
             swab.setDateResult(localDate);
 
             // Ask for the user to confirm changes
@@ -126,7 +126,7 @@ public class SwabAddPropertiesViewController implements Initializable {
         boolean isValid = true;
         StringBuilder errorMsg = new StringBuilder();
 
-        if (dpContactDate.getValue() == null) {
+        if (dpSwabDate.getValue() == null) {
             errorMsg.append("- Please select a valid date.\n");
             isValid = false;
         }
