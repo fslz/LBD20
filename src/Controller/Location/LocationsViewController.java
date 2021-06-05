@@ -80,6 +80,7 @@ public class LocationsViewController implements Initializable {
             Scene mainMenu = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             root.requestFocus();
+            stage.setTitle("Main Menu");
             stage.setScene(mainMenu);
 
         } catch (IOException e) {

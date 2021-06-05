@@ -54,6 +54,7 @@ public class UserViewController implements Initializable {
             Scene mainMenu = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             root.requestFocus();
+            stage.setTitle("Main Menu");
             stage.setScene(mainMenu);
 
         } catch (IOException e) {
@@ -298,25 +299,35 @@ public class UserViewController implements Initializable {
 
     private void showEditUserView() {
 
-        try {
+        // If the user has selected a row.
+        if(selectedUser != null) {
+            try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserEditView.fxml"));
-            Parent root = fxmlLoader.load();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserEditView.fxml"));
+                Parent root = fxmlLoader.load();
 
-            UserEditViewController userEditViewController = fxmlLoader.getController();
-            userEditViewController.setUser(selectedUser);
+                UserEditViewController userEditViewController = fxmlLoader.getController();
+                userEditViewController.setUser(selectedUser);
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Edit User");
-            stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
-            stage.showAndWait();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Edit User");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
+                stage.showAndWait();
 
-        } catch (IOException e) {
+            } catch (IOException e) {
 
-            e.printStackTrace();
+                e.printStackTrace();
 
+            }
+        }
+        // else select a user first.
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Please select a user from the table");
+            alert.setHeaderText("User not selected");
+            alert.showAndWait();
         }
 
     }
@@ -362,7 +373,7 @@ public class UserViewController implements Initializable {
 
         setupUserTable();
         updateUserTable();
-
+        selectedUser = null;
     }
 
 
