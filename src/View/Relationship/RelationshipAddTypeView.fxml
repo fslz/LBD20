@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="166.0" prefWidth="337.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Relationship.RelationshipAddTypeViewController">
+<AnchorPane prefHeight="166.0" prefWidth="337.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Relationship.RelationshipAddTypeViewController">
    <children>
       <Button fx:id="btnNext" layoutX="169.0" layoutY="127.0" mnemonicParsing="false" onAction="#btnNextOnAction" prefHeight="25.0" prefWidth="70.0" text="Next" />
       <Button fx:id="btnCancel" layoutX="255.0" layoutY="127.0" mnemonicParsing="false" onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="70.0" text="Cancel" />

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="191.0" prefWidth="431.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Contact.ContactAddDateAndTimeViewController">
+<AnchorPane prefHeight="191.0" prefWidth="431.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Contact.ContactAddDateAndTimeViewController">
    <children>
       <DatePicker fx:id="dpContactDate" focusTraversable="false" layoutX="28.0" layoutY="76.0" prefHeight="25.0" prefWidth="137.0" />
       <Label layoutX="203.0" layoutY="57.0" text="Hours:" />

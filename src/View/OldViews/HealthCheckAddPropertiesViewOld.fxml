@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="377.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HealthCheck.HealthCheckAddPropertiesViewController">
+<AnchorPane prefHeight="377.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HealthCheck.HealthCheckAddPropertiesViewController">
    <children>
       <ChoiceBox fx:id="cbFever" focusTraversable="false" layoutX="54.0" layoutY="188.0" prefHeight="25.0" prefWidth="149.0" />
       <Label fx:id="lblFever" layoutX="55.0" layoutY="171.0" text="Fever*" />

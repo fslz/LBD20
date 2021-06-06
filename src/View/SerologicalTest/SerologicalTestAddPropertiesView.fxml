@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="316.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SerologicalTest.SerologicalTestAddPropertiesViewController">
+<AnchorPane prefHeight="316.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SerologicalTest.SerologicalTestAddPropertiesViewController">
    <children>
       <ChoiceBox fx:id="cbIgM" focusTraversable="false" layoutX="44.0" layoutY="178.0" prefHeight="25.0" prefWidth="149.0" />
       <Label fx:id="lblIgM" layoutX="45.0" layoutY="161.0" text="IgM*" />

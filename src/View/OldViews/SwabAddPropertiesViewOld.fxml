@@ -7,7 +7,7 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="265.0" prefWidth="438.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Swab.SwabAddPropertiesViewController">
+<AnchorPane prefHeight="265.0" prefWidth="438.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Swab.SwabAddPropertiesViewController">
    <children>
       <ChoiceBox fx:id="cbPositivity" focusTraversable="false" layoutX="34.0" layoutY="168.0" prefHeight="25.0" prefWidth="149.0" />
       <Label fx:id="lblPositivity" layoutX="35.0" layoutY="151.0" text="Positivity*" />

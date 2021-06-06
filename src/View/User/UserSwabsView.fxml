@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="701.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.User.UserSwabsViewController">
+<AnchorPane prefHeight="701.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.User.UserSwabsViewController">
    <children>
       <TableView fx:id="tblUserSwabs" focusTraversable="false" layoutX="14.0" layoutY="69.0" onMouseClicked="#tblUserSwabsOnMouseClicked" prefHeight="566.0" prefWidth="507.0">
          <columns>
