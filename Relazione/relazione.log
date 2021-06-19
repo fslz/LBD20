@@ -1,0 +1,599 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.2.5)  20 MAR 2021 18:57
+entering extended mode
+**./relazione.tex
+(relazione.tex
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-01-09> xparse <2020-03-03>
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/base\book.cls
+Document Class: book 2020/04/10 v1.4m Standard LaTeX document class
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/base\bk10.clo
+File: bk10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+)
+\c@part=\count177
+\c@chapter=\count178
+\c@section=\count179
+\c@subsection=\count180
+\c@subsubsection=\count181
+\c@paragraph=\count182
+\c@subparagraph=\count183
+\c@figure=\count184
+\c@table=\count185
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2020/08/01 v1.3d Input encoding file
+\inpenc@prehook=\toks15
+\inpenc@posthook=\toks16
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2021/01/26 3.53 The Babel package
+
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.def
+File: babel.def 2021/01/26 3.53 Babel common definitions
+\babel@savecnt=\count186
+\U@D=\dimen139
+\l@babelnohyphens=\language79
+
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def
+)
+\bbl@readstream=\read2
+)
+\bbl@dirlevel=\count187
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/babel-english\englis
+h.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: \l@canadian = using hyphenrules for english
+(babel)             (\language0) on input line 102.
+Package babel Info: \l@australian = using hyphenrules for ukenglish
+(babel)             (\language73) on input line 105.
+Package babel Info: \l@newzealand = using hyphenrules for ukenglish
+(babel)             (\language73) on input line 108.
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/babel-italian\italia
+n.ldf
+Language: italian 2020/05/21 v.1.4.04 Italian support for the babel system
+\it@lettering=\count188
+\it@doublequoteactive=\count189
+\it@ISOcompliance=\count190
+))
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.st
+y
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count191
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/frontespizio\frontes
+pizio.sty
+Package: frontespizio 2011/09/21 1.4a (Enrico Gregorio)
+
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/latex-tools\afterpag
+e.sty
+Package: afterpage 2014/10/28 v1.08 After-Page Package (DPC)
+\AP@output=\toks17
+\AP@partial=\box47
+\AP@footins=\box48
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.st
+y
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks18
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.st
+y
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+ (C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphic
+s.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.
+def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen140
+\Gin@req@width=\dimen141
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.st
+y
+Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
+ge
+with kernel methods
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspace
+s.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+)
+\@envbody=\toks19
+))
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/latex-tools\tabularx
+.sty
+Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
+
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/latex-tools\array.st
+y
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen142
+\ar@mcellbox=\box49
+\extrarowheight=\dimen143
+\NC@list=\toks20
+\extratabsurround=\skip49
+\backup@length=\skip50
+\ar@cellbox=\box50
+)
+\TX@col@width=\dimen144
+\TX@old@table=\dimen145
+\TX@old@col=\dimen146
+\TX@target=\dimen147
+\TX@delta=\dimen148
+\TX@cols=\count192
+\TX@ftn=\toks21
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/ltablex\ltablex.sty
+Package: ltablex 2014/08/13 v1.1 Modified tabularx
+
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/latex-tools\longtabl
+e.sty
+Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
+\LTleft=\skip51
+\LTright=\skip52
+\LTpre=\skip53
+\LTpost=\skip54
+\LTchunksize=\count193
+\LTcapwidth=\dimen149
+\LT@head=\box51
+\LT@firsthead=\box52
+\LT@foot=\box53
+\LT@lastfoot=\box54
+\LT@cols=\count194
+\LT@rows=\count195
+\c@LT@tables=\count196
+\c@LT@chunks=\count197
+\LT@p@ftn=\toks22
+))
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.st
+y
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen150
+\lightrulewidth=\dimen151
+\cmidrulewidth=\dimen152
+\belowrulesep=\dimen153
+\belowbottomsep=\dimen154
+\aboverulesep=\dimen155
+\abovetopsep=\dimen156
+\cmidrulesep=\dimen157
+\cmidrulekern=\dimen158
+\defaultaddspace=\dimen159
+\@cmidla=\count198
+\@cmidlb=\count199
+\@aboverulesep=\dimen160
+\@belowrulesep=\dimen161
+\@thisruleclass=\count266
+\@lastruleclass=\count267
+\@thisrulewidth=\dimen162
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.st
+y
+Package: multirow 2021/01/29 v2.7 Span multiple rows of a table
+\multirow@colwidth=\skip55
+\multirow@cntb=\count268
+\multirow@dima=\skip56
+\bigstrutjot=\dimen163
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-
+pdftex.def
+File: l3backend-pdftex.def 2020-01-29 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count269
+\l__pdf_internal_box=\box55
+) (relazione.aux)
+\openout1 = `relazione.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Info: Redefining \it@ocap on input line 14.
+LaTeX Info: Redefining \it@ccap on input line 14.
+
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
+.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count270
+\scratchdimen=\dimen164
+\scratchbox=\box56
+\nofMPsegments=\count271
+\nofMParguments=\count272
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count273
+\MPscratchDim=\dimen165
+\MPnumerator=\count274
+\makeMPintoPDFobject=\count275
+\everyMPtoPDFconversion=\toks24
+)
+(C:\Users\krechyyy\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
+f-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+)
+<frontespizio-frn.pdf, id=1, 597.50829pt x 845.0471pt>
+File: frontespizio-frn.pdf Graphic file (type pdf)
+<use frontespizio-frn.pdf>
+Package pdftex.def Info: frontespizio-frn.pdf  used on input line 15.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+ [1
+
+
+ <./frontespizio-frn.pdf{C:/Users/krechyyy/AppData/Local/MiKTeX/pdftex/config/p
+dftex.map}>] [2
+
+]
+Capitolo 1.
+[3] [4
+
+]
+Capitolo 2.
+
+
+pdfTeX warning: pdflatex.exe (file ./ClassDiagram.pdf): PDF inclusion: found PD
+F version <1.7>, but at most version <1.5> allowed
+<ClassDiagram.pdf, id=49, 597.23125pt x 845.1575pt>
+File: ClassDiagram.pdf Graphic file (type pdf)
+<use ClassDiagram.pdf>
+Package pdftex.def Info: ClassDiagram.pdf  used on input line 34.
+(pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
+
+Overfull \hbox (252.22978pt too wide) in paragraph at lines 34--35
+[] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5]
+Overfull \vbox (270.8551pt too high) has occurred while \output is active []
+
+
+[6 <./ClassDiagram.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]|\T1/cmr/m/n/10 Descrittore di cia-scun
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+\T1/cmr/m/n/10 uten-te pre-sen-te nel-la
+ []
+
+
+Underfull \hbox (badness 1558) in paragraph at lines 119--119
+\T1/cmr/m/n/10 sin-te-ti-ca per iden-ti-fi-ca-re
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 First_Name \T1/cmr/m/n/10 (string):
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Last_name \T1/cmr/m/n/10 (string):
+ []
+
+
+Underfull \hbox (badness 4954) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Gender \T1/cmr/m/n/10 (char): ses-so
+ []
+
+
+Underfull \hbox (badness 1910) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Date_of_birth \T1/cmr/m/n/10 (da-te):
+ []
+
+
+Underfull \hbox (badness 1881) in paragraph at lines 119--119
+\T1/cmr/m/n/10 pos-si-bi-le da-ta di mor-te
+ []
+
+
+Underfull \hbox (badness 3019) in paragraph at lines 119--119
+\T1/cmr/m/n/10 ve sin-te-ti-ca per iden-ti-
+ []
+
+
+Underfull \hbox (badness 1173) in paragraph at lines 119--119
+\T1/cmr/m/n/10 fi-ca-re uni-vo-ca-men-te uno
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Serological_test_id
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+\T1/cmr/m/n/10 (in-te-ger): chia-ve sin-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+\T1/cmr/m/n/10 te-ti-ca per iden-ti-fi-ca-re
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+\T1/cmr/m/n/10 uni-vo-ca-men-te un te-st
+ []
+
+
+Underfull \hbox (badness 2970) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 IGM \T1/cmr/m/n/10 (char): even-tua-
+ []
+
+
+Underfull \hbox (badness 1460) in paragraph at lines 119--119
+\T1/cmr/m/n/10 le pre-sen-za di an-ti-cor-pi
+ []
+
+
+Underfull \hbox (badness 1953) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 IGG \T1/cmr/m/n/10 (char): even-tua-le
+ []
+
+
+Underfull \hbox (badness 4981) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Health_check_id \T1/cmr/m/n/10 (in-
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 119--119
+\T1/cmr/m/n/10 te-ger): chia-ve sin-te-ti-ca
+ []
+
+
+Underfull \hbox (badness 1297) in paragraph at lines 119--119
+\T1/cmr/m/n/10 per iden-ti-fi-ca-re uni-vo-ca-
+ []
+
+
+Underfull \hbox (badness 1436) in paragraph at lines 119--119
+\T1/cmr/m/n/10 da-ta in cui è av-ve-nu-to
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Respiratory_disorder
+ []
+
+
+Underfull \hbox (badness 5189) in paragraph at lines 119--119
+\T1/cmr/m/n/10 (char): even-tua-le pre-
+ []
+
+
+Underfull \hbox (badness 1668) in paragraph at lines 119--119
+\T1/cmr/m/n/10 sen-za del sin-to-mo del-la
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Smell_taste_disorder
+ []
+
+
+Underfull \hbox (badness 5189) in paragraph at lines 119--119
+\T1/cmr/m/n/10 (char): even-tua-le pre-
+ []
+
+
+Underfull \hbox (badness 1668) in paragraph at lines 119--119
+\T1/cmr/m/n/10 sen-za del sin-to-mo del-la
+ []
+
+
+Underfull \hbox (badness 7576) in paragraph at lines 119--119
+[]|\T1/cmr/m/n/10 Descrittore del-l'ap-par-te-
+ []
+
+
+Underfull \hbox (badness 3128) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Relationship_id \T1/cmr/m/n/10 (in-te-
+ []
+
+
+Underfull \hbox (badness 7576) in paragraph at lines 119--119
+[]|\T1/cmr/m/n/10 Descrittore del-l'ap-par-te-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Contact_id \T1/cmr/m/n/10 (in-te-ger):
+ []
+
+
+Underfull \hbox (badness 3128) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Relationship_id \T1/cmr/m/n/10 (in-te-
+ []
+
+
+Underfull \hbox (badness 7576) in paragraph at lines 119--119
+[]|\T1/cmr/m/n/10 Descrittore del-l'ap-par-te-
+ []
+
+
+Underfull \hbox (badness 3128) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Relationship_id \T1/cmr/m/n/10 (in-te-
+ []
+
+
+Underfull \hbox (badness 7576) in paragraph at lines 119--119
+[]|\T1/cmr/m/n/10 Descrittore del-l'ap-par-te-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Contact_id \T1/cmr/m/n/10 (in-te-ger):
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Location_id \T1/cmr/m/n/10 (in-te-ger):
+ []
+
+
+Underfull \hbox (badness 7576) in paragraph at lines 119--119
+[]|\T1/cmr/m/n/10 Descrittore del-l'ap-par-te-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]|\T1/cmr/bx/n/10 Location_id \T1/cmr/m/n/10 (in-te-ger):
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 119
+ []
+
+[7] [8]
+Underfull \hbox (badness 4060) in paragraph at lines 148--148
+[]|\T1/cmr/m/n/10 Esprime l'a-ver ri-ce-vu-to un
+ []
+
+
+Underfull \hbox (badness 2799) in paragraph at lines 148--148
+\T1/cmr/m/n/10 qua-dri cli-ni-ci ri-ce-vu-ti da-gli
+ []
+
+
+Underfull \hbox (badness 6125) in paragraph at lines 148--148
+[]|\T1/cmr/m/n/10 Esprime l'oc-co-ren-za di un
+ []
+
+
+Underfull \hbox (badness 2376) in paragraph at lines 148--148
+\T1/cmr/m/n/10 de-ter-mi-na-to con-tat-to in un
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 148
+ []
+
+[9] [10]
+Capitolo 3.
+
+Overfull \hbox (7.06819pt too wide) in paragraph at lines 155--157
+\T1/cmr/bx/n/10 USER\T1/cmr/m/n/10 ($[]$, User-na-me, Fir-st_name, La-st_name, 
+Gen-der, Pla-ce_of_birth,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--157
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--160
+
+ []
+
+
+Overfull \hbox (7.25266pt too wide) in paragraph at lines 161--163
+[]\T1/cmr/bx/n/10 SEROLOGICAL_TEST \T1/cmr/m/n/10 ($[]$, $[]$, Da-te_result,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--163
+
+ []
+
+
+Overfull \hbox (3.31473pt too wide) in paragraph at lines 164--166
+[]\T1/cmr/bx/n/10 HEALTH_CHECK \T1/cmr/m/n/10 ($[]$, $[]$, Da-te_of_check, Fe-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--166
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--169
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--173
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--176
+
+ []
+
+[11
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 177--179
+
+ []
+
+[12] (relazione.aux) ) 
+Here is how much of TeX's memory you used:
+ 3118 strings out of 479618
+ 45336 string characters out of 2863602
+ 383406 words of memory out of 3000000
+ 20257 multiletter control sequences out of 15000+200000
+ 411195 words of font info for 37 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 83i,10n,88p,544b,369s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\krechyyy\AppData\Local\MiKTeX\fonts/pk/ljfour/
+jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\krechyyy\AppData\Local\MiKTeX\fonts/p
+k/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\krechyyy\AppData\Local\MiKTe
+X\fonts/pk/ljfour/jknappen/ec/dpi600\ecsl1000.pk> <C:\Users\krechyyy\AppData\Lo
+cal\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\krechyyy\A
+ppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\k
+rechyyy\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C
+:\Users\krechyyy\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx20
+74.pk><C:/Users/krechyyy/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmbx12.pfb><C:/Users/krechyyy/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmbx9.pfb><C:/Users/krechyyy/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/krechyyy/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/krechyyy/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+Output written on relazione.pdf (12 pages, 587393 bytes).
+PDF statistics:
+ 346 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+

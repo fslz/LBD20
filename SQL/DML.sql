@@ -1,4 +1,3 @@
-
 --     ____                        __
 --    /  _/  ___   ___ ___   ____ / /_  ___
 --   _/ /   / _ \ (_-</ -_) / __// __/ (_-<
@@ -106,3 +105,11 @@ VALUES (0, 15, 13, 1, TO_DATE('29-11-2020 12:22:58', 'dd-mm-yyyy hh24:mi:ss')); 
 INSERT INTO contacts_all_v
 VALUES (0, 16, 5, 3, TO_DATE('30-11-2020 16:02:38', 'dd-mm-yyyy hh24:mi:ss'));
 -- [17]
+
+-- HealthChecks
+INSERT INTO health_checks (health_check_id, user_id, date_of_check, fever, respiratory_disorder, smell_taste_disorder)
+VALUES (0, 2, TO_DATE('01-06-2021 20:13:27', 'dd-mm-yyyy hh24:mi:ss'), 'Y', 'Y', 'Y');
+
+-- SEROLOGICAL TESTS
+INSERT INTO serological_tests (serological_test_id, user_id, date_result, igm, igg)
+VALUES (0, 2, TO_DATE('28-05-2021 20:13:27', 'dd-mm-yyyy hh24:mi:ss'), 'positive', 'negative');

@@ -1,0 +1,6 @@
+\glossaryentry{v1.0> =General:>First public release}{1}
+\glossaryentry{v1.2> =General:>Added `noinputenc' and `nouppercase' options; added `Preambolo*' environment; various implementation changes}{1}
+\glossaryentry{v1.3> =General:>Added support for memoir}{1}
+\glossaryentry{v1.3a> =General:>Added info message in the \texttt  {frn} file}{1}
+\glossaryentry{v1.4> =General:>Added option `suftesi'; updated the documentation}{1}
+\glossaryentry{v1.4a> =General:>Maintenance release, no changes}{1}

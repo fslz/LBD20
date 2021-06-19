@@ -1,0 +1,411 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.3.2)  9 MAR 2021 11:58
+entering extended mode
+**./frontespizio.dtx
+(frontespizio.dtx
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-01-09> xparse <2020-03-03>
+File: frontespizio.dtx 2011/09/21 1.4a (Enrico Gregorio)
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/base\ltxdoc.cls
+Document Class: ltxdoc 2020/10/04 v2.1b Standard LaTeX documentation class
+*************************************
+* Local config file ltxdoc.cfg used
+*************************************
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/endfloat\ltxdoc.cfg)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+)
+\c@part=\count177
+\c@section=\count178
+\c@subsection=\count179
+\c@subsubsection=\count180
+\c@paragraph=\count181
+\c@subparagraph=\count182
+\c@figure=\count183
+\c@table=\count184
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/base\doc.sty
+Package: doc 2020/06/15 v2.1m Standard LaTeX documentation package (FMi)
+\c@StandardModuleDepth=\count185
+\guard@level=\count186
+\MacrocodeTopsep=\skip49
+\MacroIndent=\dimen139
+\macro@cnt=\count187
+\MacroTopsep=\skip50
+\index@excludelist=\toks15
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/latex-tools\multicol.
+sty
+Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
+\c@tracingmulticols=\count188
+\mult@box=\box47
+\multicol@leftmargin=\dimen140
+\c@unbalance=\count189
+\c@collectmore=\count190
+\doublecol@number=\count191
+\multicoltolerance=\count192
+\multicolpretolerance=\count193
+\full@width=\dimen141
+\page@free=\dimen142
+\premulticols=\dimen143
+\postmulticols=\dimen144
+\multicolsep=\skip51
+\multicolbaselineskip=\skip52
+\partial@page=\box48
+\last@line=\box49
+\maxbalancingoverflow=\dimen145
+\mult@rightbox=\box50
+\mult@grightbox=\box51
+\mult@gfirstbox=\box52
+\mult@firstbox=\box53
+\@tempa=\box54
+\@tempa=\box55
+\@tempa=\box56
+\@tempa=\box57
+\@tempa=\box58
+\@tempa=\box59
+\@tempa=\box60
+\@tempa=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\c@minrows=\count194
+\c@columnbadness=\count195
+\c@finalcolumnbadness=\count196
+\last@try=\dimen146
+\multicolovershoot=\dimen147
+\multicolundershoot=\dimen148
+\mult@nat@firstbox=\box91
+\colbreak@box=\box92
+\mc@col@check@num=\count197
+)
+\IndexMin=\dimen149
+\c@IndexColumns=\count198
+\GlossaryMin=\dimen150
+\c@GlossaryColumns=\count199
+\check@sum=\count266
+\bslash@cnt=\count267
+\wrong@table=\toks16
+\c@CodelineNo=\count268
+))
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2021/01/26 3.53 The Babel package
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.def
+File: babel.def 2021/01/26 3.53 Babel common definitions
+\babel@savecnt=\count269
+\U@D=\dimen151
+\l@babelnohyphens=\language79
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
+\bbl@readstream=\read2
+)
+\bbl@dirlevel=\count270
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/babel-english\english
+.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: \l@canadian = using hyphenrules for english
+(babel)             (\language0) on input line 102.
+Package babel Info: \l@australian = using hyphenrules for ukenglish
+(babel)             (\language73) on input line 105.
+Package babel Info: \l@newzealand = using hyphenrules for ukenglish
+(babel)             (\language73) on input line 108.
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/babel-italian\italian
+.ldf
+Language: italian 2020/05/21 v.1.4.04 Italian support for the babel system
+\it@lettering=\count271
+\it@doublequoteactive=\count272
+\it@ISOcompliance=\count273
+))
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count274
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics
+.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.d
+ef
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen152
+\Gin@req@width=\dimen153
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/latex-tools\array.sty
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen154
+\ar@mcellbox=\box93
+\extrarowheight=\dimen155
+\NC@list=\toks18
+\extratabsurround=\skip53
+\backup@length=\skip54
+\ar@cellbox=\box94
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen156
+\lightrulewidth=\dimen157
+\cmidrulewidth=\dimen158
+\belowrulesep=\dimen159
+\belowbottomsep=\dimen160
+\aboverulesep=\dimen161
+\abovetopsep=\dimen162
+\cmidrulesep=\dimen163
+\cmidrulekern=\dimen164
+\defaultaddspace=\dimen165
+\@cmidla=\count275
+\@cmidlb=\count276
+\@aboverulesep=\dimen166
+\@belowrulesep=\dimen167
+\@thisruleclass=\count277
+\@lastruleclass=\count278
+\@thisrulewidth=\dimen168
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.s
+ty
+Package: microtype 2021/02/25 v2.8b Micro-typographical refinements (RS)
+\MT@toks=\toks19
+\MT@count=\count279
+LaTeX Info: Redefining \textls on input line 788.
+\MT@outer@kern=\dimen169
+LaTeX Info: Redefining \textmicrotypecontext on input line 1358.
+\MT@listname@count=\count280
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-p
+dftex.def
+File: microtype-pdftex.def 2021/02/25 v2.8b Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 915.
+LaTeX Info: Redefining \lslig on input line 915.
+\MT@outer@space=\skip55
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.c
+fg
+File: microtype.cfg 2021/02/25 v2.8b microtype main configuration file (RS)
+))
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/frontespizio\frontesp
+izio.sty
+Package: frontespizio 2011/09/21 1.4a (Enrico Gregorio)
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/latex-tools\afterpage
+.sty
+Package: afterpage 2014/10/28 v1.08 After-Page Package (DPC)
+\AP@output=\toks20
+\AP@partial=\box95
+\AP@footins=\box96
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
+Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
+ge
+with kernel methods
+) (C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspaces
+.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+)
+\@envbody=\toks21
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifpdf.sty
+Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+)
+\front@out=\write3
+\openout3 = `frontespizio-frn.tex'.
+
+)
+\@indexfile=\write4
+\openout4 = `frontespizio.idx'.
+
+Writing index file frontespizio.idx
+\@glossaryfile=\write5
+\openout5 = `frontespizio.glo'.
+
+Writing glossary file frontespizio.glo 
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-p
+dftex.def
+File: l3backend-pdftex.def 2020-01-29 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count281
+\l__pdf_internal_box=\box97
+)
+No file frontespizio.aux.
+\openout1 = `frontespizio.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+Package doc Info: Made | a short reference for \verb on input line 69.
+LaTeX Info: Redefining \it@ocap on input line 69.
+LaTeX Info: Redefining \it@ccap on input line 69.
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.
+mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count282
+\scratchdimen=\dimen170
+\scratchbox=\box98
+\nofMPsegments=\count283
+\nofMParguments=\count284
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count285
+\MPscratchDim=\dimen171
+\MPnumerator=\count286
+\makeMPintoPDFobject=\count287
+\everyMPtoPDFconversion=\toks23
+)
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf
+-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+)
+LaTeX Info: Redefining \microtypecontext on input line 69.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 69.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+) (frontespizio.dtx
+***************************
+* Character table correct *
+***************************
+
+Package frontespizio Warning: Missing file frontespizio-frn.pdf.
+
+[1
+
+]
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
+47.
+ (C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmss.fd
+File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmss' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <17.28> on input line 147.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 147.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 147.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 147.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
+47.
+
+(C:\Users\krechyy\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 147.
+
+[1{C:/Users/krechyy/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
+! pdfTeX error (font expansion): auto expansion is only possible with scalable 
+fonts.
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.202 %\begin{verbatim}
+                       
+
+ 
+Here is how much of TeX's memory you used:
+ 5048 strings out of 479618
+ 79795 string characters out of 2864077
+ 413359 words of memory out of 3000000
+ 22077 multiletter control sequences out of 15000+200000
+ 416795 words of font info for 88 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 68i,6n,74p,241b,272s stack positions out of 5000i,500n,10000p,200000b,50000s
+!  ==> Fatal error occurred, no output PDF file produced!

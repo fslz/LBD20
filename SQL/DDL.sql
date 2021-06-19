@@ -12,7 +12,7 @@ CREATE TABLE users
     first_name    VARCHAR2(25) NOT NULL,
     last_name     VARCHAR2(25) NOT NULL,
     gender        CHAR(1)      NOT NULL,
-    date_of_birth DATE    NOT NULL,
+    date_of_birth DATE         NOT NULL,
     date_of_death DATE,
 
     CONSTRAINT users_pk PRIMARY KEY (user_id),
@@ -52,9 +52,9 @@ CREATE TABLE contacts
 
 CREATE TABLE participants
 (
-    contact_id    INTEGER   NOT NULL,
-    user_id       INTEGER   NOT NULL,
-    date_received DATE NOT NULL,
+    contact_id    INTEGER NOT NULL,
+    user_id       INTEGER NOT NULL,
+    date_received DATE    NOT NULL,
 
     CONSTRAINT participants_pk PRIMARY KEY (contact_id, user_id),
     CONSTRAINT participants_uk UNIQUE (user_id, date_received)
@@ -75,6 +75,7 @@ CREATE TABLE locations
                                     'transportation', 'business'))
 );
 
+
 /*
  CATEGORIES / CONTEXT:
  recreational: hotel, restaurants, bar, public meeting
@@ -91,7 +92,7 @@ CREATE TABLE swabs
 (
     swab_id     INTEGER,
     user_id     INTEGER    NOT NULL,
-    date_result DATE  NOT NULL,
+    date_result DATE       NOT NULL,
     positivity  VARCHAR(8) NOT NULL,
 
     CONSTRAINT swabs_pk PRIMARY KEY (swab_id),
@@ -104,7 +105,7 @@ CREATE TABLE serological_tests
 (
     serological_test_id INTEGER,
     user_id             INTEGER     NOT NULL,
-    date_result         DATE   NOT NULL,
+    date_result         DATE        NOT NULL,
     igm                 VARCHAR2(8) NOT NULL,
     igg                 VARCHAR2(8) NOT NULL,
 
@@ -117,12 +118,12 @@ CREATE TABLE serological_tests
 
 CREATE TABLE health_checks
 (
-    health_check_id      INTEGER   NOT NULL,
-    user_id              INTEGER   NOT NULL,
-    date_of_check        DATE NOT NULL,
-    fever                CHAR(1)   NOT NULL,
-    respiratory_disorder CHAR(1)   NOT NULL,
-    smell_taste_disorder CHAR(1)   NOT NULL,
+    health_check_id      INTEGER NOT NULL,
+    user_id              INTEGER NOT NULL,
+    date_of_check        DATE    NOT NULL,
+    fever                CHAR(1) NOT NULL,
+    respiratory_disorder CHAR(1) NOT NULL,
+    smell_taste_disorder CHAR(1) NOT NULL,
 
     CONSTRAINT health_checks_ck1 CHECK (fever IN ('Y', 'N')),
     CONSTRAINT health_checks_ck2 CHECK (respiratory_disorder IN ('Y', 'N')),
@@ -445,6 +446,50 @@ BEGIN
     :new.health_check_id := health_checks_seq.nextval;
 END;
 
+
+CREATE OR REPLACE TRIGGER delete_after_death_tr
+    AFTER UPDATE
+    ON users
+    FOR EACH ROW
+    WHEN (NEW.date_of_death != NULL)
+DECLARE
+    -- no variables to declare...for now.
+BEGIN
+    -- check if there are SWABS with date_result > :new.date_of_death
+    DELETE
+    FROM swabs
+    where swabs.swab_id IN (SELECT s.swab_id
+                            FROM swabs s
+                            WHERE s.user_id = :new.user_id
+                              AND s.date_result > :new.date_of_death);
+
+    -- check if there are SEROLOGICAL_TESTS with date_result > :new.date_of_death
+    DELETE
+    FROM serological_tests
+    where serological_tests.serological_test_id IN (SELECT st.serological_test_id
+                            FROM serological_tests st
+                            WHERE st.user_id = :new.user_id
+                              AND st.date_result > :new.date_of_death);
+
+    -- check if there are HEALTH_CHECKS with date_result > :new.date_of_death
+    DELETE
+    FROM health_checks
+    where health_checks.health_check_id IN (SELECT hc.health_check_id
+                            FROM health_checks hc
+                            WHERE hc.user_id = :new.user_id
+                              AND hc.date_result > :new.date_of_death);
+
+    -- TODO
+    /*
+    -- check if there are CONTACTS with date_received > :new.date_of_death
+    DELETE
+    FROM contacts_all_v2
+    where swabs.swab_id IN (SELECT s.swab_id
+                            FROM swabs s
+                            WHERE s.user_id = :new.user_id
+                              AND s.date_result > :new.date_of_death);
+     */
+END;
 
 -- Trigger when user date of death != null, then remove
 -- any tuple in health checks, swabs, serologicals, contacts with a date > than the date of death of the user.
