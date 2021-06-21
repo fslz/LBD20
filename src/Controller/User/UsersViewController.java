@@ -1,5 +1,10 @@
 package Controller.User;
 
+import Controller.Contact.ContactsViewController;
+import Controller.HealthCheck.HealthChecksViewController;
+import Controller.Relationship.RelationshipsViewController;
+import Controller.SerologicalTest.SerologicalTestsViewController;
+import Controller.Swab.SwabsViewController;
 import DAO.*;
 import Model.User;
 import javafx.collections.ObservableList;
@@ -23,7 +28,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserViewController implements Initializable {
+public class UsersViewController implements Initializable {
 
     @FXML
     private TableView<User> tblUser;
@@ -107,8 +112,8 @@ public class UserViewController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserContactsView.fxml"));
             Parent root = fxmlLoader.load();
 
-            UserContactsViewController userContactsViewController = fxmlLoader.getController();
-            userContactsViewController.setSelectedUser(selectedUser);
+            ContactsViewController contactsViewController = fxmlLoader.getController();
+            contactsViewController.setSelectedUser(selectedUser);
 
             Stage stage = (Stage) tblUser.getScene().getWindow(); // getScene() is only available for components that inherit from Node. A MenuItem does not inherit from Node.
 
@@ -139,8 +144,8 @@ public class UserViewController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserRelationshipsView.fxml"));
             Parent root = fxmlLoader.load();
 
-            UserRelationshipsViewController userRelationshipsViewController = fxmlLoader.getController();
-            userRelationshipsViewController.setSelectedUser(selectedUser);
+            RelationshipsViewController relationshipsViewController = fxmlLoader.getController();
+            relationshipsViewController.setSelectedUser(selectedUser);
 
             Stage stage = (Stage) tblUser.getScene().getWindow(); // getScene() is only available for components that inherit from Node. A MenuItem does not inherit from Node.
 
@@ -168,11 +173,11 @@ public class UserViewController implements Initializable {
 
             selectedUser.setSwabList(new SwabDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserSwabsView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabsView.fxml"));
             Parent root = fxmlLoader.load();
 
-            UserSwabsViewController userSwabsViewController = fxmlLoader.getController();
-            userSwabsViewController.setSelectedUser(selectedUser);
+            SwabsViewController swabsViewController = fxmlLoader.getController();
+            swabsViewController.setSelectedUser(selectedUser);
 
             Stage stage = (Stage) tblUser.getScene().getWindow(); // getScene() is only available for components that inherit from Node. A MenuItem does not inherit from Node.
 
@@ -200,11 +205,11 @@ public class UserViewController implements Initializable {
 
             selectedUser.setSerologicalTestList(new SerologicalTestDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserSerologicalTestsView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/SerologicalTest/SerologicalTestsView.fxml"));
             Parent root = fxmlLoader.load();
 
-            UserSerologicalTestsViewController userSerologicalTestsViewController = fxmlLoader.getController();
-            userSerologicalTestsViewController.setSelectedUser(selectedUser);
+            SerologicalTestsViewController serologicalTestsViewController = fxmlLoader.getController();
+            serologicalTestsViewController.setSelectedUser(selectedUser);
 
             Stage stage = (Stage) tblUser.getScene().getWindow(); // getScene() is only available for components that inherit from Node. A MenuItem does not inherit from Node.
 
@@ -232,11 +237,11 @@ public class UserViewController implements Initializable {
 
             selectedUser.setHealthCheckList(new HealthCheckDAOOracleImpl().getAllByUserId(selectedUser)); // Load all health checks of the selected User
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserHealthChecksView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/HealthCheck/HealthChecksView.fxml"));
             Parent root = fxmlLoader.load();
 
-            UserHealthChecksViewController userHealthChecksViewController = fxmlLoader.getController();
-            userHealthChecksViewController.setSelectedUser(selectedUser);
+            HealthChecksViewController healthChecksViewController = fxmlLoader.getController();
+            healthChecksViewController.setSelectedUser(selectedUser);
 
             Stage stage = (Stage) tblUser.getScene().getWindow(); // getScene() is only available for components that inherit from Node. A MenuItem does not inherit from Node.
 

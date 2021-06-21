@@ -1,4 +1,4 @@
-package Controller.User;
+package Controller.Contact;
 
 import Controller.Contact.ContactAddSecondUserViewController;
 import Model.Contact;
@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 
-public class UserContactsViewController implements Initializable {
+public class ContactsViewController implements Initializable {
 
     private Contact selectedContact = null;
     private User selectedUser = null;

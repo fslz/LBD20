@@ -60,7 +60,7 @@ public class UserDAOOracleImpl implements DAO<User> {
 
 
     /**
-     * Called by the UserViewController, returns an ObservableList of type User containing every user in the db
+     * Called by the UsersViewController, returns an ObservableList of type User containing every user in the db
      *
      * @return ObservableList<User>
      */
@@ -119,7 +119,7 @@ public class UserDAOOracleImpl implements DAO<User> {
 
 
     /**
-     * Called by the UserViewController
+     * Called by the UsersViewController
      * Inserts new user into the db
      *
      * @return void
@@ -167,7 +167,7 @@ public class UserDAOOracleImpl implements DAO<User> {
 
 
     /**
-     * Called by the UserViewController
+     * Called by the UsersViewController
      * Updates the user in the db
      *
      * @return void
@@ -214,7 +214,7 @@ public class UserDAOOracleImpl implements DAO<User> {
 
 
     /**
-     * Called by the UserViewController
+     * Called by the UsersViewController
      * Deletes the user from the db
      *
      * @return void

@@ -1,6 +1,5 @@
-package Controller.User;
+package Controller.HealthCheck;
 
-import Controller.HealthCheck.HealthCheckAddPropertiesViewController;
 import DAO.HealthCheckDAOOracleImpl;
 import Model.HealthCheck;
 import Model.User;
@@ -24,7 +23,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserHealthChecksViewController implements Initializable {
+public class HealthChecksViewController implements Initializable {
 
 
     @FXML
@@ -54,13 +53,13 @@ public class UserHealthChecksViewController implements Initializable {
 
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/HealthCheck/HealthCheckAddPropertiesView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/HealthCheck/HealthCheckEditView.fxml"));
             Parent root = fxmlLoader.load();
 
             // Access controller
-            HealthCheckAddPropertiesViewController healthCheckAddPropertiesViewController = fxmlLoader.getController();
+            HealthCheckEditViewController healthCheckEditViewController = fxmlLoader.getController();
             // Set contact
-            healthCheckAddPropertiesViewController.setHealthCheck(healthCheck);
+            healthCheckEditViewController.setHealthCheck(healthCheck);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -122,6 +121,43 @@ public class UserHealthChecksViewController implements Initializable {
 
     @FXML
     void btnEditUserHealthCheckOnAction(ActionEvent event) {
+
+
+        if (selectedHealthCheck != null) {
+
+            try {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/HealthCheck/HealthCheckEditView.fxml"));
+                Parent root = fxmlLoader.load();
+
+                HealthCheckEditViewController healthCheckEditViewControllerEditViewController = fxmlLoader.getController();
+                healthCheckEditViewControllerEditViewController.setHealthCheck(selectedHealthCheck);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Edit health check");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
+                stage.showAndWait();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
+
+        }
+
+        else{
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Please select a health check from the table");
+            alert.setHeaderText("Health check not selected");
+            alert.showAndWait();
+
+        }
+
+        updateHealthCheckTable();
 
     }
 

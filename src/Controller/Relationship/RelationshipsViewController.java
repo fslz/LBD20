@@ -1,4 +1,4 @@
-package Controller.User;
+package Controller.Relationship;
 
 import Controller.Contact.ContactAddSecondUserViewController;
 import Controller.Relationship.RelationshipAddSecondUserViewController;
@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 
-public class UserRelationshipsViewController implements Initializable {
+public class RelationshipsViewController implements Initializable {
 
     @FXML
     private TableView<Relationship> tblUserRelationships;

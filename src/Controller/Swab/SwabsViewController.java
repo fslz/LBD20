@@ -1,17 +1,8 @@
-package Controller.User;
+package Controller.Swab;
 
-import Controller.Contact.ContactAddSecondUserViewController;
-import Controller.Location.LocationEditViewController;
-import Controller.Swab.SwabAddPropertiesViewController;
-import Controller.Swab.SwabEditViewController;
 import DAO.SwabDAOOracleImpl;
-import DAO.UserDAOOracleImpl;
-import Model.Contact;
 import Model.Swab;
 import Model.User;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,17 +16,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserSwabsViewController implements Initializable {
+public class SwabsViewController implements Initializable {
 
     private User selectedUser = null;
     private Swab selectedSwab = null;
@@ -68,14 +57,16 @@ public class UserSwabsViewController implements Initializable {
 
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabAddPropertiesView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabEditView.fxml"));
+            //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabAddPropertiesView.fxml"));
             Parent root = fxmlLoader.load();
 
             // Access controller
-            SwabAddPropertiesViewController swabAddPropertiesViewController = fxmlLoader.getController();
+            SwabEditViewController swabEditViewController = fxmlLoader.getController();
+            //SwabAddPropertiesViewController swabAddPropertiesViewController = fxmlLoader.getController();
             // Set contact
-            swabAddPropertiesViewController.setSwab(swab);
-
+            //swabAddPropertiesViewController.setSwab(swab);
+            swabEditViewController.setSwab(swab);
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Enter swab info");
@@ -86,6 +77,50 @@ public class UserSwabsViewController implements Initializable {
         } catch (IOException e) {
 
             e.printStackTrace();
+
+        }
+
+        updateSwabTable();
+
+    }
+
+
+    @FXML
+    void btnEditUserSwabOnAction(ActionEvent event) {
+
+        if (selectedSwab != null) {
+
+            try {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabEditView.fxml"));
+                Parent root = fxmlLoader.load();
+
+                SwabEditViewController swabEditViewController = fxmlLoader.getController();
+
+                // Swab to edit.
+                swabEditViewController.setSwab(selectedSwab);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Edit swab");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
+                stage.showAndWait();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
+
+        }
+
+        else{
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Please select a swab from the table");
+            alert.setHeaderText("Swab not selected");
+            alert.showAndWait();
 
         }
 
@@ -135,47 +170,7 @@ public class UserSwabsViewController implements Initializable {
     }
 
 
-    @FXML
-    void btnEditUserSwabOnAction(ActionEvent event) {
 
-
-        if (selectedSwab != null) {
-
-            try {
-
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabEditView.fxml"));
-                Parent root = fxmlLoader.load();
-
-                SwabEditViewController swabEditViewControllerEditViewController = fxmlLoader.getController();
-                swabEditViewControllerEditViewController.setSwab(selectedSwab);
-
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Edit swab");
-                stage.setResizable(false);
-                stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
-                stage.showAndWait();
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-
-            }
-
-        }
-
-        else{
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Please select a swab from the table");
-            alert.setHeaderText("Swab not selected");
-            alert.showAndWait();
-
-        }
-
-        updateSwabTable();
-
-    }
 
 
     @FXML

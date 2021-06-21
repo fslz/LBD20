@@ -479,16 +479,13 @@ BEGIN
                             WHERE hc.user_id = :new.user_id
                               AND hc.date_result > :new.date_of_death);
 
-    -- TODO
-    /*
     -- check if there are CONTACTS with date_received > :new.date_of_death
     DELETE
-    FROM contacts_all_v2
-    where swabs.swab_id IN (SELECT s.swab_id
-                            FROM swabs s
-                            WHERE s.user_id = :new.user_id
-                              AND s.date_result > :new.date_of_death);
-     */
+        FROM contacts c
+        where c.contact_id IN (SELECT p.contact_id
+                                FROM participants p
+                                WHERE p.user_id = :new.user_id
+                                  AND p.date_received > :new.date_of_death);
 END;
 
 -- Trigger when user date of death != null, then remove

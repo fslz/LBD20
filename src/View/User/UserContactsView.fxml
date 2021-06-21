@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="701.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.User.UserContactsViewController">
+<AnchorPane prefHeight="701.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Contact.ContactsViewController">
 
     <children>
         <TableView fx:id="tblUserContacts" focusTraversable="false" layoutX="15.0" layoutY="64.0" onMouseClicked="#tblUserContactsOnMouseClicked" prefHeight="566.0" prefWidth="876.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="64.0">

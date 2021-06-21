@@ -1,12 +1,8 @@
-package Controller.User;
+package Controller.SerologicalTest;
 
 import Controller.SerologicalTest.SerologicalTestAddPropertiesViewController;
-import Controller.Swab.SwabAddPropertiesViewController;
 import DAO.SerologicalTestDAOOracleImpl;
-import DAO.SwabDAOOracleImpl;
-import DAO.UserDAOOracleImpl;
 import Model.SerologicalTest;
-import Model.Swab;
 import Model.User;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,7 +25,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserSerologicalTestsViewController implements Initializable {
+public class SerologicalTestsViewController implements Initializable {
 
     @FXML
     private TableView<SerologicalTest> tblUserSerologicalTest;
