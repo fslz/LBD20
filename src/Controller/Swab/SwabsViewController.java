@@ -1,17 +1,10 @@
-package Controller.User;
+package Controller.Swab;
 
-import Controller.Contact.ContactAddSecondUserViewController;
-import Controller.Location.LocationEditViewController;
-import Controller.Swab.SwabAddPropertiesViewController;
+import Controller.Swab.SwabAddViewController;
 import Controller.Swab.SwabEditViewController;
 import DAO.SwabDAOOracleImpl;
-import DAO.UserDAOOracleImpl;
-import Model.Contact;
 import Model.Swab;
 import Model.User;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,17 +18,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserSwabsViewController implements Initializable {
+public class SwabsViewController implements Initializable {
 
     private User selectedUser = null;
     private Swab selectedSwab = null;
@@ -68,13 +59,21 @@ public class UserSwabsViewController implements Initializable {
 
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabAddPropertiesView.fxml"));
+
+            // VIEW CHANGED HERE
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabEditView.fxml"));
+
+            SwabAddViewController swabAddViewController = new SwabAddViewController();
+            swabAddViewController.setSwab(swab);
+
+            fxmlLoader.setController(swabAddViewController);
+
             Parent root = fxmlLoader.load();
 
             // Access controller
-            SwabAddPropertiesViewController swabAddPropertiesViewController = fxmlLoader.getController();
+            //SwabAddViewController swabAddViewController = fxmlLoader.getController();
             // Set contact
-            swabAddPropertiesViewController.setSwab(swab);
+
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -144,10 +143,16 @@ public class UserSwabsViewController implements Initializable {
             try {
 
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabEditView.fxml"));
-                Parent root = fxmlLoader.load();
 
-                SwabEditViewController swabEditViewControllerEditViewController = fxmlLoader.getController();
-                swabEditViewControllerEditViewController.setSwab(selectedSwab);
+                //SwabEditViewController swabEditViewControllerEditViewController = fxmlLoader.getController();
+
+                SwabEditViewController swabEditViewController = new SwabEditViewController();
+
+                swabEditViewController.setSwab(selectedSwab);
+
+                fxmlLoader.setController(swabEditViewController);
+
+                Parent root = fxmlLoader.load();
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));

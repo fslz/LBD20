@@ -21,7 +21,7 @@ import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class SerologicalTestAddPropertiesViewController implements Initializable {
+public class SerologicalTestAddViewController implements Initializable {
 
 
     @FXML

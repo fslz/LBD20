@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class HealthCheckAddPropertiesViewController implements Initializable {
+public class HealthCheckAddViewController implements Initializable {
 
 
     @FXML

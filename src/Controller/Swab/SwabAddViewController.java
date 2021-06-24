@@ -18,7 +18,7 @@ import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class SwabAddPropertiesViewController implements Initializable {
+public class SwabAddViewController implements Initializable {
 
     private LocalDateTime localDateTime = null;
     private Swab swab = null;

@@ -71,6 +71,7 @@ public class SwabEditViewController implements Initializable {
                 // Then then the new contact will be added on the db through the DAOOracle
                 try {
 
+                    // Execute Update
                     new SwabDAOOracleImpl().update(swab);
 
                     // Contact successfully added. Show alert.

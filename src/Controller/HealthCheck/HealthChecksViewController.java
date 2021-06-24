@@ -1,12 +1,8 @@
-package Controller.User;
+package Controller.HealthCheck;
 
-import Controller.SerologicalTest.SerologicalTestAddPropertiesViewController;
-import Controller.Swab.SwabAddPropertiesViewController;
-import DAO.SerologicalTestDAOOracleImpl;
-import DAO.SwabDAOOracleImpl;
-import DAO.UserDAOOracleImpl;
-import Model.SerologicalTest;
-import Model.Swab;
+import Controller.HealthCheck.HealthCheckAddViewController;
+import DAO.HealthCheckDAOOracleImpl;
+import Model.HealthCheck;
 import Model.User;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -29,53 +24,47 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserSerologicalTestsViewController implements Initializable {
+public class HealthChecksViewController implements Initializable {
+
 
     @FXML
-    private TableView<SerologicalTest> tblUserSerologicalTest;
+    private TableView<HealthCheck> tblUserHealthCheck;
     @FXML
-    private TableColumn<SerologicalTest, String> colIgM;
+    private TableColumn<HealthCheck, String> colFever;
     @FXML
-    private TableColumn<SerologicalTest, String> colIgG;
+    private TableColumn<HealthCheck, String> colRespiratoryDisorder;
     @FXML
-    private TableColumn<SerologicalTest, LocalDateTime> colDateResult;
+    private TableColumn<HealthCheck, String> colSmellTasteDisorder;
     @FXML
-    private Button btnToUsers;
-    @FXML
-    private Button btnAddUserSerologicalTest;
-    @FXML
-    private Button btnEditUserSerologicalTest;
-    @FXML
-    private Button btnDeleteUserSerologicalTest;
+    private TableColumn<HealthCheck, LocalDateTime> colDateOfCheck;
 
 
     private User selectedUser = null;
-    private SerologicalTest selectedSerologicalTest = null;
-    private ObservableList<SerologicalTest> serologicalTestList;
+    private HealthCheck selectedHealthCheck = null;
 
 
     @FXML
-    void btnAddUserSerologicalTestOnAction(ActionEvent event) {
+    void btnAddUserHealthCheckOnAction(ActionEvent event) {
 
-        SerologicalTest serologicalTest = new SerologicalTest();
+        HealthCheck healthCheck = new HealthCheck();
 
         // If selectedUser == null -> open "select user" scene
 
-        serologicalTest.setUser(selectedUser);
+        healthCheck.setUser(selectedUser);
 
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/SerologicalTest/SerologicalTestAddPropertiesView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/HealthCheck/HealthCheckAddPropertiesView.fxml"));
             Parent root = fxmlLoader.load();
 
             // Access controller
-            SerologicalTestAddPropertiesViewController serologicalTestAddPropertiesViewController = fxmlLoader.getController();
+            HealthCheckAddViewController healthCheckAddViewController = fxmlLoader.getController();
             // Set contact
-            serologicalTestAddPropertiesViewController.setSerologicalTest(serologicalTest);
+            healthCheckAddViewController.setHealthCheck(healthCheck);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("Enter serological test informations");
+            stage.setTitle("Enter health check test informations");
             stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
@@ -86,20 +75,20 @@ public class UserSerologicalTestsViewController implements Initializable {
 
         }
 
-        updateSerologicalTestTable();
+        updateHealthCheckTable();
 
     }
 
     @FXML
-    void btnDeleteUserSerologicalTestOnAction(ActionEvent event) {
+    void btnDeleteUserHealthCheckOnAction(ActionEvent event) {
 
-        if (selectedSerologicalTest != null) {
+        if (selectedHealthCheck != null) {
 
             // Ask for the user to confirm changes
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm changes");
             confirmAlert.setHeaderText("");
-            confirmAlert.setContentText("The serological test will be deleted. Do you want to proceed?");
+            confirmAlert.setContentText("The health check test will be deleted. Do you want to proceed?");
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
 
@@ -107,7 +96,7 @@ public class UserSerologicalTestsViewController implements Initializable {
 
                 try{
 
-                    new SerologicalTestDAOOracleImpl().delete(selectedSerologicalTest);
+                    new HealthCheckDAOOracleImpl().delete(selectedHealthCheck);
 
                 }
                 catch(SQLException e){
@@ -126,12 +115,13 @@ public class UserSerologicalTestsViewController implements Initializable {
 
         }
 
-        updateSerologicalTestTable();
+        updateHealthCheckTable();
 
     }
 
+
     @FXML
-    void btnEditUserSerologicalTestOnAction(ActionEvent event) {
+    void btnEditUserHealthCheckOnAction(ActionEvent event) {
 
     }
 
@@ -153,10 +143,11 @@ public class UserSerologicalTestsViewController implements Initializable {
 
     }
 
-    @FXML
-    void tblUserSerologicalTestOnMouseClicked(MouseEvent event) {
 
-        this.selectedSerologicalTest = tblUserSerologicalTest.getSelectionModel().getSelectedItem();
+    @FXML
+    void tblUserHealthCheckOnMouseClicked(MouseEvent event) {
+
+        this.selectedHealthCheck = tblUserHealthCheck.getSelectionModel().getSelectedItem();
 
     }
 
@@ -167,9 +158,10 @@ public class UserSerologicalTestsViewController implements Initializable {
         this.selectedUser = selectedUser;
 
         // Set the ObservableList of users as the content of the table
-        tblUserSerologicalTest.setItems((ObservableList<SerologicalTest>) selectedUser.getSerologicalTestList());
+        tblUserHealthCheck.setItems((ObservableList<HealthCheck>) selectedUser.getHealthCheckList());
 
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -179,15 +171,15 @@ public class UserSerologicalTestsViewController implements Initializable {
     }
 
 
-    private void updateSerologicalTestTable() {
+    private void updateHealthCheckTable() {
 
         // Get all users through the SwabDAOOracleImpl
         try {
 
-            selectedUser.setSerologicalTestList(new SerologicalTestDAOOracleImpl().getAllByUserId(selectedUser)) ;
+            selectedUser.setHealthCheckList(new HealthCheckDAOOracleImpl().getAllByUserId(selectedUser)) ;
 
             // Set the ObservableList of users as the content of the table
-            tblUserSerologicalTest.setItems((ObservableList<SerologicalTest>) selectedUser.getSerologicalTestList());
+            tblUserHealthCheck.setItems((ObservableList<HealthCheck>) selectedUser.getHealthCheckList());
 
         } catch (SQLException e) {
 
@@ -197,12 +189,15 @@ public class UserSerologicalTestsViewController implements Initializable {
 
     }
 
+
     private void setupUserTable() {
 
         // Setup the columns in the table
-        colIgM.setCellValueFactory(new PropertyValueFactory<SerologicalTest, String>("igm"));
-        colIgG.setCellValueFactory(new PropertyValueFactory<SerologicalTest, String>("igg"));
-        colDateResult.setCellValueFactory(new PropertyValueFactory<SerologicalTest, LocalDateTime>("dateResult"));
+        colFever.setCellValueFactory(new PropertyValueFactory<HealthCheck, String>("fever"));
+        colRespiratoryDisorder.setCellValueFactory(new PropertyValueFactory<HealthCheck, String>("respiratoryDisorder"));
+        colSmellTasteDisorder.setCellValueFactory(new PropertyValueFactory<HealthCheck, String>("smellTasteDisorder"));
+        colDateOfCheck.setCellValueFactory(new PropertyValueFactory<HealthCheck, LocalDateTime>("dateOfCheck"));
 
     }
+
 }

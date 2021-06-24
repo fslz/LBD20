@@ -1,7 +1,5 @@
 package Controller.Location;
 
-import Controller.User.UserContactsViewController;
-import Controller.User.UserEditViewController;
 import DAO.ContactDAOOracleImpl;
 import Model.Location;
 import DAO.LocationDAOOracleImpl;
