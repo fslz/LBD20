@@ -1,7 +1,7 @@
-package Controller.HealthCheck;
+package Controller.SerologicalTest;
 
-import DAO.HealthCheckDAOOracleImpl;
-import Model.HealthCheck;
+import DAO.SerologicalTestDAOOracleImpl;
+import Model.SerologicalTest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,21 +10,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class HealthCheckAddViewController implements Initializable {
+public class SerologicalTestEditViewController implements Initializable {
 
-
     @FXML
-    private ChoiceBox<String> cbFever;
-    @FXML
-    private ChoiceBox<String> cbSmellTasteDisorders;
-    @FXML
-    private Label lblFever;
+    private ChoiceBox<String> cbIgM;
     @FXML
     private Button btnCancel;
     @FXML
@@ -32,23 +26,18 @@ public class HealthCheckAddViewController implements Initializable {
     @FXML
     private DatePicker dpResultDate;
     @FXML
-    private ChoiceBox<String> cbRespiratoryDisorders;
-    @FXML
-    private Label lblRespiratoryDisorders;
-    @FXML
-    private Label lblSmellTasteDisorders;
+    private ChoiceBox<String> cbIgG;
 
 
-    private HealthCheck healthCheck = null;
-    private ObservableList<String> availableChoices = FXCollections.observableArrayList("Y", "N");
+    private SerologicalTest selectedSerologicalTest = null;
+    private ObservableList<String> availableChoices = FXCollections.observableArrayList("positive", "negative");
 
 
-    public HealthCheckAddViewController(HealthCheck healthCheck){
+    public SerologicalTestEditViewController(SerologicalTest selectedSerologicalTest) {
 
-        this.healthCheck = healthCheck;
+        this.selectedSerologicalTest = selectedSerologicalTest;
 
     }
-
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
@@ -64,62 +53,60 @@ public class HealthCheckAddViewController implements Initializable {
     @FXML
     void btnSaveOnAction(ActionEvent event) {
 
-        if (validation()) { // validation() checks if all the required textfields are filled
+        if (validation()) { // validation() checks if all the required textfields are filled.
 
             // Fetch values from the view components.
-            healthCheck.setFever(cbFever.getValue());
-            healthCheck.setRespiratoryDisorder(cbRespiratoryDisorders.getValue());
-            healthCheck.setSmellTasteDisorder(cbSmellTasteDisorders.getValue());
-            healthCheck.setDateResult(dpResultDate.getValue());
+            selectedSerologicalTest.setIgm(cbIgM.getValue());
+            selectedSerologicalTest.setIgg(cbIgG.getValue());
+            selectedSerologicalTest.setDateResult(dpResultDate.getValue());
 
             // Ask for the user to confirm changes.
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm changes");
-            confirmAlert.setContentText("The new health check will be created. Are you sure you want to proceed?");
+            confirmAlert.setContentText("The serological test will be modified. Are you sure you want to proceed?");
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
 
             // If user confirms.
             if (result.get() == ButtonType.OK) {
-                // Then then the new health check will be added on the db through the DAOOracle.
+                // Then then the new serological test will be added on the db through the DAOOracle.
                 try {
 
-                    new HealthCheckDAOOracleImpl().create(healthCheck);
+                    new SerologicalTestDAOOracleImpl().update(selectedSerologicalTest);
 
-                    // Health check successfully added. Show alert.
+                    // Serological test successfully added. Show alert.
                     Alert errorAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                    errorAlert.setContentText("Health Check test successfully created.");
+                    errorAlert.setContentText("Serological test successfully modified.");
                     errorAlert.showAndWait();
 
-                    // Close the UserInsertView stage
+                    // Close the stage.
                     ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
 
                 } catch (SQLException e) { // Manage all SQL exeptions.
 
-                    // CHECK date of birth trigger exception raised
+                    // CHECK date of birth trigger exception raised.
                     if (e.getErrorCode() == 20001) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("This health check has a result date > date of birth.");
+                        errorAlert.setContentText("This serological test has a result date > date of birth.");
                         errorAlert.showAndWait();
                     }
                     // CHECK date of death trigger exception raised.
                     if (e.getErrorCode() == 20002) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("This health check has a result date < date of birth.");
+                        errorAlert.setContentText("This serological test has a result date < date of birth.");
                         errorAlert.showAndWait();
                     }
 
                 }
 
             } else {
-                // Else close the confirmation dialog
+                // Else close the confirmation dialog.
                 confirmAlert.close();
 
             }
 
         }
-
     }
 
 
@@ -133,18 +120,13 @@ public class HealthCheckAddViewController implements Initializable {
             isValid = false;
         }
 
-        if(cbFever.getValue() == null) {
-            errorMsg.append("- Please select a value for Fever.\n");
+        if (cbIgM.getValue() == null) {
+            errorMsg.append("- Please select IgM positivity.\n");
             isValid = false;
         }
 
-        if(cbRespiratoryDisorders.getValue() == null) {
-            errorMsg.append("- Please select a value for Respiratory Disorders.\n");
-            isValid = false;
-        }
-
-        if(cbSmellTasteDisorders.getValue() == null) {
-            errorMsg.append("- Please select a value for Smell/Taste Disorder.\n");
+        if (cbIgG.getValue() == null) {
+            errorMsg.append("- Please select IgM positivity.\n");
             isValid = false;
         }
 
@@ -159,15 +141,17 @@ public class HealthCheckAddViewController implements Initializable {
 
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        cbFever.setItems(availableChoices);
-        cbRespiratoryDisorders.setItems(availableChoices);
-        cbSmellTasteDisorders.setItems(availableChoices);
+        //
+        cbIgM.setItems(availableChoices);
+        cbIgG.setItems(availableChoices);
+
+        cbIgM.setValue(selectedSerologicalTest.getIgm());
+        cbIgG.setValue(selectedSerologicalTest.getIgg());
+        dpResultDate.setValue(selectedSerologicalTest.getDateResult());
 
     }
-
 
 }

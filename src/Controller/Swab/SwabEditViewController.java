@@ -10,34 +10,31 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SwabEditViewController implements Initializable {
 
-
-    private LocalDateTime localDateTime = null;
     private Swab swab = null;
     private ObservableList<String> availableChoices = FXCollections.observableArrayList("positive", "negative");
 
     @FXML
     private ChoiceBox<String> cbPositivity;
-    @FXML
-    private Label lblPositivity;
+
     @FXML
     private Button btnCancel;
-    @FXML
-    private Button btnSave;
+
     @FXML
     private DatePicker dpSwabDate;
 
 
+    public SwabEditViewController (Swab swab){
+
+        this.swab = swab;
+
+    }
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
@@ -54,10 +51,9 @@ public class SwabEditViewController implements Initializable {
 
         if (validation()) { // validation() checks if all the required textfields are filled
 
+            // Fetch values from the view components.
             swab.setPositivity(cbPositivity.getValue());
-
-            LocalDate localDate = dpSwabDate.getValue();
-            swab.setDateResult(localDate);
+            swab.setDateResult(dpSwabDate.getValue());
 
             // Ask for the user to confirm changes
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -83,24 +79,18 @@ public class SwabEditViewController implements Initializable {
                     ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
 
-                } catch (SQLException e) {
+                } catch (SQLException e) { // Manage all SQL exeptions.
 
-                    // UNIQUE constraint violation
-                    if (e.getErrorCode() == 1) {
-                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("One, or both, of the users already participate in a contact in that moment. Please check your date and time.");
-                        errorAlert.showAndWait();
-                    }
                     // CHECK date of birth trigger exception raised
                     if (e.getErrorCode() == 20001) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("The date of death of the user is more than the date of the swab.");
+                        errorAlert.setContentText("This swab has a result date > date of birth.");
                         errorAlert.showAndWait();
                     }
                     // CHECK date of death trigger exception raised
                     if (e.getErrorCode() == 20002) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("The date of death of the user is less than the date of the swab.");
+                        errorAlert.setContentText("This swab has a result date < date of birth.");
                         errorAlert.showAndWait();
                     }
 
@@ -113,25 +103,6 @@ public class SwabEditViewController implements Initializable {
             }
 
         }
-
-    }
-
-
-    public void setSwab(Swab swab) {
-
-        this.swab = swab;
-
-        setComponentsValues();
-
-    }
-
-
-    private void setComponentsValues() {
-
-
-        cbPositivity.setValue(swab.getPositivity());
-
-        dpSwabDate.setValue(swab.getDateResult());
 
     }
 
@@ -167,28 +138,9 @@ public class SwabEditViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         cbPositivity.setItems(availableChoices);
+        cbPositivity.setValue(swab.getPositivity());
+        dpSwabDate.setValue(swab.getDateResult());
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

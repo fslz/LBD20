@@ -20,22 +20,24 @@ import java.util.ResourceBundle;
 
 public class SwabAddViewController implements Initializable {
 
-    private LocalDateTime localDateTime = null;
     private Swab swab = null;
     private ObservableList<String> availableChoices = FXCollections.observableArrayList("positive", "negative");
 
     @FXML
     private ChoiceBox<String> cbPositivity;
-    @FXML
-    private Label lblPositivity;
+
     @FXML
     private Button btnCancel;
-    @FXML
-    private Button btnSave;
+
     @FXML
     private DatePicker dpSwabDate;
 
 
+    public SwabAddViewController(Swab swab){
+
+        this.swab = swab;
+
+    }
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
@@ -53,9 +55,7 @@ public class SwabAddViewController implements Initializable {
         if (validation()) { // validation() checks if all the required textfields are filled
 
             swab.setPositivity(cbPositivity.getValue());
-
-            LocalDate localDate = dpSwabDate.getValue();
-            swab.setDateResult(localDate);
+            swab.setDateResult(dpSwabDate.getValue());
 
             // Ask for the user to confirm changes
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -80,24 +80,18 @@ public class SwabAddViewController implements Initializable {
                     ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
 
-                } catch (SQLException e) {
+                } catch (SQLException e) { // Manage all SQL exeptions.
 
-                    // UNIQUE constraint violation
-                    if (e.getErrorCode() == 1) {
-                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("One, or both, of the users already participate in a contact in that moment. Please check your date and time.");
-                        errorAlert.showAndWait();
-                    }
                     // CHECK date of birth trigger exception raised
                     if (e.getErrorCode() == 20001) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("The date of death of the user is more than the date of the swab.");
+                        errorAlert.setContentText("This swab has a result date > date of birth.");
                         errorAlert.showAndWait();
                     }
                     // CHECK date of death trigger exception raised
                     if (e.getErrorCode() == 20002) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("The date of death of the user is less than the date of the swab.");
+                        errorAlert.setContentText("This swab has a result date < date of birth.");
                         errorAlert.showAndWait();
                     }
 
@@ -110,13 +104,6 @@ public class SwabAddViewController implements Initializable {
             }
 
         }
-
-    }
-
-
-    public void setSwab(Swab swab) {
-
-        this.swab = swab;
 
     }
 

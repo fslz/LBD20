@@ -38,6 +38,12 @@ public class UserEditViewController implements Initializable {
     private ObservableList<String> availableChoices = FXCollections.observableArrayList("M", "F");
 
 
+    public UserEditViewController(User selectedUser){
+
+        this.selectedUser = selectedUser;
+
+    }
+
     @FXML
     void btnCancelOnAction(ActionEvent event) {
 
@@ -120,12 +126,12 @@ public class UserEditViewController implements Initializable {
 
         this.selectedUser = selectedUser;
 
-        setComponentsValues();
+        //setComponentsValues();
 
     }
 
-
-    private void setComponentsValues() {
+    /*
+    public void setComponentsValues() {
 
         txtFirstName.setText(selectedUser.getFirstName());
         txtLastName.setText(selectedUser.getLastName());
@@ -143,6 +149,7 @@ public class UserEditViewController implements Initializable {
             dpDateOfDeath.setValue(selectedUser.getDateOfDeath());
 
     }
+    */
 
 
     private boolean validation() {
@@ -185,7 +192,22 @@ public class UserEditViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        txtFirstName.setText(selectedUser.getFirstName());
+        txtLastName.setText(selectedUser.getLastName());
+        txtUserName.setText(selectedUser.getUserName());
         cbGender.setItems(availableChoices);
+        cbGender.setValue(selectedUser.getGender());
+
+        if(selectedUser.getDateOfBirth() == null)
+            dpDateOfBirth.setValue(null);
+        else
+            dpDateOfBirth.setValue(selectedUser.getDateOfBirth());
+
+        if(selectedUser.getDateOfDeath() == null)
+            dpDateOfDeath.setValue(null);
+        else
+            dpDateOfDeath.setValue(selectedUser.getDateOfDeath());
+
 
     }
 

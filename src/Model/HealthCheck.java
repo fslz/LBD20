@@ -6,7 +6,7 @@ public class HealthCheck {
 
     private int id;
     private User user;
-    private LocalDate dateOfCheck;
+    private LocalDate dateResult;
     private String fever;
     private String respiratoryDisorder;
     private String smellTasteDisorder;
@@ -15,10 +15,10 @@ public class HealthCheck {
 
     }
 
-    public HealthCheck(int id, User user, LocalDate dateOfCheck, String fever, String respiratoryDisorder, String smellTasteDisorder) {
+    public HealthCheck(int id, User user, LocalDate dateResult, String fever, String respiratoryDisorder, String smellTasteDisorder) {
         this.id = id;
         this.user = user;
-        this.dateOfCheck = dateOfCheck;
+        this.dateResult = dateResult;
         this.fever = fever;
         this.respiratoryDisorder = respiratoryDisorder;
         this.smellTasteDisorder = smellTasteDisorder;
@@ -40,12 +40,12 @@ public class HealthCheck {
         this.user = user;
     }
 
-    public LocalDate getDateOfCheck() {
-        return dateOfCheck;
+    public LocalDate getDateResult() {
+        return dateResult;
     }
 
-    public void setDateOfCheck(LocalDate dateOfCheck) {
-        this.dateOfCheck = dateOfCheck;
+    public void setDateResult(LocalDate dateResult) {
+        this.dateResult = dateResult;
     }
 
     public String getFever() {

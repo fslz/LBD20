@@ -1,9 +1,7 @@
 package Controller.SerologicalTest;
 
 import DAO.SerologicalTestDAOOracleImpl;
-import DAO.SwabDAOOracleImpl;
 import Model.SerologicalTest;
-import Model.Swab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,8 +14,6 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -33,16 +29,20 @@ public class SerologicalTestAddViewController implements Initializable {
     @FXML
     private Button btnSave;
     @FXML
-    private DatePicker dpContactDate;
+    private DatePicker dpResultDate;
     @FXML
     private ChoiceBox<String> cbIgG;
     @FXML
     private Label lblIgG;
 
 
-    private LocalDateTime localDateTime = null;
     private SerologicalTest serologicalTest = null;
     private ObservableList<String> availableChoices = FXCollections.observableArrayList("positive", "negative");
+
+
+    public SerologicalTestAddViewController(SerologicalTest serologicalTest){
+        this.serologicalTest = serologicalTest;
+    }
 
 
     @FXML
@@ -64,8 +64,7 @@ public class SerologicalTestAddViewController implements Initializable {
             serologicalTest.setIgm(cbIgM.getValue());
             serologicalTest.setIgg(cbIgG.getValue());
 
-
-            LocalDate localDate = dpContactDate.getValue();
+            LocalDate localDate = dpResultDate.getValue();
             serologicalTest.setDateResult(localDate);
 
             // Ask for the user to confirm changes
@@ -91,24 +90,18 @@ public class SerologicalTestAddViewController implements Initializable {
                     ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
 
-                } catch (SQLException e) {
+                } catch (SQLException e) { // Manage all SQL exeptions.
 
-                    // UNIQUE constraint violation
-                    if (e.getErrorCode() == 1) {
-                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("One, or both, of the users already participate in a contact in that moment. Please check your date and time.");
-                        errorAlert.showAndWait();
-                    }
                     // CHECK date of birth trigger exception raised
                     if (e.getErrorCode() == 20001) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("This contact is happening before the date of birth of one, or of both users.");
+                        errorAlert.setContentText("This serological test has a result date > date of birth.");
                         errorAlert.showAndWait();
                     }
                     // CHECK date of death trigger exception raised
                     if (e.getErrorCode() == 20002) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setContentText("This contact is happening after the date of death of one, or of both users.");
+                        errorAlert.setContentText("This serological test has a result date < date of birth.");
                         errorAlert.showAndWait();
                     }
 
@@ -130,7 +123,7 @@ public class SerologicalTestAddViewController implements Initializable {
         boolean isValid = true;
         StringBuilder errorMsg = new StringBuilder();
 
-        if (dpContactDate.getValue() == null) {
+        if (dpResultDate.getValue() == null) {
             errorMsg.append("- Please select a valid date.\n");
             isValid = false;
         }
@@ -162,12 +155,6 @@ public class SerologicalTestAddViewController implements Initializable {
 
         cbIgM.setItems(availableChoices);
         cbIgG.setItems(availableChoices);
-
-    }
-
-    public void setSerologicalTest(SerologicalTest serologicalTest) {
-
-        this.serologicalTest = serologicalTest;
 
     }
 

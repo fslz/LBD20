@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="377.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/8.0.202"
+            xmlns:fx="http://javafx.com/fxml/1">
+   <ChoiceBox fx:id="cbFever" focusTraversable="false" layoutX="54.0" layoutY="188.0" prefHeight="25.0"
+              prefWidth="149.0"/>
+   <Label fx:id="lblFever" layoutX="55.0" layoutY="171.0" text="Fever*"/>
+   <Button fx:id="btnCancel" focusTraversable="false" layoutX="385.0" layoutY="338.0" mnemonicParsing="false"
+           onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="76.0" text="Cancel"/>
+   <Button fx:id="btnSave" focusTraversable="false" layoutX="289.0" layoutY="338.0" mnemonicParsing="false"
+           onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="76.0" text="Save"/>
+   <DatePicker fx:id="dpResultDate" focusTraversable="false" layoutX="54.0" layoutY="87.0" prefHeight="25.0"
+               prefWidth="137.0"/>
+   <Label layoutX="56.0" layoutY="70.0" text="Date:"/>
+   <Label layoutX="34.0" layoutY="34.0" text="Pick date and time:"/>
+   <Label layoutX="34.0" layoutY="136.0" text="Insert diagnosis result:"/>
+   <ChoiceBox fx:id="cbRespiratoryDisorders" focusTraversable="false" layoutX="54.0" layoutY="239.0" prefHeight="25.0"
+              prefWidth="149.0"/>
+   <Label fx:id="lblRespiratoryDisorders" layoutX="55.0" layoutY="222.0" text="Respiratory Disorders*"/>
+   <ChoiceBox fx:id="cbSmellTasteDisorders" focusTraversable="false" layoutX="54.0" layoutY="290.0" prefHeight="25.0"
+              prefWidth="149.0"/>
+   <Label fx:id="lblSmellTasteDIsorders" layoutX="55.0" layoutY="273.0" text="Smell/Taste Disorders*"/>
+</AnchorPane>

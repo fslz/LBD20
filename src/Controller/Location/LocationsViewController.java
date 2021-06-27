@@ -91,7 +91,24 @@ public class LocationsViewController implements Initializable {
     @FXML
     void btnAddLocationOnAction(ActionEvent event) {
 
-        showAddLocationView();
+        try{
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Location/LocationAddView.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Add Location");
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+        }
+
+        catch(IOException e){
+
+            e.printStackTrace();
+
+        }
 
         updateLocationTable();
 
@@ -136,30 +153,6 @@ public class LocationsViewController implements Initializable {
         }
 
         updateLocationTable();
-
-    }
-
-
-    private void showAddLocationView(){
-
-        try{
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Location/LocationAddView.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Add Location");
-            stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-
-        }
-
-        catch(IOException e){
-
-            e.printStackTrace();
-
-        }
 
     }
 

@@ -16,9 +16,10 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class HealthCheckAddViewController implements Initializable {
+public class HealthCheckEditViewController implements Initializable {
 
-
+    //cbFever
+           // cbSmellTasteDisorders
     @FXML
     private ChoiceBox<String> cbFever;
     @FXML
@@ -43,9 +44,9 @@ public class HealthCheckAddViewController implements Initializable {
     private ObservableList<String> availableChoices = FXCollections.observableArrayList("Y", "N");
 
 
-    public HealthCheckAddViewController(HealthCheck healthCheck){
+    public HealthCheckEditViewController (HealthCheck selectedHealthCheck){
 
-        this.healthCheck = healthCheck;
+        this.healthCheck = selectedHealthCheck;
 
     }
 
@@ -75,7 +76,7 @@ public class HealthCheckAddViewController implements Initializable {
             // Ask for the user to confirm changes.
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm changes");
-            confirmAlert.setContentText("The new health check will be created. Are you sure you want to proceed?");
+            confirmAlert.setContentText("The new health check will be updated. Are you sure you want to proceed?");
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
 
@@ -84,11 +85,11 @@ public class HealthCheckAddViewController implements Initializable {
                 // Then then the new health check will be added on the db through the DAOOracle.
                 try {
 
-                    new HealthCheckDAOOracleImpl().create(healthCheck);
+                    new HealthCheckDAOOracleImpl().update(healthCheck);
 
                     // Health check successfully added. Show alert.
                     Alert errorAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                    errorAlert.setContentText("Health Check test successfully created.");
+                    errorAlert.setContentText("Health Check test successfully updated.");
                     errorAlert.showAndWait();
 
                     // Close the UserInsertView stage
@@ -97,7 +98,7 @@ public class HealthCheckAddViewController implements Initializable {
 
                 } catch (SQLException e) { // Manage all SQL exeptions.
 
-                    // CHECK date of birth trigger exception raised
+                    // CHECK date of birth trigger exception raised.
                     if (e.getErrorCode() == 20001) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                         errorAlert.setContentText("This health check has a result date > date of birth.");
@@ -113,7 +114,7 @@ public class HealthCheckAddViewController implements Initializable {
                 }
 
             } else {
-                // Else close the confirmation dialog
+                // Else close the confirmation dialog.
                 confirmAlert.close();
 
             }
@@ -167,7 +168,17 @@ public class HealthCheckAddViewController implements Initializable {
         cbRespiratoryDisorders.setItems(availableChoices);
         cbSmellTasteDisorders.setItems(availableChoices);
 
+        cbFever.setValue(healthCheck.getFever());
+        cbRespiratoryDisorders.setValue((healthCheck.getRespiratoryDisorder()));
+        cbSmellTasteDisorders.setValue(healthCheck.getSmellTasteDisorder());
+        dpResultDate.setValue(healthCheck.getDateResult());
+
     }
 
 
+    public void setHealthCheck(HealthCheck healthCheck) {
+
+        this.healthCheck = healthCheck;
+
+    }
 }

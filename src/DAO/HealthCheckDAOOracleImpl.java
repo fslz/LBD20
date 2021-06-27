@@ -2,7 +2,6 @@ package DAO;
 
 import Model.DbConnector;
 import Model.HealthCheck;
-import Model.SerologicalTest;
 import Model.User;
 import Util.Util;
 import javafx.collections.FXCollections;
@@ -36,11 +35,11 @@ public class HealthCheckDAOOracleImpl implements DAO<HealthCheck> {
             //  Establish connection to database
             connection = new DbConnector().getConnection();
             //  Set the query
-            pstmt = connection.prepareStatement("INSERT INTO health_checks (health_check_id, user_id, date_of_check, fever, respiratory_disorder, smell_taste_disorder)" +
+            pstmt = connection.prepareStatement("INSERT INTO health_checks (health_check_id, user_id, date_result, fever, respiratory_disorder, smell_taste_disorder)" +
                     "VALUES (0, ?, ?, ?, ?, ?)");
             //  Set parameters
             pstmt.setInt(1, healthCheck.getUser().getId());
-            pstmt.setDate(2, Util.convertToDatabaseColumn(healthCheck.getDateOfCheck()));
+            pstmt.setDate(2, Util.convertToDatabaseColumn(healthCheck.getDateResult()));
             pstmt.setString(3, healthCheck.getFever());
             pstmt.setString(4, healthCheck.getRespiratoryDisorder());
             pstmt.setString(5, healthCheck.getSmellTasteDisorder());
@@ -69,6 +68,41 @@ public class HealthCheckDAOOracleImpl implements DAO<HealthCheck> {
 
     @Override
     public void update(HealthCheck healthCheck) throws SQLException {
+
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+
+        try {
+
+            connection = new DbConnector().getConnection();
+
+            pstmt = connection.prepareStatement("UPDATE HEALTH_CHECKS SET USER_ID = ?, DATE_RESULT = ?, fever = ?, respiratory_disorder = ?, smell_taste_disorder = ? WHERE health_check_id = ?");
+
+            pstmt.setInt(1, healthCheck.getUser().getId());
+            pstmt.setDate(2, Util.convertToDatabaseColumn(healthCheck.getDateResult()));
+            pstmt.setString(3, healthCheck.getFever());
+            pstmt.setString(4, healthCheck.getRespiratoryDisorder());
+            pstmt.setString(5, healthCheck.getSmellTasteDisorder());
+            pstmt.setInt(6, healthCheck.getId());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+
+            throw e;
+
+        }
+        finally{
+
+            try{
+                if(pstmt != null)   pstmt.close();
+                if(connection != null)  connection.close();
+            }
+            catch(SQLException e){
+                throw e;
+            }
+
+        }
 
     }
 
@@ -133,7 +167,7 @@ public class HealthCheckDAOOracleImpl implements DAO<HealthCheck> {
 
                                 user,
 
-                                Util.convertToEntityAttribute(rs.getDate("date_of_check")),
+                                Util.convertToEntityAttribute(rs.getDate("date_result")),
 
                                 rs.getString("fever"),
 

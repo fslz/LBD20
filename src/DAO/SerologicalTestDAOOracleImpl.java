@@ -128,7 +128,7 @@ public class SerologicalTestDAOOracleImpl implements DAO<SerologicalTest> {
 
             connection = new DbConnector().getConnection();
 
-            pstmt = connection.prepareStatement("UPDATE SEROLOGICAL_TEST SET USER_ID = ?, DATE_RESULT = ?, IGM = ?, IGG = ? WHERE SEROLOGICAL_ID = ?");
+            pstmt = connection.prepareStatement("UPDATE SEROLOGICAL_TESTS SET USER_ID = ?, DATE_RESULT = ?, IGM = ?, IGG = ? WHERE SEROLOGICAL_TEST_ID = ?");
 
             pstmt.setInt(1, serologicalTest.getUser().getId());
             pstmt.setDate(2, Util.convertToDatabaseColumn(serologicalTest.getDateResult()));

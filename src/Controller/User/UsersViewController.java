@@ -6,6 +6,7 @@ import Controller.Relationship.RelationshipsViewController;
 import Controller.SerologicalTest.SerologicalTestsViewController;
 import Controller.Swab.SwabsViewController;
 import DAO.*;
+import Model.HealthCheck;
 import Model.User;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,10 +26,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserViewController implements Initializable {
+public class UsersViewController implements Initializable {
 
     @FXML
     private TableView<User> tblUser;
@@ -72,7 +74,30 @@ public class UserViewController implements Initializable {
     @FXML
     private void btnAddUserOnAction(ActionEvent event) {
 
-        showAddUserView();
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserEditView.fxml"));
+
+            // Instantiate the relative controller and assign the swab that needs to be edited.
+            UserAddViewController userAddViewController = new UserAddViewController();
+
+            // Assign the controller that needs to be associated with the chosen view.
+            fxmlLoader.setController(userAddViewController);
+
+            Parent root = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Add User");
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
 
         updateUserTable();
 
@@ -82,19 +107,42 @@ public class UserViewController implements Initializable {
     @FXML
     private void btnEditUserOnAction(ActionEvent event) {
 
+        // If the user has selected a row.
         if (selectedUser != null) {
+            try {
 
-            showEditUserView();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserEditView.fxml"));
 
+                // Instantiate the relative controller and assign the swab that needs to be edited.
+                UserEditViewController userEditViewController = new UserEditViewController(selectedUser);
+
+                // Assign the controller that needs to be associated with the chosen view.
+                fxmlLoader.setController(userEditViewController);
+
+                Parent root = fxmlLoader.load();
+
+                // Populate components values of the view controller.
+                //userEditViewController.setComponentsValues();
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Edit User");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
+                stage.showAndWait();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
         }
-
-        else{
-
+        // else select a user first.
+        else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Please select a user from the table");
             alert.setHeaderText("User not selected");
             alert.showAndWait();
-
         }
 
         updateUserTable();
@@ -105,7 +153,7 @@ public class UserViewController implements Initializable {
     @FXML
     private void cmContactsOnAction(ActionEvent event) {
 
-        try{
+        try {
 
             selectedUser.setContactList(new ContactDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
 
@@ -122,12 +170,9 @@ public class UserViewController implements Initializable {
             root.requestFocus();
             stage.setScene(userContactsView);
 
-        }
-
-        catch(IOException e){
+        } catch (IOException e) {
             // TODO Handle exceptions
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             // TODO Handle exceptions
         }
 
@@ -137,7 +182,7 @@ public class UserViewController implements Initializable {
     private void cmRelationshipsOnAction(ActionEvent event) {
 
         // Show Relationships stage for selectedUser
-        try{
+        try {
 
             selectedUser.setRelationshipList(new RelationshipDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
 
@@ -154,12 +199,9 @@ public class UserViewController implements Initializable {
             root.requestFocus();
             stage.setScene(userRelationshipsView);
 
-        }
-
-        catch(IOException e){
+        } catch (IOException e) {
             // TODO Handle exceptions
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             // TODO Handle exceptions
         }
 
@@ -169,11 +211,11 @@ public class UserViewController implements Initializable {
     private void cmSwabsOnAction(ActionEvent event) {
 
         // Show Swabs stage for selectedUser
-        try{
+        try {
 
             selectedUser.setSwabList(new SwabDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserSwabsView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabsView.fxml"));
             Parent root = fxmlLoader.load();
 
             SwabsViewController swabsViewController = fxmlLoader.getController();
@@ -186,12 +228,9 @@ public class UserViewController implements Initializable {
             root.requestFocus();
             stage.setScene(userSwabsView);
 
-        }
-
-        catch(IOException e){
+        } catch (IOException e) {
             // TODO Handle exceptions
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             // TODO Handle exceptions
         }
 
@@ -200,12 +239,12 @@ public class UserViewController implements Initializable {
     @FXML
     private void cmSerologicalTestsOnAction(ActionEvent event) {
 
-        // Show Serological Tests stage for selectedUser
-        try{
+        // Show Serological Tests stage for selectedUser.
+        try {
 
             selectedUser.setSerologicalTestList(new SerologicalTestDAOOracleImpl().getAllByUserId(selectedUser)); // Load all contacts of the selected User
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserSerologicalTestsView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/SerologicalTest/SerologicalTestsView.fxml"));
             Parent root = fxmlLoader.load();
 
             SerologicalTestsViewController serologicalTestsViewController = fxmlLoader.getController();
@@ -218,12 +257,9 @@ public class UserViewController implements Initializable {
             root.requestFocus();
             stage.setScene(userSerologicalTestsView);
 
-        }
-
-        catch(IOException e){
+        } catch (IOException e) {
             // TODO Handle exceptions
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             // TODO Handle exceptions
         }
 
@@ -232,12 +268,13 @@ public class UserViewController implements Initializable {
     @FXML
     private void cmHealthChecksOnAction(ActionEvent event) {
 
-        // Show Health Checks stage for selectedUser
-        try{
+        // Show Health Checks stage for selectedUser.
+        try {
 
+            List<HealthCheck> healthCheckList = new HealthCheckDAOOracleImpl().getAllByUserId(selectedUser);
             selectedUser.setHealthCheckList(new HealthCheckDAOOracleImpl().getAllByUserId(selectedUser)); // Load all health checks of the selected User
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserHealthChecksView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/HealthCheck/HealthChecksView.fxml"));
             Parent root = fxmlLoader.load();
 
             HealthChecksViewController healthChecksViewController = fxmlLoader.getController();
@@ -246,16 +283,13 @@ public class UserViewController implements Initializable {
             Stage stage = (Stage) tblUser.getScene().getWindow(); // getScene() is only available for components that inherit from Node. A MenuItem does not inherit from Node.
 
             Scene userHealthChecksView = new Scene(root);
-            stage.setTitle("User Health Checks");
+            stage.setTitle("User Health Checks.");
             root.requestFocus();
             stage.setScene(userHealthChecksView);
 
-        }
-
-        catch(IOException e){
+        } catch (IOException e) {
             // TODO Handle exceptions
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             // TODO Handle exceptions
         }
 
@@ -266,7 +300,7 @@ public class UserViewController implements Initializable {
 
         if (selectedUser != null) {
 
-            // Ask for the user to confirm changes
+            // Ask for the user to confirm changes.
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirm changes");
             confirmAlert.setHeaderText("");
@@ -274,21 +308,19 @@ public class UserViewController implements Initializable {
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
 
-            if(result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
 
-                try{
+                try {
 
                     new UserDAOOracleImpl().delete(selectedUser);
 
-                }
-                catch(SQLException e){
+                } catch (SQLException e) {
                     System.out.println(e.getErrorCode());
                 }
 
             }
 
-        }
-        else {
+        } else {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Please select a user from the table");
@@ -298,66 +330,6 @@ public class UserViewController implements Initializable {
         }
 
         updateUserTable();
-
-    }
-
-
-    private void showEditUserView() {
-
-        // If the user has selected a row.
-        if(selectedUser != null) {
-            try {
-
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserEditView.fxml"));
-                Parent root = fxmlLoader.load();
-
-                UserEditViewController userEditViewController = fxmlLoader.getController();
-                userEditViewController.setUser(selectedUser);
-
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Edit User");
-                stage.setResizable(false);
-                stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
-                stage.showAndWait();
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-
-            }
-        }
-        // else select a user first.
-        else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Please select a user from the table");
-            alert.setHeaderText("User not selected");
-            alert.showAndWait();
-        }
-
-    }
-
-
-    private void showAddUserView(){
-
-        try{
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/User/UserAddView.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Add User");
-            stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-
-        }
-
-        catch(IOException e){
-
-            e.printStackTrace();
-
-        }
 
     }
 

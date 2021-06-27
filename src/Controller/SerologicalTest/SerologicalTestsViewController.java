@@ -1,6 +1,5 @@
 package Controller.SerologicalTest;
 
-import Controller.SerologicalTest.SerologicalTestAddViewController;
 import DAO.SerologicalTestDAOOracleImpl;
 import Model.SerologicalTest;
 import Model.User;
@@ -47,31 +46,30 @@ public class SerologicalTestsViewController implements Initializable {
 
     private User selectedUser = null;
     private SerologicalTest selectedSerologicalTest = null;
-    private ObservableList<SerologicalTest> serologicalTestList;
 
 
     @FXML
     void btnAddUserSerologicalTestOnAction(ActionEvent event) {
 
         SerologicalTest serologicalTest = new SerologicalTest();
-
-        // If selectedUser == null -> open "select user" scene
-
         serologicalTest.setUser(selectedUser);
 
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/SerologicalTest/SerologicalTestAddPropertiesView.fxml"));
-            Parent root = fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/SerologicalTest/SerologicalTestEditView.fxml"));
 
-            // Access controller
-            SerologicalTestAddViewController serologicalTestAddViewController = fxmlLoader.getController();
-            // Set contact
-            serologicalTestAddViewController.setSerologicalTest(serologicalTest);
+            // Instantiate the relative controller and assign the swab that needs to be edited.
+            SerologicalTestAddViewController serologicalTestAddViewController = new SerologicalTestAddViewController(serologicalTest);
+
+            // Assign the controller that needs to be associated with the chosen view.
+            fxmlLoader.setController(serologicalTestAddViewController);
+
+            // This calls the Initialize() method of the controller.
+            Parent root = fxmlLoader.load();
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("Enter serological test informations");
+            stage.setTitle("Enter serological test info.");
             stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
@@ -85,6 +83,59 @@ public class SerologicalTestsViewController implements Initializable {
         updateSerologicalTestTable();
 
     }
+
+
+    @FXML
+    void btnEditUserSerologicalTestOnAction(ActionEvent event) {
+
+        if (selectedSerologicalTest != null) {
+
+            try {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/SerologicalTest/SerologicalTestEditView.fxml"));
+
+                // Instantiate the relative controller and assign the swab that needs to be edited.
+                SerologicalTestEditViewController serologicalTestEditViewController = new SerologicalTestEditViewController(selectedSerologicalTest);
+
+                // Assign the controller that needs to be associated with the chosen view.
+                fxmlLoader.setController(serologicalTestEditViewController);
+
+                // This calls the Initialize() method of the controller.
+                Parent root = fxmlLoader.load();
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Edit serological test.");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
+                stage.showAndWait();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
+            catch (Exception e) {
+
+                e.printStackTrace();
+
+            }
+
+        }
+
+        else{
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Please select a serological test from the table");
+            alert.setHeaderText("Serological test not selected");
+            alert.showAndWait();
+
+        }
+
+        updateSerologicalTestTable();
+
+    }
+
 
     @FXML
     void btnDeleteUserSerologicalTestOnAction(ActionEvent event) {
@@ -123,11 +174,6 @@ public class SerologicalTestsViewController implements Initializable {
         }
 
         updateSerologicalTestTable();
-
-    }
-
-    @FXML
-    void btnEditUserSerologicalTestOnAction(ActionEvent event) {
 
     }
 
@@ -170,19 +216,19 @@ public class SerologicalTestsViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        setupUserTable();
+        setupSerologicalTestsTable();
 
     }
 
 
     private void updateSerologicalTestTable() {
 
-        // Get all users through the SwabDAOOracleImpl
+        // Get all users through the SerologicalTestDAOOracleImpl
         try {
 
             selectedUser.setSerologicalTestList(new SerologicalTestDAOOracleImpl().getAllByUserId(selectedUser)) ;
 
-            // Set the ObservableList of users as the content of the table
+            // Set the ObservableList of serological tests as the content of the table
             tblUserSerologicalTest.setItems((ObservableList<SerologicalTest>) selectedUser.getSerologicalTestList());
 
         } catch (SQLException e) {
@@ -193,7 +239,7 @@ public class SerologicalTestsViewController implements Initializable {
 
     }
 
-    private void setupUserTable() {
+    private void setupSerologicalTestsTable() {
 
         // Setup the columns in the table
         colIgM.setCellValueFactory(new PropertyValueFactory<SerologicalTest, String>("igm"));

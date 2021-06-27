@@ -1,6 +1,5 @@
 package Controller.HealthCheck;
 
-import Controller.HealthCheck.HealthCheckAddViewController;
 import DAO.HealthCheckDAOOracleImpl;
 import Model.HealthCheck;
 import Model.User;
@@ -36,7 +35,7 @@ public class HealthChecksViewController implements Initializable {
     @FXML
     private TableColumn<HealthCheck, String> colSmellTasteDisorder;
     @FXML
-    private TableColumn<HealthCheck, LocalDateTime> colDateOfCheck;
+    private TableColumn<HealthCheck, LocalDateTime> colDateResult;
 
 
     private User selectedUser = null;
@@ -47,20 +46,17 @@ public class HealthChecksViewController implements Initializable {
     void btnAddUserHealthCheckOnAction(ActionEvent event) {
 
         HealthCheck healthCheck = new HealthCheck();
-
-        // If selectedUser == null -> open "select user" scene
-
         healthCheck.setUser(selectedUser);
 
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/HealthCheck/HealthCheckAddPropertiesView.fxml"));
-            Parent root = fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/HealthCheck/HealthCheckEditView.fxml"));
 
-            // Access controller
-            HealthCheckAddViewController healthCheckAddViewController = fxmlLoader.getController();
-            // Set contact
-            healthCheckAddViewController.setHealthCheck(healthCheck);
+            HealthCheckAddViewController healthCheckAddViewController = new HealthCheckAddViewController(healthCheck);
+
+            fxmlLoader.setController(healthCheckAddViewController);
+
+            Parent root = fxmlLoader.load();
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -78,6 +74,59 @@ public class HealthChecksViewController implements Initializable {
         updateHealthCheckTable();
 
     }
+
+
+    @FXML
+    void btnEditUserHealthCheckOnAction(ActionEvent event) {
+
+        if (selectedHealthCheck != null) {
+
+            try {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/HealthCheck/HealthCheckEditView.fxml"));
+
+                // Instantiate the relative controller and assign the swab that needs to be edited.
+                HealthCheckEditViewController healthCheckEditViewController = new HealthCheckEditViewController(selectedHealthCheck);
+
+                // Assign the controller that needs to be associated with the chosen view.
+                fxmlLoader.setController(healthCheckEditViewController);
+
+                // This calls the Initialize() method of the controller.
+                Parent root = fxmlLoader.load();
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Edit health check.");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
+                stage.showAndWait();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
+            catch (Exception e) {
+
+                e.printStackTrace();
+
+            }
+
+        }
+
+        else{
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Please select a swab from the table.");
+            alert.setHeaderText("Swab not selected.");
+            alert.showAndWait();
+
+        }
+
+        updateHealthCheckTable();
+
+    }
+
 
     @FXML
     void btnDeleteUserHealthCheckOnAction(ActionEvent event) {
@@ -109,19 +158,13 @@ public class HealthChecksViewController implements Initializable {
         else {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Please select a serological test from the table");
-            alert.setHeaderText("Serological test not selected");
+            alert.setContentText("Please select a serological test from the table.");
+            alert.setHeaderText("Serological test not selected.");
             alert.showAndWait();
 
         }
 
         updateHealthCheckTable();
-
-    }
-
-
-    @FXML
-    void btnEditUserHealthCheckOnAction(ActionEvent event) {
 
     }
 
@@ -154,10 +197,10 @@ public class HealthChecksViewController implements Initializable {
 
     public void setSelectedUser(User selectedUser) {
 
-        // Set the user instance
+        // Set the user instance.
         this.selectedUser = selectedUser;
 
-        // Set the ObservableList of users as the content of the table
+        // Set the ObservableList of users as the content of the table.
         tblUserHealthCheck.setItems((ObservableList<HealthCheck>) selectedUser.getHealthCheckList());
 
     }
@@ -166,19 +209,19 @@ public class HealthChecksViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        setupUserTable();
+        setupHealthChecksTable();
 
     }
 
 
     private void updateHealthCheckTable() {
 
-        // Get all users through the SwabDAOOracleImpl
+        // Get all users through the HealthCheckDAOOracleImpl.
         try {
 
             selectedUser.setHealthCheckList(new HealthCheckDAOOracleImpl().getAllByUserId(selectedUser)) ;
 
-            // Set the ObservableList of users as the content of the table
+            // Set the ObservableList of serological tests as the content of the table.
             tblUserHealthCheck.setItems((ObservableList<HealthCheck>) selectedUser.getHealthCheckList());
 
         } catch (SQLException e) {
@@ -190,13 +233,13 @@ public class HealthChecksViewController implements Initializable {
     }
 
 
-    private void setupUserTable() {
+    private void setupHealthChecksTable() {
 
         // Setup the columns in the table
         colFever.setCellValueFactory(new PropertyValueFactory<HealthCheck, String>("fever"));
         colRespiratoryDisorder.setCellValueFactory(new PropertyValueFactory<HealthCheck, String>("respiratoryDisorder"));
         colSmellTasteDisorder.setCellValueFactory(new PropertyValueFactory<HealthCheck, String>("smellTasteDisorder"));
-        colDateOfCheck.setCellValueFactory(new PropertyValueFactory<HealthCheck, LocalDateTime>("dateOfCheck"));
+        colDateResult.setCellValueFactory(new PropertyValueFactory<HealthCheck, LocalDateTime>("dateResult"));
 
     }
 

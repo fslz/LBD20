@@ -1,7 +1,5 @@
 package Controller.Swab;
 
-import Controller.Swab.SwabAddViewController;
-import Controller.Swab.SwabEditViewController;
 import DAO.SwabDAOOracleImpl;
 import Model.Swab;
 import Model.User;
@@ -52,28 +50,21 @@ public class SwabsViewController implements Initializable {
     void btnAddUserSwabOnAction(ActionEvent event) {
 
         Swab swab = new Swab();
-
-        // If selectedUser == null -> open "select user" scene
-
         swab.setUser(selectedUser);
 
         try {
 
-
             // VIEW CHANGED HERE
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabEditView.fxml"));
 
-            SwabAddViewController swabAddViewController = new SwabAddViewController();
-            swabAddViewController.setSwab(swab);
+            // Instantiate the relative controller and assign the swab that needs to be edited.
+            SwabAddViewController swabAddViewController = new SwabAddViewController(swab);
 
+            // Assign the controller that needs to be associated with the chosen view.
             fxmlLoader.setController(swabAddViewController);
 
+            // This calls the Initialize() method of the controller.
             Parent root = fxmlLoader.load();
-
-            // Access controller
-            //SwabAddViewController swabAddViewController = fxmlLoader.getController();
-            // Set contact
-
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -85,6 +76,58 @@ public class SwabsViewController implements Initializable {
         } catch (IOException e) {
 
             e.printStackTrace();
+
+        }
+
+        updateSwabTable();
+
+    }
+
+
+    @FXML
+    void btnEditUserSwabOnAction(ActionEvent event) {
+
+        if (selectedSwab != null) {
+
+            try {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabEditView.fxml"));
+
+                // Instantiate the relative controller and assign the swab that needs to be edited.
+                SwabEditViewController swabEditViewController = new SwabEditViewController(selectedSwab);
+
+                // Assign the controller that needs to be associated with the chosen view.
+                fxmlLoader.setController(swabEditViewController);
+
+                // This calls the Initialize() method of the controller.
+                Parent root = fxmlLoader.load();
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Edit swab");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
+                stage.showAndWait();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
+            catch (Exception e) {
+
+                e.printStackTrace();
+
+            }
+
+        }
+
+        else{
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Please select a swab from the table");
+            alert.setHeaderText("Swab not selected");
+            alert.showAndWait();
 
         }
 
@@ -121,55 +164,6 @@ public class SwabsViewController implements Initializable {
 
         }
         else {
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Please select a swab from the table");
-            alert.setHeaderText("Swab not selected");
-            alert.showAndWait();
-
-        }
-
-        updateSwabTable();
-
-    }
-
-
-    @FXML
-    void btnEditUserSwabOnAction(ActionEvent event) {
-
-
-        if (selectedSwab != null) {
-
-            try {
-
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Swab/SwabEditView.fxml"));
-
-                //SwabEditViewController swabEditViewControllerEditViewController = fxmlLoader.getController();
-
-                SwabEditViewController swabEditViewController = new SwabEditViewController();
-
-                swabEditViewController.setSwab(selectedSwab);
-
-                fxmlLoader.setController(swabEditViewController);
-
-                Parent root = fxmlLoader.load();
-
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Edit swab");
-                stage.setResizable(false);
-                stage.initModality(Modality.APPLICATION_MODAL); // Modify the modality of the stage to be modal (the user cannot interact with the calling stage)
-                stage.showAndWait();
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-
-            }
-
-        }
-
-        else{
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Please select a swab from the table");
@@ -224,7 +218,7 @@ public class SwabsViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        setupUserTable();
+        setupSwabsTable();
 
     }
 
@@ -248,7 +242,7 @@ public class SwabsViewController implements Initializable {
     }
 
 
-    private void setupUserTable() {
+    private void setupSwabsTable() {
 
         // Setup the columns in the table
         colPositivity.setCellValueFactory(new PropertyValueFactory<Swab, String>("positivity"));

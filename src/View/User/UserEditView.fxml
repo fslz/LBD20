@@ -7,21 +7,23 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="251.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.User.UserEditViewController">
-   <children>
-      <Button fx:id="btnCancel" focusTraversable="false" layoutX="329.0" layoutY="209.0" mnemonicParsing="false" onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="76.0" text="Cancel" />
-      <Button fx:id="btnSave" focusTraversable="false" layoutX="233.0" layoutY="209.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="76.0" text="Save" />
-      <TextField fx:id="txtUserName" focusTraversable="false" layoutX="24.0" layoutY="152.0" />
-      <TextField fx:id="txtFirstName" focusTraversable="false" layoutX="24.0" layoutY="43.0" />
-      <TextField fx:id="txtLastName" focusTraversable="false" layoutX="24.0" layoutY="96.0" />
-      <DatePicker fx:id="dpDateOfBirth" editable="false" focusTraversable="false" layoutX="231.0" layoutY="98.0" />
-      <DatePicker fx:id="dpDateOfDeath" editable="false" focusTraversable="false" layoutX="231.0" layoutY="154.0" />
-      <Label fx:id="lblUserName" layoutX="26.0" layoutY="135.0" text="Username*" />
-      <Label fx:id="lblFirstName" layoutX="24.0" layoutY="26.0" text="First Name*" />
-      <Label fx:id="lblLastName" layoutX="25.0" layoutY="79.0" text="Last Name*" />
-      <Label fx:id="lblDateOfBirth" layoutX="231.0" layoutY="81.0" text="Date of birth*" />
-      <Label fx:id="lblDateOfDeath" layoutX="231.0" layoutY="137.0" text="Date of death" />
-      <ChoiceBox fx:id="cbGender" focusTraversable="false" layoutX="231.0" layoutY="45.0" prefHeight="25.0" prefWidth="58.0" />
-      <Label fx:id="lblGender" layoutX="231.0" layoutY="28.0" text="Gender*" />
-   </children>
+<AnchorPane prefHeight="251.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8.0.202"
+            xmlns:fx="http://javafx.com/fxml/1">
+   <Button fx:id="btnCancel" focusTraversable="false" layoutX="329.0" layoutY="209.0" mnemonicParsing="false"
+           onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="76.0" text="Cancel"/>
+   <Button fx:id="btnSave" focusTraversable="false" layoutX="233.0" layoutY="209.0" mnemonicParsing="false"
+           onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="76.0" text="Save"/>
+   <TextField fx:id="txtUserName" focusTraversable="false" layoutX="24.0" layoutY="152.0"/>
+   <TextField fx:id="txtFirstName" focusTraversable="false" layoutX="24.0" layoutY="43.0"/>
+   <TextField fx:id="txtLastName" focusTraversable="false" layoutX="24.0" layoutY="96.0"/>
+   <DatePicker fx:id="dpDateOfBirth" editable="false" focusTraversable="false" layoutX="231.0" layoutY="98.0"/>
+   <DatePicker fx:id="dpDateOfDeath" editable="false" focusTraversable="false" layoutX="231.0" layoutY="154.0"/>
+   <Label fx:id="lblUserName" layoutX="26.0" layoutY="135.0" text="Username*"/>
+   <Label fx:id="lblFirstName" layoutX="24.0" layoutY="26.0" text="First Name*"/>
+   <Label fx:id="lblLastName" layoutX="25.0" layoutY="79.0" text="Last Name*"/>
+   <Label fx:id="lblDateOfBirth" layoutX="231.0" layoutY="81.0" text="Date of birth*"/>
+   <Label fx:id="lblDateOfDeath" layoutX="231.0" layoutY="137.0" text="Date of death"/>
+   <ChoiceBox fx:id="cbGender" focusTraversable="false" layoutX="231.0" layoutY="45.0" prefHeight="25.0"
+              prefWidth="58.0"/>
+   <Label fx:id="lblGender" layoutX="231.0" layoutY="28.0" text="Gender*"/>
 </AnchorPane>
