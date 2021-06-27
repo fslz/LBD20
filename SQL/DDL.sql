@@ -120,7 +120,7 @@ CREATE TABLE health_checks
 (
     health_check_id      INTEGER NOT NULL,
     user_id              INTEGER NOT NULL,
-    date_of_check        DATE    NOT NULL,
+    date_result          DATE    NOT NULL,
     fever                CHAR(1) NOT NULL,
     respiratory_disorder CHAR(1) NOT NULL,
     smell_taste_disorder CHAR(1) NOT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE health_checks
     CONSTRAINT health_checks_ck1 CHECK (fever IN ('Y', 'N')),
     CONSTRAINT health_checks_ck2 CHECK (respiratory_disorder IN ('Y', 'N')),
     CONSTRAINT health_checks_ck3 CHECK (smell_taste_disorder IN ('Y', 'N')),
-    CONSTRAINT health_checks_uk UNIQUE (user_id, date_of_check)
+    CONSTRAINT health_checks_uk UNIQUE (user_id, date_result)
 );
 
 
@@ -350,8 +350,8 @@ END;
 
 
 -- checks if user_id1 and user_id2 don't share already the same type of relationship
-CREATE OR REPLACE TRIGGER relationships_all_v_tr
-    INSTEAD OF INSERT
+CREATE OR REPLACE TRIGGER relationships_all_v_insert_tr
+    INSTEAD OF INSERT OR UPDATE
     ON relationships_all_v
     FOR EACH ROW
 DECLARE
@@ -367,19 +367,66 @@ BEGIN
     WHERE m1.user_id = :new.user_id1
       AND m2.user_id = :new.user_id2
       AND r.type = :new.type;
+
     IF (l_shared_relationship > 0) THEN
         RAISE_APPLICATION_ERROR(-20001, 'a relationship of this type between these two users already exists');
     ELSE
+
         l_relationship_pk := relationships_seq.nextval;
         INSERT INTO relationships VALUES (l_relationship_pk, :new.type);
         INSERT INTO membership VALUES (l_relationship_pk, :new.user_id1);
         INSERT INTO membership VALUES (l_relationship_pk, :new.user_id2);
+
+
     END IF;
+
 END;
 
 
-CREATE OR REPLACE TRIGGER swabs_tr
-    BEFORE INSERT
+
+CREATE OR REPLACE TRIGGER relationships_all_v_update_tr
+    INSTEAD OF UPDATE
+    ON relationships_all_v
+    FOR EACH ROW
+DECLARE
+    l_relationship_pk     INTEGER;
+    l_shared_relationship INTEGER;
+BEGIN
+    -- counts the number of relationships of the same type between user_id1 and user_id2
+    SELECT COUNT(*)
+    INTO l_shared_relationship
+    FROM relationships r
+             JOIN membership m1 ON r.relationship_id = m1.relationship_id
+             JOIN membership m2 ON m1.relationship_id = m2.relationship_id
+    WHERE m1.user_id = :new.user_id1
+      AND m2.user_id = :new.user_id2
+      AND r.type = :new.type;
+
+    IF (l_shared_relationship > 0) THEN
+        RAISE_APPLICATION_ERROR(-20001, 'a relationship of this type between these two users already exists');
+    ELSE
+
+        l_relationship_pk := relationships_all_v.relationship_id;
+
+        DELETE
+        FROM relationships
+        WHERE relationship_id = l_relationship_pk;
+
+        INSERT INTO relationships VALUES (l_relationship_pk, :new.type);
+        INSERT INTO membership VALUES (l_relationship_pk, :new.user_id1);
+        INSERT INTO membership VALUES (l_relationship_pk, :new.user_id2);
+
+    END IF;
+
+END;
+
+
+CREATE
+    OR
+    REPLACE TRIGGER swabs_tr
+    BEFORE
+        INSERT OR
+        UPDATE
     ON swabs
     FOR EACH ROW
 DECLARE
@@ -391,18 +438,25 @@ BEGIN
     FROM users
     WHERE user_id = :new.user_id;
     IF (:new.date_result < l_date_of_birth) THEN
-        RAISE_APPLICATION_ERROR(-20001, 'date result < date of birth');
+        RAISE_APPLICATION_ERROR(-20001, 'date of check < date of birth');
     ELSIF (l_date_of_death IS NOT NULL) THEN
         IF (:new.date_result > l_date_of_death) THEN
-            RAISE_APPLICATION_ERROR(-20002, 'date result > date of death');
+            RAISE_APPLICATION_ERROR(-20002, 'date of check > date of death');
         END IF;
     END IF;
-    :new.swab_id := swabs_seq.nextval;
+
+    IF INSERTING THEN
+        :new.swab_id := swabs_seq.nextval;
+    END IF;
 END;
 
 
-CREATE OR REPLACE TRIGGER serological_tests_tr
-    BEFORE INSERT
+CREATE
+    OR
+    REPLACE TRIGGER serological_tests_tr
+    BEFORE
+        INSERT OR
+        UPDATE
     ON serological_tests
     FOR EACH ROW
 DECLARE
@@ -420,38 +474,92 @@ BEGIN
             RAISE_APPLICATION_ERROR(-20002, 'date result > date of death');
         END IF;
     END IF;
-    :new.serological_test_id := serological_tests_seq.nextval;
+
+    IF INSERTING THEN
+        :new.serological_test_id := serological_tests_seq.nextval;
+    END IF;
+
 END;
 
-
+/*
 CREATE OR REPLACE TRIGGER health_checks_tr
-    BEFORE INSERT
+    BEFORE INSERT OR UPDATE
     ON health_checks
     FOR EACH ROW
 DECLARE
     l_date_of_birth DATE;
     l_date_of_death DATE;
 BEGIN
+    IF INSERTING THEN
+        SELECT date_of_birth, date_of_death
+        INTO l_date_of_birth, l_date_of_death
+        FROM users
+        WHERE user_id = :new.user_id;
+        IF (:new.date_of_check < l_date_of_birth) THEN
+            RAISE_APPLICATION_ERROR(-20001, 'date of check < date of birth');
+        ELSIF (l_date_of_death IS NOT NULL) THEN
+            IF (:new.date_of_check > l_date_of_death) THEN
+                RAISE_APPLICATION_ERROR(-20002, 'date of check > date of death');
+            END IF;
+        END IF;
+        :new.health_check_id := health_checks_seq.nextval;
+    ELSIF UPDATING THEN
+        SELECT date_of_birth, date_of_death
+        INTO l_date_of_birth, l_date_of_death
+        FROM users
+        WHERE user_id = :new.user_id;
+        IF (:new.date_of_check < l_date_of_birth) THEN
+            RAISE_APPLICATION_ERROR(-20001, 'date of check < date of birth');
+        ELSIF (l_date_of_death IS NOT NULL) THEN
+            IF (:new.date_of_check > l_date_of_death) THEN
+                RAISE_APPLICATION_ERROR(-20002, 'date of check > date of death');
+            END IF;
+        END IF;
+    END IF;
+END;
+*/
+
+CREATE
+    OR
+    REPLACE TRIGGER health_checks_tr
+    BEFORE
+        INSERT OR
+        UPDATE
+    ON health_checks
+    FOR EACH ROW
+DECLARE
+    l_date_of_birth DATE;
+    l_date_of_death DATE;
+BEGIN
+
     SELECT date_of_birth, date_of_death
     INTO l_date_of_birth, l_date_of_death
     FROM users
     WHERE user_id = :new.user_id;
-    IF (:new.date_of_check < l_date_of_birth) THEN
+    IF (:new.date_result < l_date_of_birth) THEN
         RAISE_APPLICATION_ERROR(-20001, 'date of check < date of birth');
     ELSIF (l_date_of_death IS NOT NULL) THEN
-        IF (:new.date_of_check > l_date_of_death) THEN
+        IF (:new.date_result > l_date_of_death) THEN
             RAISE_APPLICATION_ERROR(-20002, 'date of check > date of death');
         END IF;
     END IF;
-    :new.health_check_id := health_checks_seq.nextval;
+
+    IF INSERTING THEN
+        :new.health_check_id := health_checks_seq.nextval;
+    END IF;
+
 END;
 
 
-CREATE OR REPLACE TRIGGER delete_after_death_tr
-    AFTER UPDATE
+CREATE
+    OR
+    REPLACE TRIGGER delete_after_death_tr
+    AFTER
+        UPDATE
     ON users
     FOR EACH ROW
-    WHEN (NEW.date_of_death != NULL)
+    WHEN (NEW.date_of_death IS NOT NULL)
+    --WHEN (NEW.date_of_death <> OLD.date_of_death)
 DECLARE
     -- no variables to declare...for now.
 BEGIN
@@ -467,32 +575,31 @@ BEGIN
     DELETE
     FROM serological_tests
     where serological_tests.serological_test_id IN (SELECT st.serological_test_id
-                            FROM serological_tests st
-                            WHERE st.user_id = :new.user_id
-                              AND st.date_result > :new.date_of_death);
+                                                    FROM serological_tests st
+                                                    WHERE st.user_id = :new.user_id
+                                                      AND st.date_result > :new.date_of_death);
 
     -- check if there are HEALTH_CHECKS with date_result > :new.date_of_death
     DELETE
     FROM health_checks
     where health_checks.health_check_id IN (SELECT hc.health_check_id
-                            FROM health_checks hc
-                            WHERE hc.user_id = :new.user_id
-                              AND hc.date_result > :new.date_of_death);
+                                            FROM health_checks hc
+                                            WHERE hc.user_id = :new.user_id
+                                              AND hc.date_result > :new.date_of_death);
 
-    -- TODO
-    /*
     -- check if there are CONTACTS with date_received > :new.date_of_death
     DELETE
-    FROM contacts_all_v2
-    where swabs.swab_id IN (SELECT s.swab_id
-                            FROM swabs s
-                            WHERE s.user_id = :new.user_id
-                              AND s.date_result > :new.date_of_death);
-     */
+    FROM contacts c
+    where c.contact_id IN (SELECT p.contact_id
+                           FROM participants p
+                           WHERE p.user_id = :new.user_id
+                             AND p.date_received > :new.date_of_death);
+
+    --DBMS_OUTPUT.PUT_LINE('delete_after_death_tr trigger executed.');
 END;
 
 -- Trigger when user date of death != null, then remove
--- any tuple in health checks, swabs, serologicals, contacts with a date > than the date of death of the user.
+-- any tuple in health checks, swabs, serology, contacts with a date > than the date of death of the user.
 
 
 --     ___
@@ -521,4 +628,5 @@ DROP TABLE serological_tests CASCADE CONSTRAINTS;
 DROP VIEW contacts_all_v;
 DROP VIEW contacts_all_v2;
 DROP VIEW relationships_all_v;
-DROP View relationships_all_v2;
+DROP VIEW relationships_all_v2;
+
