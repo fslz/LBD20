@@ -32,8 +32,8 @@ public class LoginViewController implements Initializable {
         String sid = txtSid.getText();
         String port = txtPort.getText();
         String user = txtUser.getText();
-        //String password = pwdPassword.getText();
-        String password = "yum3jiva0";
+        String password = pwdPassword.getText();
+
 
         Connection connection = new DbConnector().getConnection(host, sid, port, user, password);
 

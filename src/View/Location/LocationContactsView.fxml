@@ -4,8 +4,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="683.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Location.LocationContactsViewController">
+<AnchorPane prefHeight="683.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Location.LocationContactsViewController">
    <children>
       <TableView fx:id="tblLocationContacts" focusTraversable="false" layoutX="14.0" layoutY="58.0" onMouseClicked="#tblContactsOnMouseClicked" prefHeight="548.0" prefWidth="752.0">
          <columns>
@@ -29,9 +30,12 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="btnAddContact" focusTraversable="false" layoutX="136.0" layoutY="621.0" mnemonicParsing="false" onAction="#btnAddContactOnAction" prefHeight="39.0" prefWidth="149.0" text="Add Contact" />
-      <Button fx:id="btnEditContact" focusTraversable="false" layoutX="316.0" layoutY="621.0" mnemonicParsing="false" onAction="#btnEditContactOnAction" prefHeight="39.0" prefWidth="149.0" text="Edit Contact" />
-      <Button fx:id="btnDeleteContact" focusTraversable="false" layoutX="496.0" layoutY="621.0" mnemonicParsing="false" onAction="#btnDeleteContactOnAction" prefHeight="39.0" prefWidth="149.0" text="Delete Contact" textFill="#cd0000" />
+      <HBox layoutX="216.0" layoutY="630.0" spacing="50.0">
+         <children>
+            <Button fx:id="btnAddContact" focusTraversable="false" mnemonicParsing="false" onAction="#btnAddContactOnAction" prefHeight="39.0" prefWidth="149.0" text="Add Contact" />
+            <Button fx:id="btnDeleteContact" focusTraversable="false" mnemonicParsing="false" onAction="#btnDeleteContactOnAction" prefHeight="39.0" prefWidth="149.0" text="Delete Contact" textFill="#cd0000" />
+         </children>
+      </HBox>
       <Button fx:id="btnToLocations" focusTraversable="false" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnToLocationsOnAction" prefHeight="30.0" prefWidth="149.0" text="&lt;- All Locations" />
    </children>
 </AnchorPane>

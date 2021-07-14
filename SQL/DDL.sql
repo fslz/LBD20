@@ -406,7 +406,7 @@ BEGIN
         RAISE_APPLICATION_ERROR(-20001, 'a relationship of this type between these two users already exists');
     ELSE
 
-        l_relationship_pk := relationships_all_v.relationship_id;
+        l_relationship_pk := :old.relationship_id;
 
         DELETE
         FROM relationships

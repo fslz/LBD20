@@ -54,8 +54,6 @@ public class LocationContactsViewController implements Initializable {
     @FXML
     private Button btnAddLocationContact;
     @FXML
-    private Button btnEditLocationContact;
-    @FXML
     private Button btnDeleteLocationContact;
     @FXML
     private Button btnToLocations;

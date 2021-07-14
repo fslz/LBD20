@@ -4,8 +4,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="701.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Contact.ContactsViewController">
+<AnchorPane prefHeight="701.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Contact.ContactsViewController">
 
     <children>
         <TableView fx:id="tblUserContacts" focusTraversable="false" layoutX="15.0" layoutY="64.0" onMouseClicked="#tblUserContactsOnMouseClicked" prefHeight="566.0" prefWidth="876.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="64.0">
@@ -28,8 +29,11 @@
             </columnResizePolicy>
         </TableView>
         <Button fx:id="btnToUsers" focusTraversable="false" layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnToUsersOnAction" prefHeight="30.0" prefWidth="149.0" text="&lt;- All Users" />
-        <Button fx:id="btnAddUserContact" focusTraversable="false" layoutX="183.0" layoutY="648.0" mnemonicParsing="false" onAction="#btnAddUserContactOnAction" prefHeight="39.0" prefWidth="149.0" text="Add Contact" />
-        <Button fx:id="btnEditUserContact" focusTraversable="false" layoutX="359.0" layoutY="648.0" mnemonicParsing="false" onAction="#btnEditUserContactOnAction" prefHeight="39.0" prefWidth="149.0" text="Edit Contact" />
-        <Button fx:id="btnDeleteUserContact" focusTraversable="false" layoutX="533.0" layoutY="648.0" mnemonicParsing="false" onAction="#btnDeleteUserContactOnAction" prefHeight="39.0" prefWidth="149.0" text="Delete Contact" />
+      <HBox layoutX="258.0" layoutY="648.0" spacing="50.0">
+         <children>
+              <Button fx:id="btnAddUserContact" focusTraversable="false" mnemonicParsing="false" onAction="#btnAddUserContactOnAction" prefHeight="39.0" prefWidth="149.0" text="Add Contact" />
+              <Button fx:id="btnDeleteUserContact" focusTraversable="false" mnemonicParsing="false" onAction="#btnDeleteUserContactOnAction" prefHeight="39.0" prefWidth="149.0" text="Delete Contact" />
+         </children>
+      </HBox>
     </children>
 </AnchorPane>

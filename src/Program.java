@@ -34,16 +34,6 @@ public class Program extends Application {
     }
 
     public static void main(String[] args) {
-
-        /*
-        UserDAOOracleImpl userDAO = new UserDAOOracleImpl();
-        try {
-            User user = userDAO.getById(1);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        */
         
         // The launch method automatically calls the start() method
         launch(args);

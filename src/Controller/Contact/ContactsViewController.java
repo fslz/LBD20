@@ -70,8 +70,6 @@ public class ContactsViewController implements Initializable {
     @FXML
     private Button btnAddUserContact;
     @FXML
-    private Button btnEditUserContact;
-    @FXML
     private Button btnDeleteUserContact;
 
 
